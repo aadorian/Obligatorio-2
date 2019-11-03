@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz;
+package interfazGrafica;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author matia
+ * @author Marcos Novelli - Matias Salles
  */
 public class VentanaPrueba extends Application {
     

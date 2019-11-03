@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ecoshop;
+package main;
 
 /**
  *
- * @author novhm
+ * @author Marcos Novelli - Matias Salles
  */
-public class EcoShop {
+public class Main {
 
     /**
      * @param args the command line arguments
