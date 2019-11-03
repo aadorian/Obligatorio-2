@@ -1,14 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dominio;
 
 /**
- *
+ * Clase abstracta Ticket - Tiene la informacion basica de un ticket compartida 
+ * por TicketPreVenta y TicketVentaExpress
  * @author Marcos Novelli - Matias Salles
  */
 public abstract class Ticket {
+    //Atributos
+    private int numeroIdentificador;//Numero identificador unico
+    
+    //Getter & Setter
+    public int getNumeroIdentificador() {
+        return numeroIdentificador;
+    }
+
+    public void setNumeroIdentificador(int numeroIdentificador) {
+        this.numeroIdentificador = numeroIdentificador;
+    }
     
 }

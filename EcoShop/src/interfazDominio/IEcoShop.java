@@ -39,32 +39,32 @@ public interface IEcoShop {
     
     /**
      * PRE: -
+     * POST: Agrega al carrito el articulo y el peso seleccionado
      * @param unArticulo Articulo a agregar al carrito
      * @param peso Cantidad en gramos seleccionada del articulo
-     * POS: Agrega al carrito el articulo y el peso seleccionado
      */
     void agregarAlCarrito(IArticulo unArticulo, double peso);
     
     /**
      * PRE: -
+     * POST: Agrega al carrito el envase y la cantidad necesaria de él.
      * @param unEnvase Envase a agregar al carrito
      * @param cantidadEnvases Cantidad de "unEnvase" a agregar al carrito
-     * POS: Agrega al carrito el envase y la cantidad necesaria de él.
      */
     void agregarAlCarrito(IEnvase unEnvase, int cantidadEnvases);
     
     /**
      * PRE: El articulo esta en el carrito
+     * POST: Elimina del carrito "unArticulo"
      * @param unArticulo Articulo a sacar del carrito
-     * POS: Elimina del carrito "unArticulo"
      */
     void sacarDelCarrito(IArticulo unArticulo);
     
     /**
      * PRE: El envase esta en el carrito
+     * POST: Elimina la cantidad de envases de "unEnvase" del carrito
      * @param unEnvase Envase a sacar del carrito
      * @param cantidadEnvases Cantidad de envases a sacar de "unEnvase"
-     * POS: Elimina la cantidad de envases de "unEnvase" del carrito
      */
     void sacarDelCarrito(IEnvase unEnvase, int cantidadEnvases);
     
@@ -78,34 +78,35 @@ public interface IEcoShop {
     
     /**
      * PRE: -
+     * POST: Registra la PreVenta al EcoShop
      * @param unCarrito Carrito con los articulos y envases a registrar en la 
      * PreVenta
      * @param fechaDeRetiro Fecha de retiro de la PreVenta
-     * POS: Registra la PreVenta al EcoShop
+     * 
      */
     void registrarPreVenta(ICarrito unCarrito, Date fechaDeRetiro);
     
     /**
      * PRE: -
+     * POST: Registra la VentaExpress al EcoShop
      * @param unCarrito Carrito con los articulos y envases a registrar en la 
      * VentaExpress
-     * POS: Registra la VentaExpress al EcoShop
      */
     void registrarVentaExpress(ICarrito unCarrito);
     
     /**
      * PRE: -
-     * @param unaPreVenta PreVenta a la cual se le genera el ticket
-     * POS: Crea un documento pdf (Ticket) de la PreVenta y lo registra
+     * POST: Crea un documento pdf (Ticket) de la PreVenta y lo registra
      * a EcoShop
+     * @param unaPreVenta PreVenta a la cual se le genera el ticket
      */
     void generarTicket(IPreVenta unaPreVenta);
     
     /**
      * PRE: -
-     * @param unaVentaExpress VentaExpress a la cual se le genera el ticket
-     * POS: Crea un documento pdf (Ticket) de la VentaExpress y lo registra 
+     * POST: Crea un documento pdf (Ticket) de la VentaExpress y lo registra 
      * a EcoShop
+     * @param unaVentaExpress VentaExpress a la cual se le genera el ticket
      */
     void generarTicket(IVentaExpress unaVentaExpress);
     
@@ -124,38 +125,38 @@ public interface IEcoShop {
     
     /**
      * PRE: -
+     * POST: Agrega la cantidad de envases de "unEnvase" al Stock
      * @param unEnvase Envase a ingresar al stock
      * @param cantidadEnvases Cantidad de envases de "unEnvase" a agregar al 
      * stock
-     * POS: Agrega la cantidad de envases de "unEnvase" al Stock
      */
     void ingresarEnvaseEnStock(IEnvase unEnvase, int cantidadEnvases);
     
     /**
      * PRE: -
+     * POST: Registra el articulo a EcoShop
      * @param unArticulo Articulo a registrar
-     * POS: Registra el articulo a EcoShop
      */
     void registrarArticulo(IArticulo unArticulo);
     
     /**
      * PRE -
+     * POST: Registra el proveedor a EcoShop
      * @param unProveedor Provedoor a registrar
-     * POS: Registra el proveedor a EcoShop
      */
     void registrarProveedor(IProveedor unProveedor);
     
     /**
      * PRE -
+     * POST: Registra el cajero a EcoShop
      * @param unCajero Cajero a registrar
-     * POS: Registra el cajero a EcoShop
      */
     void registrarCajero(ICajero unCajero);
     
     /**
      * PRE -
+     * POST: Registra el punto de venta a EcoShop
      * @param unPuntoDeVenta Punto de Venta a registrar
-     * POS: Registra el punto de venta a EcoShop
      */
     void registrarPuntoDeVenta(IPuntoDeVenta unPuntoDeVenta);
     

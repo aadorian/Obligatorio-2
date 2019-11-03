@@ -1,14 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dominio;
 
 /**
- *
+ * Clase VentaExpress - Tiene los atributos de Venta y un cajero asociado a la 
+ * compra
  * @author Marcos Novelli - Matias Salles
  */
 public class VentaExpress extends Venta{
+    //Atributos
+    private Cajero unCajero;
+    
+    //Getter & Setter
+    public Cajero getUnCajero() {
+        return unCajero;
+    }
+
+    public void setUnCajero(Cajero unCajero) {
+        this.unCajero = unCajero;
+    }
     
 }
