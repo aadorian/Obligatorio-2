@@ -38,5 +38,17 @@ public class Carrito {
         this.precioTotal = precioTotal;
     }
     
+    private void agregarArticulo(Articulo unArticulo, int pesoEnGramos)
+    {
+        Pair nuevaTuplaArticuloCantidad = new Pair(unArticulo,pesoEnGramos);
+        
+        listaArticulos.add(nuevaTuplaArticuloCantidad);
+    }
     
+    private void agregarEnvase(Envase unEnvase, int cantidadEnvases)
+    {
+        Pair nuevaTuplaEnvaseCantidad = new Pair(unEnvase,cantidadEnvases);
+        
+        listaEnvases.add(nuevaTuplaEnvaseCantidad);
+    }
 }

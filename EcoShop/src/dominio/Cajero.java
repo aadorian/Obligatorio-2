@@ -11,6 +11,19 @@ public class Cajero {
     private String apellido;
     private int numeroEmpleado; //Numero de empleado unico
 
+    //Constructores
+    public Cajero(){
+        this.nombre = "";
+        this.apellido = "";
+        this.numeroEmpleado = -1;
+    }
+    
+    public Cajero(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.numeroEmpleado = -1;
+    }
+    
     //Getter & Setter
     public String getNombre() {
         return nombre;

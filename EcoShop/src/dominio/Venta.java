@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
  */
 public abstract class Venta {
     //Atributos
-    private Carrito carroCompras;
-    private PuntoDeVenta localDeVenta;
-    private LocalDateTime fechaDeVenta;
-    private double precioTotal;
-
+    protected Carrito carroCompras;
+    protected PuntoDeVenta localDeVenta;
+    protected LocalDateTime fechaDeVenta;
+    protected double precioTotal;
+    
     //Getter & Setter
     public Carrito getCarroCompras() {
         return carroCompras;

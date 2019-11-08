@@ -8,20 +8,20 @@ package interfazGrafica;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-
+import dominio.*;
 /**
  * FXML Controller class
  *
  * @author Marcos Novelli - Matias Salles
  */
 public class VentanaMenúPrincipalController implements Initializable {
-
+    private EcoShop ejemplo;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       ejemplo = new EcoShop();
     }    
     
 }

@@ -12,9 +12,26 @@ public class Articulo {
     private double precio;
     private double densidad; //Para calcular cuantos envases son necesarios
     private Proveedor origenDelArticulo;
-    private boolean organico;
     private ArrayList<Envase> envasesAplicables;
 
+    //Constructores
+    public Articulo(){
+        this.codigoIdentificador = -1;
+        this.precio = -1;
+        this.densidad = -1;
+        this.origenDelArticulo = new Proveedor();
+        this.envasesAplicables = new ArrayList<>();
+    }
+    
+    public Articulo(double precio, double densidad, Proveedor origenDelArticulo, 
+            ArrayList<Envase> envasesAplicables) {
+        this.codigoIdentificador = -1; //Luego se settea en la clase EcoShop
+        this.precio = precio;
+        this.densidad = densidad;
+        this.origenDelArticulo = origenDelArticulo;
+        this.envasesAplicables = envasesAplicables;
+    }
+    
     //Getter & Setter
     public int getCodigoIdentificador() {
         return codigoIdentificador;
@@ -48,14 +65,6 @@ public class Articulo {
         this.origenDelArticulo = origenDelArticulo;
     }
 
-    public boolean isOrganico() {
-        return organico;
-    }
-
-    public void setOrganico(boolean organico) {
-        this.organico = organico;
-    }
-
     public ArrayList<Envase> getEnvasesAplicables() {
         return envasesAplicables;
     }
@@ -63,6 +72,5 @@ public class Articulo {
     public void setEnvasesAplicables(ArrayList<Envase> envasesAplicables) {
         this.envasesAplicables = envasesAplicables;
     }
-    
     
 }

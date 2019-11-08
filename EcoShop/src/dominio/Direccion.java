@@ -14,6 +14,28 @@ public class Direccion {
     private int numeroDeCasa;
     private int codigoPostal;
 
+    //Constructores
+    public Direccion(){
+        this.pais = "";
+        this.departamento = "";
+        this.barrio = "";
+        this.calle = "";
+        this.esquina = "";
+        this.numeroDeCasa = -1;
+        this.codigoPostal = -1;
+    }
+    
+    public Direccion(String pais, String departamento, String barrio, 
+            String calle, String esquina, int numeroDeCasa, int codigoPostal) {
+        this.pais = pais;
+        this.departamento = departamento;
+        this.barrio = barrio;
+        this.calle = calle;
+        this.esquina = esquina;
+        this.numeroDeCasa = numeroDeCasa;
+        this.codigoPostal = codigoPostal;
+    }
+    
     //Getter & Setter
     public String getPais() {
         return pais;

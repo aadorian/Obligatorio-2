@@ -9,6 +9,17 @@ public class Proveedor {
     private String nombreProveedor;
     private Direccion direccionProveedor;
 
+    //Contructores
+    public Proveedor(){
+        this.nombreProveedor = "";
+        this.direccionProveedor = new Direccion();
+    }
+    
+    public Proveedor(String nombreProveedor, Direccion direccionProveedor) {
+        this.nombreProveedor = nombreProveedor;
+        this.direccionProveedor = direccionProveedor;
+    }
+    
     //Getter & Setter
     public String getNombreProveedor() {
         return nombreProveedor;
