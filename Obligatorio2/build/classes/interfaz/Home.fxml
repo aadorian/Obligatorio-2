@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="623.0" prefWidth="1271.0" style="-fx-background-color: #fff; -fx-border-width: 1; -fx-border-color: #69784c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.HomeController">
+   <children>
+      <Pane layoutX="-4.0" layoutY="138.0" opacity="0.05" prefHeight="495.0" prefWidth="264.0" styleClass="head-background2" stylesheets="@style.css" />
+      <Pane layoutX="-2.0" prefHeight="145.0" prefWidth="1062.0" styleClass="head-background" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="224.0" layoutY="47.0" text="Eco Shop" textFill="#aec98b">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+            </Label>
+            <Label layoutX="227.0" layoutY="100.0" text="Desde 2019" textFill="#bdeec2">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <VBox layoutX="1.0" layoutY="148.0" prefHeight="473.0" prefWidth="228.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="3.0" AnchorPane.topAnchor="147.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="252.0" text="ARTÍCULOS" textFill="#171717">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </Label>
+            <JFXButton fx:id="btnTodosLosArticulos" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#clickBtnTodosLosArticulos" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Todos los Artículos" textFill="#5b5858">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/projects.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Más Vendidos" textFill="#5b5858">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/reliabilty.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Favoritos" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/projections.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <Label prefHeight="30.0" prefWidth="252.0" text="PERSONAL" textFill="#171717">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </Label>
+            <JFXButton fx:id="btnMisCompras" alignment="BASELINE_LEFT" graphicTextGap="10.0" onMouseClicked="#clickBtnMisCompras" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Mis compras" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/icons8_Workflow_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Mis favoritos" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/icons8_US_Dollar_64px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <Label layoutX="10.0" layoutY="229.0" prefHeight="30.0" prefWidth="252.0" text="CONTACTO" textFill="#171717">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </Label>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Mapa" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/agencies.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Puntos de Venta" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/icons8_Share_64px.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+         </children>
+      </VBox>
+      <Pane layoutX="71.0" layoutY="44.0" prefHeight="131.0" prefWidth="142.0" style="-fx-background-color: transparent;">
+         <children>
+            <ImageView fitHeight="153.0" fitWidth="153.0" layoutX="-18.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagenes/organicLogo.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </Pane>
+      <ScrollPane layoutX="264.0" layoutY="227.0" prefHeight="399.0" prefWidth="993.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="226.0">
+         <content>
+            <VBox fx:id="pnl_scroll" prefHeight="393.0" prefWidth="1043.0" spacing="20.0" style="-fx-background-color: #fff;" />
+         </content>
+      </ScrollPane>
+      <Pane layoutX="250.0" layoutY="155.0" prefHeight="43.0" prefWidth="1006.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
+         <children>
+            <JFXButton buttonType="RAISED" contentDisplay="CENTER" ellipsisString=" " layoutX="928.0" layoutY="7.0" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #d6dfd7; -fx-border-color: #3a453b; -fx-border-radius: 90; -fx-background-radius: 90;" text=" " textAlignment="RIGHT">
+               <font>
+                  <Font size="1.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="16.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" x="100.0">
+                     <image>
+                        <Image url="@imagenes/lupa22.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <MenuButton layoutX="17.0" layoutY="7.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" opacity="0.6" prefHeight="30.0" prefWidth="57.0" style="-fx-background-color: #4e594f; -fx-background-radius: 30; -fx-border-color: #3a453b; -fx-border-radius: 30; -fx-border-width: 1; -fx-region-background: #4e594f;" textAlignment="RIGHT">
+               <items>
+                  <CheckMenuItem mnemonicParsing="false" text="Frutos Secos" />
+                  <CheckMenuItem mnemonicParsing="false" text="Frutas" />
+                  <CheckMenuItem mnemonicParsing="false" text="Verduras" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <CheckMenuItem mnemonicParsing="false" text="Todos" />
+               </items>
+            </MenuButton>
+            <TextField layoutX="39.0" layoutY="7.0" prefHeight="30.0" prefWidth="875.0" promptText="   Buscar..." style="-fx-background-color: #ffffff; -fx-border-color: #3a453b; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-image-width: 0;" />
+            <JFXButton buttonType="RAISED" contentDisplay="CENTER" ellipsisString=" " layoutX="969.0" layoutY="7.0" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #d6dfd7; -fx-background-radius: 90; -fx-border-color: #3a453b; -fx-border-radius: 30; -fx-padding: 5;" text=" " textAlignment="RIGHT">
+               <font>
+                  <Font size="1.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/carrito22.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Label layoutX="295.0" layoutY="206.0" text="Todos los Artículos" textFill="#bcb9b9" />
+   </children>
+</AnchorPane>
