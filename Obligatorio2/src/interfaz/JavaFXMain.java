@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
  *
  * @author 
  */
-public class JavaFXMain  extends Application {
+public class JavaFXMain extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

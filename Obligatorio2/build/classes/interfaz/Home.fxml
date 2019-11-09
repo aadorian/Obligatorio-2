@@ -57,7 +57,7 @@
                <graphic>
                   <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@imagenes/projects.png" />
+                        <Image url="@imagenes/todosLosArticulos.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -75,7 +75,7 @@
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@imagenes/reliabilty.png" />
+                        <Image url="@imagenes/masVendidos3.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -90,7 +90,7 @@
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@imagenes/projections.png" />
+                        <Image url="@imagenes/favoritos.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
@@ -116,7 +116,7 @@
                <graphic>
                   <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@imagenes/icons8_Workflow_64px.png" />
+                        <Image url="@imagenes/compras.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -131,7 +131,7 @@
                <graphic>
                   <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@imagenes/icons8_US_Dollar_64px.png" />
+                        <Image url="@imagenes/favorito3.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -154,7 +154,7 @@
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@imagenes/agencies.png" />
+                        <Image url="@imagenes/mapa.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -169,7 +169,7 @@
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@imagenes/icons8_Share_64px.png" />
+                        <Image url="@imagenes/puntosDeVenta.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
