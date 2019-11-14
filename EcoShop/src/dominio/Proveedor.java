@@ -1,13 +1,15 @@
 package dominio;
 
+import interfazDominio.IProveedor;
+import interfazDominio.IDireccion;
 /**
  * Clase Proveedor - Tiene la informacion de un proveedor de ciertos articulos
  * @author Marcos Novelli - Matias Salles
  */
-public class Proveedor {
+public class Proveedor implements IProveedor{
     //Atributos
     private String nombreProveedor;
-    private Direccion direccionProveedor;
+    private IDireccion direccionProveedor;
 
     //Contructores
     public Proveedor(){
@@ -15,7 +17,7 @@ public class Proveedor {
         this.direccionProveedor = new Direccion();
     }
     
-    public Proveedor(String nombreProveedor, Direccion direccionProveedor) {
+    public Proveedor(String nombreProveedor, IDireccion direccionProveedor) {
         this.nombreProveedor = nombreProveedor;
         this.direccionProveedor = direccionProveedor;
     }
@@ -29,11 +31,11 @@ public class Proveedor {
         this.nombreProveedor = nombreProveedor;
     }
 
-    public Direccion getDireccionProveedor() {
+    public IDireccion getDireccionProveedor() {
         return direccionProveedor;
     }
 
-    public void setDireccionProveedor(Direccion direccionProveedor) {
+    public void setDireccionProveedor(IDireccion direccionProveedor) {
         this.direccionProveedor = direccionProveedor;
     }
     

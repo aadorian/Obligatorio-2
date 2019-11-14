@@ -1,10 +1,11 @@
 package dominio;
 
+import interfazDominio.IDireccion;
 /**
  * Clase Direccion - tiene todos los datos necesarios de una direccion
  * @author Marcos Novelli - Matias Salles
  */
-public class Direccion {
+public class Direccion implements IDireccion{
     //Atributos
     private String pais;
     private String departamento;

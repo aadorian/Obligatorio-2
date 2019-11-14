@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package main;
-
+import interfazGrafica.*;
 /**
  *
  * @author Marcos Novelli - Matias Salles
@@ -15,6 +15,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        VentanaMenuPrincipal unaVentanaMenuPrincipal = new VentanaMenuPrincipal();
+        
+        unaVentanaMenuPrincipal.comenzarVentanaPrincipal(args);
         // TODO code application logic here
     }
     

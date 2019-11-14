@@ -7,21 +7,28 @@ package interfazGrafica;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import dominio.*;
+import javafx.scene.image.ImageView;
+
 /**
  * FXML Controller class
  *
- * @author Marcos Novelli - Matias Salles
+ * @author matia
  */
-public class VentanaMenúPrincipalController implements Initializable {
-    private EcoShop ejemplo;
+public class ItemController implements Initializable {
+    @FXML
+    ImageView ImagenArticulo;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       ejemplo = new EcoShop();
+        // TODO
     }    
     
+    public void cargarImagen()
+    {
+    
+    }
 }

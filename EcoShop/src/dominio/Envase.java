@@ -1,10 +1,11 @@
 package dominio;
 
+import interfazDominio.IEnvase;
 /**
  * Clase Envase - Contiene toda la informacion del envase
  * @author Marcos Novelli - Matias Salles
  */
-public class Envase {
+public class Envase implements IEnvase{
     //Atributos
     private String nombreEnvase;
     private double largo;//Para calcular el volumen

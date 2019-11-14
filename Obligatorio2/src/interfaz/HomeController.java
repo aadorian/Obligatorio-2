@@ -51,7 +51,7 @@ public class HomeController implements Initializable {
             try {
                 nodes[i] = (Node) FXMLLoader.load(getClass().getResource("Item.fxml"));
                 pnl_scroll.getChildren().add(nodes[i]);
-
+                
             } catch (IOException ex) {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             }
