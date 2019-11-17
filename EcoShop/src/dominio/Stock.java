@@ -1,6 +1,6 @@
 package dominio;
 
-import java.io.Serializable;
+import interfazDominio.IStock;
 import java.util.ArrayList;
 import javafx.util.Pair;
 /**
@@ -9,7 +9,7 @@ import javafx.util.Pair;
  * los EcoShop (locales - puntos de venta) tienen el mismo Stock)
  * @author Marcos Novelli - Matias Salles
  */
-public class Stock {
+public class Stock implements IStock{
     //Atributos
     private ArrayList<Pair<Envase,Integer>> listaEnvases;
     

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package main;
+import dominio.EcoShop;
+import interfazDominio.IEcoShop;
 import interfazGrafica.*;
 /**
  *
@@ -15,7 +17,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        VentanaMenuPrincipal unaVentanaMenuPrincipal = new VentanaMenuPrincipal();
+        IEcoShop unSistemaEcoshop = new EcoShop();
+        CargaDeDatos cargadorDeDatos = new CargaDeDatos(unSistemaEcoshop);
+        
+        cargadorDeDatos.cargarSistema();
+        
+        VentanaMenuPrincipal unaVentanaMenuPrincipal;
+        unaVentanaMenuPrincipal = new VentanaMenuPrincipal(unSistemaEcoshop);
         
         unaVentanaMenuPrincipal.comenzarVentanaPrincipal(args);
         // TODO code application logic here

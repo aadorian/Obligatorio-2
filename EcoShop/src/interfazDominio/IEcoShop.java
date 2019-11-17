@@ -17,6 +17,12 @@ public interface IEcoShop {
     ArrayList<IArticulo> obtenerListaArticulos();
     
     /**
+     * 
+     * @return 
+     */
+    ArrayList<IEnvase> obtenerListaEnvases();
+    
+    /**
      * PRE: -
      * @param unArticulo Articulo al cual guardar en un envase
      * @return Retorna una lista de envases que son aplicables(compatibles) con
@@ -138,6 +144,12 @@ public interface IEcoShop {
      * @param unArticulo Articulo a registrar
      */
     void registrarArticulo(IArticulo unArticulo);
+    
+    /**
+     * 
+     * @param unEnvase
+     */
+    void registrarEnvase(IEnvase unEnvase);
     
     /**
      * PRE -

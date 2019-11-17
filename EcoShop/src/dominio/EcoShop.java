@@ -23,8 +23,21 @@ public class EcoShop implements IEcoShop{
     private ArrayList<IDireccion> listaDirecciones;
     private ICarrito carritoDeCompras;
     private IStock stockEnvases;
-    
-    
+
+    public EcoShop() {
+        listaArticulos = new ArrayList<>();
+        listaEnvases = new ArrayList<>();
+        listaPuntosDeVenta = new ArrayList<>();
+        listaPreVentas = new ArrayList<>();
+        listaVentasExpress = new ArrayList<>();
+        listaTicketsPreVenta = new ArrayList<>();
+        listaTicketsVentaExpress = new ArrayList<>();
+        listaCajeros = new ArrayList<>();
+        listaProveedores = new ArrayList<>();
+        listaDirecciones = new ArrayList<>();
+        carritoDeCompras = new Carrito();
+        //stockEnvases = new Stock();
+    }
     
     //Getter & Setter
     public ArrayList<IProveedor> getListaProveedores() {
@@ -134,6 +147,11 @@ public class EcoShop implements IEcoShop{
     }
 
     @Override
+    public ArrayList<IEnvase> obtenerListaEnvases() {
+        return this.getListaEnvases();
+    }
+    
+    @Override
     public ArrayList<IEnvase> obtenerListaEnvasesAplicables(IArticulo unArticulo) {
         int posicionArticulo = listaArticulos.indexOf(unArticulo);
         
@@ -229,7 +247,13 @@ public class EcoShop implements IEcoShop{
     }
 
     @Override
+    public void registrarEnvase(IEnvase unEnvase) {
+        this.listaEnvases.add(unEnvase);
+    }
+    
+    @Override
     public void registrarProveedor(IProveedor unProveedor) {
+        unProveedor.modificarDireccion(direccionRandom());
         this.listaProveedores.add(unProveedor);
     }
 
@@ -265,6 +289,11 @@ public class EcoShop implements IEcoShop{
        return retorno;
    }
    
+   /**
+    * 
+    * @param codigoABuscar
+    * @return 
+    */
     private boolean codigoIdentificadorEnArticulosRepetido(int codigoABuscar){
        boolean estaRepetido = false;
        
@@ -278,13 +307,31 @@ public class EcoShop implements IEcoShop{
        return estaRepetido;
    }
 
-   private IProveedor proveedorRandom()
-   {
+    /**
+     * 
+     * @return 
+     */
+   private IProveedor proveedorRandom(){
        int largoListaDeProveedores = this.listaProveedores.size();
        int posicionDeProveedorARetornar = numeroRandom(largoListaDeProveedores - 1);
        
        return this.listaProveedores.get(posicionDeProveedorARetornar);
    }
-         
+   
+   /**
+    * 
+    * @return 
+    */
+   private IDireccion direccionRandom(){
+       int largoListaDeDirecciones = this.listaDirecciones.size();
+       int posicionDeDireccionARetornar = numeroRandom(largoListaDeDirecciones - 1);
+       
+       return this.listaDirecciones.get(posicionDeDireccionARetornar);
+   }
+
+    
+
+
+   
 }
 

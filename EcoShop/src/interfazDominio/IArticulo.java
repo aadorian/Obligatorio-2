@@ -44,6 +44,10 @@ public interface IArticulo {
      */
     IProveedor obtenerOrigen();
     
+    /**
+     * 
+     * @param unProveedor 
+     */
     void modificarOrigen(IProveedor unProveedor);
     
     /**
@@ -54,6 +58,7 @@ public interface IArticulo {
     
     /**
      * 
+     * @param nuevoCodigo
      */
     void modificarCodigoIdentificador(int nuevoCodigo);
     
@@ -62,6 +67,12 @@ public interface IArticulo {
      * @return 
      */
     ArrayList<IEnvase> obtenerEnvasesAplicables();
+    
+    /**
+     * 
+     * @param unEnvase
+     */
+    void agregarEnvase(IEnvase unEnvase);
     
     /**
      * 

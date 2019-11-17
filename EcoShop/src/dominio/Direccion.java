@@ -93,6 +93,20 @@ public class Direccion implements IDireccion{
     public void setCodigoPostal(int codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
+
+    //
+    //METODOS PUBLICOS
+    //
+    
+    @Override
+    public String obtenerPais() {
+        return this.getPais();
+    }
+
+    @Override
+    public String obtenerDepartamento() {
+        return this.getDepartamento();
+    }
     
     
 }

@@ -6,8 +6,10 @@
 package interfazGrafica;
 
 import com.jfoenix.controls.JFXButton;
+import interfazDominio.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -24,7 +27,6 @@ import javafx.scene.layout.VBox;
  * @author novhm
  */
 public class HomeController implements Initializable {
-
     @FXML
     private VBox pnl_scroll;
     @FXML
@@ -43,13 +45,31 @@ public class HomeController implements Initializable {
 
     //Item
     private void refreshItem() {
+        IEcoShop sistemaEcoshop = VentanaMenuPrincipal.obtenerSistema();
+        ArrayList<IArticulo> listaArticulosSistema = sistemaEcoshop.obtenerListaArticulos();
+        
         pnl_scroll.getChildren().clear();
 
         Node[] nodes = new Node[15];
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < listaArticulosSistema.size(); i++) {
             try {
-                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("Item.fxml"));
+                IArticulo articuloTmp = listaArticulosSistema.get(i);
+                IProveedor proveedorTmp = articuloTmp.obtenerOrigen();
+                IDireccion direccionTmp = proveedorTmp.obtenerDireccion();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Item.fxml"));
+                Parent root = loader.load();
+                ItemController iController = loader.<ItemController>getController();
+
+                iController.cargarNombreArticulo(articuloTmp.obtenerNombre());
+                iController.cargarPrecioPorKG(articuloTmp.obtenerPrecioPorKG());
+                iController.cargarImagen(articuloTmp.obtenerRutaDeImagen());
+                iController.cargarNombreProveedor(proveedorTmp.obtenerNombre());
+                iController.cargarPaisYDepartamentoProveedor(direccionTmp.obtenerPais(), 
+                        direccionTmp.obtenerDepartamento());
+                
+                nodes[i] = (Node) root;
+                
                 pnl_scroll.getChildren().add(nodes[i]);
                 
             } catch (IOException ex) {

@@ -11,4 +11,22 @@ package interfazDominio;
  */
 public interface IProveedor {
     
+    /**
+     * 
+     * @param unaDireccion
+     */
+    void modificarDireccion(IDireccion unaDireccion);
+    
+    /**
+     * 
+     * @return 
+     */
+    String obtenerNombre();
+    
+    /**
+     * 
+     * @return 
+     */
+    IDireccion obtenerDireccion();
+    
 }

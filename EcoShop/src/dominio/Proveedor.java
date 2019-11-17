@@ -16,6 +16,11 @@ public class Proveedor implements IProveedor{
         this.nombreProveedor = "";
         this.direccionProveedor = new Direccion();
     }
+
+    public Proveedor(String nombreProveedor) {
+        this.nombreProveedor = nombreProveedor;
+        this.direccionProveedor = new Direccion();
+    }
     
     public Proveedor(String nombreProveedor, IDireccion direccionProveedor) {
         this.nombreProveedor = nombreProveedor;
@@ -37,6 +42,25 @@ public class Proveedor implements IProveedor{
 
     public void setDireccionProveedor(IDireccion direccionProveedor) {
         this.direccionProveedor = direccionProveedor;
+    }
+
+    //
+    //METODOS PUBLICOS
+    //
+    
+    @Override
+    public void modificarDireccion(IDireccion unaDireccion) {
+        this.setDireccionProveedor(unaDireccion);
+    }
+
+    @Override
+    public String obtenerNombre() {
+        return this.getNombreProveedor();
+    }
+
+    @Override
+    public IDireccion obtenerDireccion() {
+        return this.getDireccionProveedor();
     }
     
     

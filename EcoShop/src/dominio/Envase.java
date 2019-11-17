@@ -79,6 +79,11 @@ public class Envase implements IEnvase{
         return this.getNombreEnvase();
     }
     
+    @Override
+    public boolean sonIguales(IEnvase unEnvase) {
+        return this.obtenerNombre().equals(unEnvase.obtenerNombre());
+    }
+    
     //
     //METODOS PRIVADOS
     //
@@ -93,5 +98,6 @@ public class Envase implements IEnvase{
     private double calcularVolumen(double largo, double alto, double ancho){
         return largo*alto*ancho;
     }
+    
 
 }

@@ -40,6 +40,17 @@ public class Articulo implements IArticulo{
         this.origenDelArticulo = new Proveedor();
         this.envasesAplicables = new ArrayList<>();
     }
+
+    public Articulo(String nombreArticulo, String rutaImagen, double precioPorKG, 
+            double densidad) {
+        this.nombreArticulo = nombreArticulo;
+        this.rutaImagen = rutaImagen;
+        this.codigoIdentificador = -1;
+        this.precioPorKG = precioPorKG;
+        this.densidad = densidad;
+        this.origenDelArticulo = new Proveedor();
+        this.envasesAplicables = new ArrayList<>();
+    }
     
     public Articulo(double precio, double densidad, IProveedor origenDelArticulo, 
             ArrayList<IEnvase> envasesAplicables, String nombreArticulo,
@@ -162,6 +173,11 @@ public class Articulo implements IArticulo{
     @Override
     public void modificarOrigen(IProveedor unProveedor) {
         this.setOrigenDelArticulo(unProveedor);
+    }
+
+    @Override
+    public void agregarEnvase(IEnvase unEnvase) {
+        this.envasesAplicables.add(unEnvase);
     }
     
     

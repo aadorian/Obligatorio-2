@@ -11,4 +11,15 @@ package interfazDominio;
  */
 public interface IDireccion {
     
+    /**
+     * 
+     * @return 
+     */
+    String obtenerPais();
+    
+    /**
+     * 
+     * @return 
+     */
+    String obtenerDepartamento();
 }

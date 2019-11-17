@@ -17,5 +17,10 @@ public interface IEnvase {
      */
     String obtenerNombre();
     
-    
+    /**
+     * 
+     * @param unEnvase
+     * @return 
+     */
+    boolean sonIguales(IEnvase unEnvase);
 }

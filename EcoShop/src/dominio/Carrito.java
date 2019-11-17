@@ -1,5 +1,6 @@
 package dominio;
 
+import interfazDominio.ICarrito;
 import java.util.ArrayList;
 import javafx.util.Pair;
 /**
@@ -7,7 +8,7 @@ import javafx.util.Pair;
  * al igual que la cantidad (gramos) del articulo elegido
  * @author Marcos Novelli - Matias Salles
  */
-public class Carrito {
+public class Carrito implements ICarrito{
     //Atributos
     private ArrayList<Pair<Articulo,Integer>> listaArticulos; //Articlo y cantidad
     private ArrayList<Pair<Envase,Integer>> listaEnvases; //Envase y cantidad

@@ -5,6 +5,7 @@
  */
 package interfazGrafica;
 
+import interfazDominio.IEcoShop;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -20,8 +21,18 @@ import javax.swing.ImageIcon;
  * @author 
  */
 public class VentanaMenuPrincipal extends Application {
-
+    //Atributos
+    private static IEcoShop sistemaEcoShop;
+    
     public VentanaMenuPrincipal() {
+    }
+
+    public VentanaMenuPrincipal(IEcoShop sistemaEcoShop) {
+        VentanaMenuPrincipal.sistemaEcoShop = sistemaEcoShop;
+    }
+    
+    public static IEcoShop obtenerSistema(){
+        return sistemaEcoShop;
     }
     
     @Override
