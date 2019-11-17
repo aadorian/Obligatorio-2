@@ -71,6 +71,18 @@ public class Envase implements IEnvase{
         this.volumen = volumen;
     }
     
+    //
+    //METODOS PUBLICOS
+    //
+    @Override
+    public String obtenerNombre() {
+        return this.getNombreEnvase();
+    }
+    
+    //
+    //METODOS PRIVADOS
+    //
+    
     /**
      * @param largo - Largo del envase
      * @param alto - Alto del envase
@@ -81,4 +93,5 @@ public class Envase implements IEnvase{
     private double calcularVolumen(double largo, double alto, double ancho){
         return largo*alto*ancho;
     }
+
 }

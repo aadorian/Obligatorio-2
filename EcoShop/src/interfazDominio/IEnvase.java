@@ -11,4 +11,11 @@ package interfazDominio;
  */
 public interface IEnvase {
     
+    /**
+     * 
+     * @return 
+     */
+    String obtenerNombre();
+    
+    
 }

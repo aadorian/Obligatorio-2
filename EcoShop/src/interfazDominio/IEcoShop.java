@@ -28,7 +28,7 @@ public interface IEcoShop {
      * PRE: -
      * @param unEnvase Envase a utilizar para guardar "unArticulo"
      * @param unArticulo Articulo al cual guardar en "unEnvase"
-     * @param pesoArticulo Cantidad en gramos seleccionada de unArticulo
+     * @param pesoArticulo Cantidad en kg seleccionada de unArticulo
      * @return Retorna la cantidad de "unEnvase" necesarios para almacenar 
      * la cantidad (pesoArticulo) de "unArticulo"
      */
@@ -41,7 +41,7 @@ public interface IEcoShop {
      * PRE: -
      * POST: Agrega al carrito el articulo y el peso seleccionado
      * @param unArticulo Articulo a agregar al carrito
-     * @param peso Cantidad en gramos seleccionada del articulo
+     * @param peso Cantidad en kg seleccionada del articulo
      */
     void agregarAlCarrito(IArticulo unArticulo, double peso);
     
@@ -160,5 +160,9 @@ public interface IEcoShop {
      */
     void registrarPuntoDeVenta(IPuntoDeVenta unPuntoDeVenta);
     
-    
+    /**
+     * 
+     * @param unaDireccion 
+     */
+    void registrarDireccion(IDireccion unaDireccion);
 }

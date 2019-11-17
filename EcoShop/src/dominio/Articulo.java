@@ -14,7 +14,7 @@ public class Articulo implements IArticulo{
     private String nombreArticulo;
     private String rutaImagen; //Path en donde se encuentra la imagen del articulo
     private int codigoIdentificador; //Codigo identificador unico del articulo
-    private double precio;
+    private double precioPorKG; 
     private double densidad; //Para calcular cuantos envases son necesarios
     private IProveedor origenDelArticulo;
     private ArrayList<IEnvase> envasesAplicables;
@@ -25,7 +25,17 @@ public class Articulo implements IArticulo{
         this.nombreArticulo = "";
         this.rutaImagen = "";
         this.codigoIdentificador = -1;
-        this.precio = -1;
+        this.precioPorKG = -1;
+        this.densidad = -1;
+        this.origenDelArticulo = new Proveedor();
+        this.envasesAplicables = new ArrayList<>();
+    }
+
+    public Articulo(String nombreArticulo) {
+        this.nombreArticulo = nombreArticulo;
+        this.rutaImagen = "";
+        this.codigoIdentificador = -1;
+        this.precioPorKG = -1;
         this.densidad = -1;
         this.origenDelArticulo = new Proveedor();
         this.envasesAplicables = new ArrayList<>();
@@ -37,7 +47,7 @@ public class Articulo implements IArticulo{
         this.nombreArticulo = nombreArticulo;
         this.rutaImagen = rutaImagen;
         this.codigoIdentificador = -1; //Luego se settea en la clase EcoShop
-        this.precio = precio;
+        this.precioPorKG = precio;
         this.densidad = densidad;
         this.origenDelArticulo = origenDelArticulo;
         this.envasesAplicables = envasesAplicables;
@@ -68,12 +78,12 @@ public class Articulo implements IArticulo{
         this.codigoIdentificador = codigoIdentificador;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrecioPorKG() {
+        return precioPorKG;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecioPorKG(double precio) {
+        this.precioPorKG = precio;
     }
 
     public double getDensidad() {
@@ -99,5 +109,61 @@ public class Articulo implements IArticulo{
     public void setEnvasesAplicables(ArrayList<IEnvase> envasesAplicables) {
         this.envasesAplicables = envasesAplicables;
     }
+
+    //
+    //METODOS PUBLICOS
+    //
+    
+    @Override
+    public int obtenerCodigoIdentificador() {
+        return this.getCodigoIdentificador();
+    }
+
+    @Override
+    public ArrayList<IEnvase> obtenerEnvasesAplicables() {
+        return this.getEnvasesAplicables();
+    }
+
+    @Override
+    public String obtenerNombre() {
+        return this.getNombreArticulo();
+    }
+
+    @Override
+    public String obtenerRutaDeImagen() {
+        return this.getRutaImagen();
+    }
+
+    @Override
+    public double obtenerPrecioPorKG() {
+        return this.getPrecioPorKG();
+    }
+
+    @Override
+    public double obtenerDensidad() {
+        return this.getDensidad();
+    }
+
+    @Override
+    public IProveedor obtenerOrigen() {
+        return this.getOrigenDelArticulo();
+    }
+
+    @Override
+    public boolean sonIguales(IArticulo unArticulo) {
+        return this.obtenerNombre().equals(unArticulo.obtenerNombre());
+    }
+
+    @Override
+    public void modificarCodigoIdentificador(int nuevoCodigo) {
+        this.setCodigoIdentificador(nuevoCodigo);
+    }
+
+    @Override
+    public void modificarOrigen(IProveedor unProveedor) {
+        this.setOrigenDelArticulo(unProveedor);
+    }
+    
+    
     
 }
