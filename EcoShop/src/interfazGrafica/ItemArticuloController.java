@@ -5,11 +5,16 @@
  */
 package interfazGrafica;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.scene.control.Alert;
+import interfazDominio.IEcoShop;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -18,7 +23,7 @@ import javafx.scene.image.ImageView;
  *
  * @author matia
  */
-public class ItemController implements Initializable {
+public class ItemArticuloController implements Initializable {
     @FXML
     Label nombreArticulo;
     @FXML
@@ -29,6 +34,9 @@ public class ItemController implements Initializable {
     private Label nombreProveedor;
     @FXML
     private Label paisYDepartamentoProveedor;
+    @FXML
+    private TextField textFieldPeso;
+
     
     /**
      * Initializes the controller class.
@@ -61,6 +69,28 @@ public class ItemController implements Initializable {
     
     public void cargarPaisYDepartamentoProveedor(String pais, String departamento){
         paisYDepartamentoProveedor.setText(pais + ", " + departamento);
+    }
+
+    @FXML
+    private void clickBtnAgregarAlCarrito(ActionEvent event) {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        String pesoIngresado = textFieldPeso.getText();
+        String digitos = "[0-9]+";
+        
+        if(pesoIngresado.trim().equals("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "No ingreso la cantidad a llevar");
+            alert.showAndWait();
+        }
+        else if(!pesoIngresado.matches(digitos)){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Peso inválido (solo números)");
+            alert.showAndWait();
+        }
+        else{
+            double pesoSeleccionado = Double.parseDouble(pesoIngresado);
+            sistemaEcoShop.agregarAlCarrito(sistemaEcoShop.
+                    obtenerArticuloPorNombre(nombreArticulo.getText()), pesoSeleccionado);
+            textFieldPeso.setText("");
+        }
     }
     
 }

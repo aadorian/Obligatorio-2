@@ -20,15 +20,15 @@ import javax.swing.ImageIcon;
  *
  * @author 
  */
-public class VentanaMenuPrincipal extends Application {
+public class VentanaFXML extends Application {
     //Atributos
     private static IEcoShop sistemaEcoShop;
     
-    public VentanaMenuPrincipal() {
+    public VentanaFXML() {
     }
 
-    public VentanaMenuPrincipal(IEcoShop sistemaEcoShop) {
-        VentanaMenuPrincipal.sistemaEcoShop = sistemaEcoShop;
+    public VentanaFXML(IEcoShop sistemaEcoShop) {
+        VentanaFXML.sistemaEcoShop = sistemaEcoShop;
     }
     
     public static IEcoShop obtenerSistema(){
@@ -37,7 +37,7 @@ public class VentanaMenuPrincipal extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("VentanaPrincipal.fxml"));
         
         //Eliminar botones de minimizar, maximizar y cerrar
         //stage.initStyle(StageStyle.UNDECORATED);

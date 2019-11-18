@@ -23,6 +23,19 @@ public interface IEcoShop {
     ArrayList<IEnvase> obtenerListaEnvases();
     
     /**
+     * 
+     * @param nombre
+     * @return 
+     */
+    IArticulo obtenerArticuloPorNombre(String nombre);
+    
+    /**
+     * 
+     * @return 
+     */
+    ICarrito obtenerCarrito();
+    
+    /**
      * PRE: -
      * @param unArticulo Articulo al cual guardar en un envase
      * @return Retorna una lista de envases que son aplicables(compatibles) con

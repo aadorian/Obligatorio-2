@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/Item.fxml</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/main/Main.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/HomeController.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemController.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/Proveedor.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/main/CargaDeDatos.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/VentanaPrincipalController.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemCarritoController.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemCarrito.fxml</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/Carrito.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemArticuloController.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazDominio/ICarrito.java</file>
         </group>
     </open-files>
 </project-private>

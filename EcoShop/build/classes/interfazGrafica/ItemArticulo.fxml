@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="399.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazGrafica.ItemController">
+<AnchorPane id="AnchorPane" prefHeight="399.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazGrafica.ItemArticuloController">
    <children>
       <Pane layoutX="29.0" layoutY="22.0" prefHeight="338.0" prefWidth="896.0" style="-fx-background-color: #fff;">
          <children>
@@ -29,7 +29,7 @@
             </Label>
             <Pane layoutY="269.0" prefHeight="70.0" prefWidth="896.0" style="-fx-background-color: transparente;">
                <children>
-                  <JFXButton alignment="CENTER" contentDisplay="RIGHT" layoutX="738.0" layoutY="10.0" prefHeight="25.0" prefWidth="141.0" style="-fx-background-radius: 20; -fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 20; -fx-padding: 8;" text="Agrega al carrito ">
+                  <JFXButton alignment="CENTER" contentDisplay="RIGHT" layoutX="738.0" layoutY="10.0" onAction="#clickBtnAgregarAlCarrito" prefHeight="25.0" prefWidth="141.0" style="-fx-background-radius: 20; -fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 20; -fx-padding: 8;" text="Agrega al carrito ">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +62,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" layoutX="736.0" layoutY="182.0" prefHeight="9.0" prefWidth="49.0" style="-fx-border-color: #b9adad; -fx-border-radius: 5; -fx-background-color: f6f5f5; -fx-padding: 1;">
+            <TextField fx:id="textFieldPeso" alignment="CENTER" layoutX="736.0" layoutY="182.0" prefHeight="9.0" prefWidth="49.0" style="-fx-border-color: #b9adad; -fx-border-radius: 5; -fx-background-color: f6f5f5; -fx-padding: 1;">
                <effect>
                   <Glow level="0.11" />
                </effect>

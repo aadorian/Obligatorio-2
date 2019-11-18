@@ -35,6 +35,7 @@ public class CargaDeDatos {
         this.cargarEnvases();
         this.cargarManzanaRoja();
         this.cargarManzanaVerde();
+        this.cargarBanana();
     }
     
     /**
@@ -116,6 +117,20 @@ public class CargaDeDatos {
         manzanaVerde.agregarEnvase(obtenerEnvase("Bolsa Grande"));
         
         sistemaEcoShop.registrarArticulo(manzanaVerde);
+    }
+    
+    private void cargarBanana(){
+        double densidadDeBanana = 1382; 
+        double precioPorKGBanana = 109;
+        String rutaDeImagenBanana = "interfazGrafica/imagenes/banana.jpg";
+        
+        IArticulo banana = new Articulo("Banana",rutaDeImagenBanana,
+        precioPorKGBanana,densidadDeBanana);
+        
+        banana.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
+        banana.agregarEnvase(obtenerEnvase("Bolsa Grande"));
+        
+        sistemaEcoShop.registrarArticulo(banana);
     }
     
     /**

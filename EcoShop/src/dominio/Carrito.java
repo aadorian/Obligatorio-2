@@ -1,6 +1,8 @@
 package dominio;
 
+import interfazDominio.IArticulo;
 import interfazDominio.ICarrito;
+import interfazDominio.IEnvase;
 import java.util.ArrayList;
 import javafx.util.Pair;
 /**
@@ -10,24 +12,31 @@ import javafx.util.Pair;
  */
 public class Carrito implements ICarrito{
     //Atributos
-    private ArrayList<Pair<Articulo,Integer>> listaArticulos; //Articlo y cantidad
-    private ArrayList<Pair<Envase,Integer>> listaEnvases; //Envase y cantidad
+    private ArrayList<Pair<IArticulo,Double>> listaArticulos; //Articlo y cantidad
+    private ArrayList<Pair<IEnvase,Double>> listaEnvases; //Envase y cantidad
     private double precioTotal;
 
+    //Constructores
+    public Carrito() {
+        listaArticulos = new ArrayList<>();
+        listaEnvases = new ArrayList<>();
+        precioTotal = 0;
+    }
+    
     //Getter & Setter
-    public ArrayList<Pair<Articulo, Integer>> getListaArticulos() {
+    public ArrayList<Pair<IArticulo, Double>> getListaArticulos() {
         return listaArticulos;
     }
 
-    public void setListaArticulos(ArrayList<Pair<Articulo, Integer>> listaArticulos) {
+    public void setListaArticulos(ArrayList<Pair<IArticulo, Double>> listaArticulos) {
         this.listaArticulos = listaArticulos;
     }
 
-    public ArrayList<Pair<Envase, Integer>> getListaEnvases() {
+    public ArrayList<Pair<IEnvase, Double>> getListaEnvases() {
         return listaEnvases;
     }
 
-    public void setListaEnvases(ArrayList<Pair<Envase, Integer>> listaEnvases) {
+    public void setListaEnvases(ArrayList<Pair<IEnvase, Double>> listaEnvases) {
         this.listaEnvases = listaEnvases;
     }
 
@@ -39,17 +48,28 @@ public class Carrito implements ICarrito{
         this.precioTotal = precioTotal;
     }
     
-    private void agregarArticulo(Articulo unArticulo, int pesoEnGramos)
+    @Override
+    public void agregarArticulo(IArticulo unArticulo, double pesoEnKg)
     {
-        Pair nuevaTuplaArticuloCantidad = new Pair(unArticulo,pesoEnGramos);
+        //Checkear si ya existe
         
+        Pair nuevaTuplaArticuloCantidad = new Pair(unArticulo,pesoEnKg);
+        double precioASumar = unArticulo.obtenerPrecioPorKG() * pesoEnKg;
+        
+        this.setPrecioTotal(this.getPrecioTotal() + precioASumar);
         listaArticulos.add(nuevaTuplaArticuloCantidad);
     }
     
-    private void agregarEnvase(Envase unEnvase, int cantidadEnvases)
+    @Override
+    public void agregarEnvase(IEnvase unEnvase, double cantidadEnvases)
     {
         Pair nuevaTuplaEnvaseCantidad = new Pair(unEnvase,cantidadEnvases);
         
         listaEnvases.add(nuevaTuplaEnvaseCantidad);
+    }
+
+    @Override
+    public ArrayList<Pair<IArticulo, Double>> obtenerListaArticulos() {
+        return this.getListaArticulos();
     }
 }

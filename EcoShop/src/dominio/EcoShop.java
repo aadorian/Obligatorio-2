@@ -36,7 +36,7 @@ public class EcoShop implements IEcoShop{
         listaProveedores = new ArrayList<>();
         listaDirecciones = new ArrayList<>();
         carritoDeCompras = new Carrito();
-        //stockEnvases = new Stock();
+        stockEnvases = new Stock();
     }
     
     //Getter & Setter
@@ -159,13 +159,32 @@ public class EcoShop implements IEcoShop{
     }
 
     @Override
+    public IArticulo obtenerArticuloPorNombre(String nombre) {
+        for (int i = 0; i < this.listaArticulos.size(); i++) {
+            IArticulo articuloTmp = this.listaArticulos.get(i);
+            
+            if(articuloTmp.obtenerNombre().equals(nombre))
+                return articuloTmp;
+        }
+        
+        //Si no lo encuentra se cae el programa
+        assert(false);
+        return null;
+    }
+    
+    @Override
+    public ICarrito obtenerCarrito() {
+        return this.getCarritoDeCompras();
+    }
+    
+    @Override
     public int cantidadEnvasesNecesarios(IEnvase unEnvase, IArticulo unArticulo, int pesoArticulo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void agregarAlCarrito(IArticulo unArticulo, double peso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        carritoDeCompras.agregarArticulo(unArticulo, peso);
     }
 
     @Override
@@ -329,9 +348,11 @@ public class EcoShop implements IEcoShop{
        return this.listaDirecciones.get(posicionDeDireccionARetornar);
    }
 
+
+
+   
+
     
-
-
    
 }
 

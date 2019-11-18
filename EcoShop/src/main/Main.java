@@ -22,8 +22,8 @@ public class Main {
         
         cargadorDeDatos.cargarSistema();
         
-        VentanaMenuPrincipal unaVentanaMenuPrincipal;
-        unaVentanaMenuPrincipal = new VentanaMenuPrincipal(unSistemaEcoshop);
+        VentanaFXML unaVentanaMenuPrincipal;
+        unaVentanaMenuPrincipal = new VentanaFXML(unSistemaEcoshop);
         
         unaVentanaMenuPrincipal.comenzarVentanaPrincipal(args);
         // TODO code application logic here

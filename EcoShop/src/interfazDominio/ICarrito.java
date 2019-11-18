@@ -5,10 +5,33 @@
  */
 package interfazDominio;
 
+import java.util.ArrayList;
+import javafx.util.Pair;
+
 /**
  *
  * @author Marcos Novelli - Matias Salles
  */
 public interface ICarrito {
+    
+    /**
+     * 
+     * @param unArticulo
+     * @param pesoEnKg 
+     */
+    public void agregarArticulo(IArticulo unArticulo, double pesoEnKg);
+    
+    /**
+     * 
+     * @param unEnvase
+     * @param cantidadEnvases 
+     */
+    public void agregarEnvase(IEnvase unEnvase, double cantidadEnvases);
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Pair<IArticulo, Double>> obtenerListaArticulos();
     
 }
