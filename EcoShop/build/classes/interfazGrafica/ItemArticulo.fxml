@@ -85,11 +85,7 @@
             <Label fx:id="paisYDepartamentoProveedor" layoutX="597.0" layoutY="138.0" text="Pais y Departamento" textFill="#2f2e2e" />
             <JFXButton fx:id="favoritoArticuloBtn" alignment="CENTER" layoutX="830.0" layoutY="33.0" onMouseClicked="#clickBtnFavoritoArticulo" prefHeight="15.0" prefWidth="28.0" text=" ">
                <graphic>
-                  <ImageView fx:id="favoritoArticulo" fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/favoritoVacia.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="favoritoArticulo" fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </JFXButton>
          </children>

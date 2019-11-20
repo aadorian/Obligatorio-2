@@ -125,15 +125,17 @@ public class ItemArticuloController implements Initializable {
     @FXML
     private void clickBtnFavoritoArticulo(MouseEvent event) {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
-        String nombreArticulo = this.nombreArticulo.getText();
+        String strNombre = this.nombreArticulo.getText();
+        
+        favoritoArticulo.setImage(null);
         
         if (articuloEnFavoritos) {
-            sistemaEcoShop.sacarDeFavoritos(sistemaEcoShop.obtenerArticuloPorNombre(nombreArticulo));
+            sistemaEcoShop.sacarDeFavoritos(sistemaEcoShop.obtenerArticuloPorNombre(strNombre));
             Image img = new Image("interfazGrafica/imagenes/favoritoVacia.png");
             favoritoArticulo.setImage(img);
             articuloEnFavoritos = false;
         } else {
-            sistemaEcoShop.agregarAFavoritos(sistemaEcoShop.obtenerArticuloPorNombre(nombreArticulo));
+            sistemaEcoShop.agregarAFavoritos(sistemaEcoShop.obtenerArticuloPorNombre(strNombre));
             Image img = new Image("interfazGrafica/imagenes/favoritoAmarilla.png");
             favoritoArticulo.setImage(img);
             articuloEnFavoritos = true;
@@ -141,13 +143,14 @@ public class ItemArticuloController implements Initializable {
     }
     
     public void cargarEsFavorito(boolean esFavorito){
+        favoritoArticulo.setImage(null);
         this.articuloEnFavoritos = esFavorito;
         
         if (esFavorito) {
-            Image img = new Image("interfazGrafica/imagenes/favoritoVacia.png");
+            Image img = new Image("interfazGrafica/imagenes/favoritoAmarilla.png");
             favoritoArticulo.setImage(img);
         } else {
-            Image img = new Image("interfazGrafica/imagenes/favoritoAmarilla.png");
+            Image img = new Image("interfazGrafica/imagenes/favoritoVacia.png");
             favoritoArticulo.setImage(img);
         }
     }

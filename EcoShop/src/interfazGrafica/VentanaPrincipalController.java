@@ -94,7 +94,7 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarPaisYDepartamentoProveedor(direccionTmp.obtenerPais(),
                         direccionTmp.obtenerDepartamento());
                 iController.cargarEsFavorito(sistemaEcoShop.estaEnFavoritos(articuloTmp));
-
+                
                 nodos[i] = (Node) root;
 
                 pnl_scroll.getChildren().add(nodos[i]);
