@@ -38,7 +38,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="comboBoxEnvases" layoutX="697.0" layoutY="76.0" />
+            <JFXComboBox fx:id="comboBoxEnvases" layoutX="697.0" layoutY="76.0" onDragEntered="#mouseSobreEnvase" />
             <Label layoutX="536.0" layoutY="80.0" text="Seleccione el envase a llevar" />
          </children>
          <effect>

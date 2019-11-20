@@ -79,7 +79,7 @@ public class Carrito implements ICarrito{
         for (int i = 0; i < listaArticulos.size(); i++) {
             Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
             
-            if(duplaTmp.getKey().sonIguales(unArticulo)){
+            if(duplaTmp.getKey().sonIgualesPorNombre(unArticulo)){
                 listaArticulos.remove(i);
                 break;
             }
@@ -92,7 +92,7 @@ public class Carrito implements ICarrito{
         for (int i = 0; i < listaArticulos.size(); i++) {
             Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
             
-            if(duplaTmp.getKey().sonIguales(unArticulo)){
+            if(duplaTmp.getKey().sonIgualesPorNombre(unArticulo)){
                 return i;
             }
         }

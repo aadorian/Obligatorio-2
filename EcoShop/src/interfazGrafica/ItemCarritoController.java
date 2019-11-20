@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 
@@ -31,7 +32,6 @@ import javafx.util.Pair;
  * @author matia
  */
 public class ItemCarritoController implements Initializable {
-    @FXML 
     private VBox pnl_scroll;
     @FXML
     private Label nombreArticulo;
@@ -96,5 +96,12 @@ public class ItemCarritoController implements Initializable {
         
         pnl_scroll.getChildren().remove(posicionDelArticuloEnElCarrito);
     }
+
+    @FXML
+    private void mouseSobreEnvase(DragEvent event) {
+        
+    }
+    
+    
     
 }

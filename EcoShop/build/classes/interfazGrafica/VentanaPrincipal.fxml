@@ -212,7 +212,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <TextField fx:id="txtFieldArticuloABuscar" layoutX="106.0" layoutY="7.0" prefHeight="30.0" prefWidth="808.0" promptText="   Buscar..." style="-fx-background-color: #ffffff; -fx-border-color: #3a453b; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-image-width: 0;" />
+            <TextField fx:id="txtFieldArticuloABuscar" layoutX="106.0" layoutY="7.0" onKeyPressed="#enterBuscar" prefHeight="30.0" prefWidth="808.0" promptText="   Buscar..." style="-fx-background-color: #ffffff; -fx-border-color: #3a453b; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-image-width: 0;" />
             <JFXButton buttonType="RAISED" contentDisplay="CENTER" ellipsisString=" " layoutX="969.0" layoutY="7.0" onAction="#clickBtnCarrito" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #d6dfd7; -fx-background-radius: 90; -fx-border-color: #3a453b; -fx-border-radius: 30; -fx-padding: 5;" text=" " textAlignment="RIGHT">
                <font>
                   <Font size="1.0" />

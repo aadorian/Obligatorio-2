@@ -18,7 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -38,6 +40,14 @@ public class ItemArticuloController implements Initializable {
     private Label paisYDepartamentoProveedor;
     @FXML
     private TextField textFieldPeso;
+    @FXML
+    private Pane panelCompraRealizada;
+    @FXML
+    private JFXButton favoritoArticuloBtn;
+    @FXML
+    private ImageView favoritoArticulo;
+    
+    boolean articuloEnFavoritos;
 
     
     /**
@@ -46,6 +56,7 @@ public class ItemArticuloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        panelCompraRealizada.setVisible(false);
     }    
     
     public void cargarImagen(String url){
@@ -76,6 +87,7 @@ public class ItemArticuloController implements Initializable {
     @FXML
     private void clickBtnAgregarAlCarrito(ActionEvent event) {
         agregarAlCarrito();
+        panelCompraRealizada.setVisible(true);
     }
 
     @FXML
@@ -109,5 +121,37 @@ public class ItemArticuloController implements Initializable {
             textFieldPeso.setText("");
         }
     }
+
+    @FXML
+    private void clickBtnFavoritoArticulo(MouseEvent event) {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        String nombreArticulo = this.nombreArticulo.getText();
+        
+        if (articuloEnFavoritos) {
+            sistemaEcoShop.sacarDeFavoritos(sistemaEcoShop.obtenerArticuloPorNombre(nombreArticulo));
+            Image img = new Image("interfazGrafica/imagenes/favoritoVacia.png");
+            favoritoArticulo.setImage(img);
+            articuloEnFavoritos = false;
+        } else {
+            sistemaEcoShop.agregarAFavoritos(sistemaEcoShop.obtenerArticuloPorNombre(nombreArticulo));
+            Image img = new Image("interfazGrafica/imagenes/favoritoAmarilla.png");
+            favoritoArticulo.setImage(img);
+            articuloEnFavoritos = true;
+        }
+    }
+    
+    public void cargarEsFavorito(boolean esFavorito){
+        this.articuloEnFavoritos = esFavorito;
+        
+        if (esFavorito) {
+            Image img = new Image("interfazGrafica/imagenes/favoritoVacia.png");
+            favoritoArticulo.setImage(img);
+        } else {
+            Image img = new Image("interfazGrafica/imagenes/favoritoAmarilla.png");
+            favoritoArticulo.setImage(img);
+        }
+    }
+    
+    
     
 }

@@ -21,6 +21,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import static javafx.scene.input.KeyCode.ENTER;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
@@ -31,6 +33,7 @@ import javafx.util.Pair;
  * @author novhm
  */
 public class VentanaPrincipalController implements Initializable {
+
     @FXML
     private VBox pnl_scroll;
     @FXML
@@ -49,29 +52,30 @@ public class VentanaPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
         ArrayList<IArticulo> listaArticulosEnSistema = sistemaEcoShop.obtenerListaArticulos();
-        
-        cargarItemsArticulos(listaArticulosEnSistema);
+
+        cargarItemsArticulos(listaArticulosEnSistema, sistemaEcoShop);
         cargarCategoriasABuscar();
     }
 
     /**
-     * 
+     *
      */
-    private void cargarCategoriasABuscar(){
+    private void cargarCategoriasABuscar() {
         choiceBoxCategoriasABuscar.getItems().add("Fruta               ");
         choiceBoxCategoriasABuscar.getItems().add("Verdura          ");
         choiceBoxCategoriasABuscar.getItems().add("Fruto Seco      ");
         choiceBoxCategoriasABuscar.getItems().add("Todos             ");
-        
+
         choiceBoxCategoriasABuscar.setValue("Todos             ");
     }
-    
+
     /**
-     * 
+     *
      */
-    private void cargarItemsArticulos(ArrayList<IArticulo> listaACargar) {
+    private void cargarItemsArticulos(ArrayList<IArticulo> listaACargar, 
+            IEcoShop sistemaEcoShop) {
         Node[] nodos = new Node[listaACargar.size()];
-        
+
         pnl_scroll.getChildren().clear();
 
         for (int i = 0; i < nodos.length; i++) {
@@ -87,33 +91,34 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarPrecioPorKG(articuloTmp.obtenerPrecioPorKG());
                 iController.cargarImagen(articuloTmp.obtenerRutaDeImagen());
                 iController.cargarNombreProveedor(proveedorTmp.obtenerNombre());
-                iController.cargarPaisYDepartamentoProveedor(direccionTmp.obtenerPais(), 
+                iController.cargarPaisYDepartamentoProveedor(direccionTmp.obtenerPais(),
                         direccionTmp.obtenerDepartamento());
-                
+                iController.cargarEsFavorito(sistemaEcoShop.estaEnFavoritos(articuloTmp));
+
                 nodos[i] = (Node) root;
-                
+
                 pnl_scroll.getChildren().add(nodos[i]);
-                
+
             } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
     }
-    
-    private void cargarItemsCarrito(){
+
+    private void cargarItemsCarrito() {
         IEcoShop sistemaEcoshop = VentanaFXML.obtenerSistema();
         ICarrito carritoDelSistema = sistemaEcoshop.obtenerCarrito();
         ArrayList<Pair<IArticulo, Double>> listaArticulosEnCarrito;
-        
+
         listaArticulosEnCarrito = carritoDelSistema.obtenerListaArticulos();
-        
+
         pnl_scroll.getChildren().clear();
 
         Node[] nodos = new Node[listaArticulosEnCarrito.size()];
-        
+
         for (int i = 0; i < nodos.length; i++) {
-            try{
+            try {
                 Pair<IArticulo, Double> duplaTmp = listaArticulosEnCarrito.get(i);
                 IArticulo articuloTmp = duplaTmp.getKey();
                 Double pesoIngresado = duplaTmp.getValue();
@@ -121,7 +126,7 @@ public class VentanaPrincipalController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ItemCarrito.fxml"));
                 Parent root = loader.load();
                 ItemCarritoController iController = loader.<ItemCarritoController>getController();
-                
+
                 iController.cargarPanel(pnl_scroll);
                 iController.cargarNombreArticulo(articuloTmp.obtenerNombre());
                 iController.cargarImagenArticulo(articuloTmp.obtenerRutaDeImagen());
@@ -129,16 +134,15 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarEnvasesAplicables(articuloTmp.obtenerEnvasesAplicables());
 
                 nodos[i] = (Node) root;
-                
+
                 pnl_scroll.getChildren().add(nodos[i]);
-            } 
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }
-    
+
     //ItemTicket
     private void refreshItemTicket() {
         pnl_scroll.getChildren().clear();
@@ -161,8 +165,8 @@ public class VentanaPrincipalController implements Initializable {
     private void clickBtnTodosLosArticulos(MouseEvent event) {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
         ArrayList<IArticulo> listaArticulosEnSistema = sistemaEcoShop.obtenerListaArticulos();
-        
-        cargarItemsArticulos(listaArticulosEnSistema);
+
+        cargarItemsArticulos(listaArticulosEnSistema, sistemaEcoShop);
     }
 
     @FXML
@@ -177,19 +181,31 @@ public class VentanaPrincipalController implements Initializable {
 
     @FXML
     private void clickBtnBuscar(ActionEvent event) {
+        buscarAtriculo();
+    }
+
+    @FXML
+    private void enterBuscar(KeyEvent event) {
+        switch (event.getCode()) {
+            case ENTER:
+                buscarAtriculo();
+            default:
+                break;
+        }
+    }
+
+    private void buscarAtriculo() {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
-        
+
         String calificadorArticulo = choiceBoxCategoriasABuscar.getValue().trim();
         String articuloABuscar = txtFieldArticuloABuscar.getText().trim();
         ArrayList<IArticulo> articulosQueCoinciden;
-        
-        articulosQueCoinciden = sistemaEcoShop.buscarProducto(articuloABuscar, 
-                calificadorArticulo);
-        
-        cargarItemsArticulos(articulosQueCoinciden);
-    }
 
-   
-    
+        articulosQueCoinciden = sistemaEcoShop.buscarProducto(articuloABuscar,
+                calificadorArticulo);
+
+        cargarItemsArticulos(articulosQueCoinciden,sistemaEcoShop);
+
+    }
 
 }

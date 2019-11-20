@@ -174,8 +174,13 @@ public class Articulo implements IArticulo{
     }
 
     @Override
-    public boolean sonIguales(IArticulo unArticulo) {
+    public boolean sonIgualesPorNombre(IArticulo unArticulo) {
         return this.obtenerNombre().equals(unArticulo.obtenerNombre());
+    }
+
+    @Override
+    public boolean sonIgualesPorId(IArticulo unArticulo) {
+        return this.obtenerCodigoIdentificador() == (unArticulo.obtenerCodigoIdentificador());
     }
 
     @Override

@@ -21,6 +21,8 @@ public class EcoShop implements IEcoShop{
     private ArrayList<ICajero> listaCajeros;
     private ArrayList<IProveedor> listaProveedores;
     private ArrayList<IDireccion> listaDirecciones;
+    private ArrayList<IArticulo> listaFavoritosUsuario;
+    private ArrayList<IArticulo> listaFavoritosGlobal;
     private ICarrito carritoDeCompras;
     private IStock stockEnvases;
 
@@ -35,6 +37,8 @@ public class EcoShop implements IEcoShop{
         listaCajeros = new ArrayList<>();
         listaProveedores = new ArrayList<>();
         listaDirecciones = new ArrayList<>();
+        listaFavoritosUsuario = new ArrayList<>();
+        listaFavoritosGlobal = new ArrayList<>();
         carritoDeCompras = new Carrito();
         stockEnvases = new Stock();
     }
@@ -136,7 +140,22 @@ public class EcoShop implements IEcoShop{
     public void setListaDirecciones(ArrayList<IDireccion> listaDirecciones) {
         this.listaDirecciones = listaDirecciones;
     }
-    
+
+    public ArrayList<IArticulo> getListaFavoritosUsuario() {
+        return listaFavoritosUsuario;
+    }
+
+    public void setListaFavoritosUsuario(ArrayList<IArticulo> listaFavoritosUsuario) {
+        this.listaFavoritosUsuario = listaFavoritosUsuario;
+    }
+
+    public ArrayList<IArticulo> getListaFavoritosGlobal() {
+        return listaFavoritosGlobal;
+    }
+
+    public void setListaFavoritosGlobal(ArrayList<IArticulo> listaFavoritosGlobal) {
+        this.listaFavoritosGlobal = listaFavoritosGlobal;
+    }
     
     //
     //METODOS
@@ -206,17 +225,19 @@ public class EcoShop implements IEcoShop{
     public ArrayList<IArticulo> buscarProducto(String productoABuscar, 
             String calificador) {
         ArrayList<IArticulo> productosQueCoinciden = new ArrayList<>();
+        productoABuscar = productoABuscar.toLowerCase();
         
         for (int i = 0; i < this.listaArticulos.size(); i++) {
             IArticulo articuloTmp = this.listaArticulos.get(i);
+            String nombreArticulo = articuloTmp.obtenerNombre().toLowerCase();
             
-            if(calificador.equals("Todos") && articuloTmp.obtenerNombre().
+            if(calificador.equals("Todos") && nombreArticulo.
                     contains(productoABuscar))
                 productosQueCoinciden.add(articuloTmp);
             else if(productoABuscar.equals("") && articuloTmp.obtenerCalificador().
                     equals(calificador))
                 productosQueCoinciden.add(articuloTmp);
-            else if(articuloTmp.obtenerNombre().contains(calificador) &&
+            else if(nombreArticulo.contains(calificador) &&
                     articuloTmp.obtenerCalificador().equals(calificador))
                 productosQueCoinciden.add(articuloTmp);
         }
@@ -298,6 +319,35 @@ public class EcoShop implements IEcoShop{
         this.listaDirecciones.add(unaDireccion);
     }
     
+    @Override
+    public boolean estaEnFavoritos(IArticulo unArticulo) {
+        boolean esta = false;
+        
+        for (int i = 0; i < this.listaFavoritosUsuario.size() && !esta; i++) {
+            IArticulo articuloTmp = this.listaFavoritosUsuario.get(i);
+            
+            if(articuloTmp.sonIgualesPorNombre(unArticulo))
+                esta = true;
+        }
+        
+        return esta;
+    }
+    
+    @Override
+    public void agregarAFavoritos(IArticulo unArticulo) {
+        this.listaFavoritosUsuario.add(unArticulo);
+    }
+
+    @Override
+    public void sacarDeFavoritos(IArticulo unArticulo) {
+        for (int i = 0; i < this.listaFavoritosUsuario.size(); i++) {
+            IArticulo articuloTmp = this.listaFavoritosUsuario.get(i);
+            if (unArticulo.sonIgualesPorId(articuloTmp)) {
+                this.listaFavoritosUsuario.remove(i);
+            }
+        }
+    }
+    
    //
    //METODOS PRIVADOS
    //
@@ -354,6 +404,9 @@ public class EcoShop implements IEcoShop{
        
        return this.listaDirecciones.get(posicionDeDireccionARetornar);
    }
+
+
+    
 
 
 

@@ -191,4 +191,26 @@ public interface IEcoShop {
      * @param unaDireccion 
      */
     void registrarDireccion(IDireccion unaDireccion);
+    
+    /**
+     * 
+     * @param unArticulo
+     * @return 
+     */
+    boolean estaEnFavoritos(IArticulo unArticulo);
+    
+    /**
+     * 
+     * @param unArticulo 
+     */
+    void agregarAFavoritos(IArticulo unArticulo);
+    
+    /**
+     * 
+     * @param unArticulo 
+     */
+    void sacarDeFavoritos(IArticulo unArticulo);
+    
+    
+    
 }

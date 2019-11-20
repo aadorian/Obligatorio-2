@@ -44,6 +44,15 @@
                         <Font size="11.0" />
                      </font>
                   </JFXButton>
+                  <Pane fx:id="panelCompraRealizada" layoutX="523.0" layoutY="18.0" prefHeight="35.0" prefWidth="32.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="36.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imagenes/carrito1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
             <ImageView fx:id="imagenArticulo" fitHeight="348.0" fitWidth="512.0" pickOnBounds="true" preserveRatio="true">
@@ -74,6 +83,15 @@
             </Label>
             <Label fx:id="nombreProveedor" layoutX="597.0" layoutY="119.0" text="Nombre Proveedor" textFill="#2f2e2e" />
             <Label fx:id="paisYDepartamentoProveedor" layoutX="597.0" layoutY="138.0" text="Pais y Departamento" textFill="#2f2e2e" />
+            <JFXButton fx:id="favoritoArticuloBtn" alignment="CENTER" layoutX="830.0" layoutY="33.0" onMouseClicked="#clickBtnFavoritoArticulo" prefHeight="15.0" prefWidth="28.0" text=" ">
+               <graphic>
+                  <ImageView fx:id="favoritoArticulo" fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/favoritoVacia.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />

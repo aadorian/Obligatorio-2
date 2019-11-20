@@ -33,8 +33,8 @@ public class CargaDeDatos {
         this.cargarDirecciones();
         this.cargarProveedores();
         this.cargarEnvases();
-        this.cargarManzanaRoja();
         this.cargarManzanaVerde();
+        this.cargarManzanaRoja();
         this.cargarBanana();
     }
     
@@ -109,7 +109,7 @@ public class CargaDeDatos {
     private void cargarManzanaVerde(){
         double densidadDeManzanaVerde = 947; 
         double precioPorKGManzanaVerde = 59;
-        String rutaDeImagenManzanaVerde = "interfazGrafica/imagenes/manzanaVerde.jpg";
+        String rutaDeImagenManzanaVerde = "interfazGrafica/imagenes/manzanaVerde2.jpg";
         String calificadorManzanaVerde = "Fruta";
         
         IArticulo manzanaVerde = new Articulo("Manzana Verde",rutaDeImagenManzanaVerde,

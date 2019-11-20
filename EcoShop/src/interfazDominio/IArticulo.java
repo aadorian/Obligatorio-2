@@ -85,6 +85,12 @@ public interface IArticulo {
      * @param unArticulo
      * @return 
      */
-    boolean sonIguales(IArticulo unArticulo); 
+    boolean sonIgualesPorNombre(IArticulo unArticulo); 
     
+    /**
+     * 
+     * @param unArticulo
+     * @return 
+     */
+    boolean sonIgualesPorId(IArticulo unArticulo);
 }
