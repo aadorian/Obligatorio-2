@@ -5,9 +5,11 @@
         <group>
             <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/VentanaPrincipalController.java</file>
             <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemCarritoController.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemCarrito.fxml</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/EcoShop.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazDominio/IEcoShop.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazDominio/IArticulo.java</file>
             <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/Carrito.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemArticuloController.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/main/CargaDeDatos.java</file>
             <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazDominio/ICarrito.java</file>
         </group>
     </open-files>

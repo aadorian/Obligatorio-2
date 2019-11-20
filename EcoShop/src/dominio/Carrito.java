@@ -72,4 +72,32 @@ public class Carrito implements ICarrito{
     public ArrayList<Pair<IArticulo, Double>> obtenerListaArticulos() {
         return this.getListaArticulos();
     }
+
+    @Override
+    public void eliminarArticuloDelCarrito(IArticulo unArticulo) {
+        
+        for (int i = 0; i < listaArticulos.size(); i++) {
+            Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
+            
+            if(duplaTmp.getKey().sonIguales(unArticulo)){
+                listaArticulos.remove(i);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public int posicionDelArticuloEnElCarrito(IArticulo unArticulo) {
+        
+        for (int i = 0; i < listaArticulos.size(); i++) {
+            Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
+            
+            if(duplaTmp.getKey().sonIguales(unArticulo)){
+                return i;
+            }
+        }
+        
+        assert(false);
+        return -1;
+    }
 }

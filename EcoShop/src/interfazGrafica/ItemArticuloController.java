@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Border;
 
 /**
  * FXML Controller class
@@ -73,11 +75,26 @@ public class ItemArticuloController implements Initializable {
 
     @FXML
     private void clickBtnAgregarAlCarrito(ActionEvent event) {
+        agregarAlCarrito();
+    }
+
+    @FXML
+    private void enterTextoPesoDelArticulo(KeyEvent event) {
+        switch (event.getCode()) {
+            case ENTER:
+                agregarAlCarrito();
+            default:
+                break;
+            }
+    }
+    
+    
+    private void agregarAlCarrito(){
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
         String pesoIngresado = textFieldPeso.getText();
         String digitos = "[0-9]+";
         
-        if(pesoIngresado.trim().equals("")){
+        if(pesoIngresado.replace(".", "").equals("") || pesoIngresado.trim().equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR, "No ingreso la cantidad a llevar");
             alert.showAndWait();
         }

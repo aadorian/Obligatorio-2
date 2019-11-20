@@ -91,9 +91,10 @@ public interface IEcoShop {
      * PRE: -
      * @param productoABuscar String a buscar en los articulos del EcoShop
      * @return Retorna una lsita de articulos que contienen el string 
-     * productoABuscar
+     * productoABuscar y coinciden con el calificador (Si el calificador es 
+     * "Todos" entonces devuelve todos los que contienen el string productoABuscar)
      */
-    ArrayList<IArticulo> buscarProducto(String productoABuscar);
+    ArrayList<IArticulo> buscarProducto(String productoABuscar, String calficador);
     
     /**
      * PRE: -

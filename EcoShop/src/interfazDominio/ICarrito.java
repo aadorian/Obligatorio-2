@@ -19,19 +19,27 @@ public interface ICarrito {
      * @param unArticulo
      * @param pesoEnKg 
      */
-    public void agregarArticulo(IArticulo unArticulo, double pesoEnKg);
+    void agregarArticulo(IArticulo unArticulo, double pesoEnKg);
     
     /**
      * 
      * @param unEnvase
      * @param cantidadEnvases 
      */
-    public void agregarEnvase(IEnvase unEnvase, double cantidadEnvases);
+    void agregarEnvase(IEnvase unEnvase, double cantidadEnvases);
     
     /**
      * 
      * @return 
      */
-    public ArrayList<Pair<IArticulo, Double>> obtenerListaArticulos();
+    ArrayList<Pair<IArticulo, Double>> obtenerListaArticulos();
+    
+    /**
+     * 
+     * @param unArticulo
+     */
+    void eliminarArticuloDelCarrito(IArticulo unArticulo);
+    
+    int posicionDelArticuloEnElCarrito(IArticulo unArticulo);
     
 }

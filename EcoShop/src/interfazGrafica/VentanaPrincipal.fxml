@@ -3,11 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -201,7 +199,8 @@
       </ScrollPane>
       <Pane layoutX="250.0" layoutY="155.0" prefHeight="43.0" prefWidth="1006.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
          <children>
-            <JFXButton buttonType="RAISED" contentDisplay="CENTER" ellipsisString=" " layoutX="928.0" layoutY="7.0" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #d6dfd7; -fx-border-color: #3a453b; -fx-border-radius: 90; -fx-background-radius: 90;" text=" " textAlignment="RIGHT">
+            <ChoiceBox fx:id="choiceBoxCategoriasABuscar" layoutX="28.0" layoutY="7.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.6" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #4e594f; -fx-border-radius: 30; -fx-region-background: #4e594f; -fx-background-radius: 30; -fx-border-width: 1; -fx-border-color: #3a453b;" />
+            <JFXButton buttonType="RAISED" contentDisplay="CENTER" ellipsisString=" " layoutX="928.0" layoutY="7.0" onAction="#clickBtnBuscar" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #d6dfd7; -fx-border-color: #3a453b; -fx-border-radius: 90; -fx-background-radius: 90;" text=" " textAlignment="RIGHT">
                <font>
                   <Font size="1.0" />
                </font>
@@ -213,16 +212,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <MenuButton layoutX="17.0" layoutY="7.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" opacity="0.6" prefHeight="30.0" prefWidth="57.0" style="-fx-background-color: #4e594f; -fx-background-radius: 30; -fx-border-color: #3a453b; -fx-border-radius: 30; -fx-border-width: 1; -fx-region-background: #4e594f;" textAlignment="RIGHT">
-               <items>
-                  <CheckMenuItem mnemonicParsing="false" text="Frutos Secos" />
-                  <CheckMenuItem mnemonicParsing="false" text="Frutas" />
-                  <CheckMenuItem mnemonicParsing="false" text="Verduras" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <CheckMenuItem mnemonicParsing="false" text="Todos" />
-               </items>
-            </MenuButton>
-            <TextField layoutX="39.0" layoutY="7.0" prefHeight="30.0" prefWidth="875.0" promptText="   Buscar..." style="-fx-background-color: #ffffff; -fx-border-color: #3a453b; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-image-width: 0;" />
+            <TextField fx:id="txtFieldArticuloABuscar" layoutX="106.0" layoutY="7.0" prefHeight="30.0" prefWidth="808.0" promptText="   Buscar..." style="-fx-background-color: #ffffff; -fx-border-color: #3a453b; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-image-width: 0;" />
             <JFXButton buttonType="RAISED" contentDisplay="CENTER" ellipsisString=" " layoutX="969.0" layoutY="7.0" onAction="#clickBtnCarrito" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #d6dfd7; -fx-background-radius: 90; -fx-border-color: #3a453b; -fx-border-radius: 30; -fx-padding: 5;" text=" " textAlignment="RIGHT">
                <font>
                   <Font size="1.0" />
@@ -237,6 +227,5 @@
             </JFXButton>
          </children>
       </Pane>
-      <Label layoutX="295.0" layoutY="206.0" text="Todos los Artículos" textFill="#bcb9b9" />
    </children>
 </AnchorPane>

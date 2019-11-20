@@ -62,7 +62,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldPeso" alignment="CENTER" layoutX="736.0" layoutY="182.0" prefHeight="9.0" prefWidth="49.0" style="-fx-border-color: #b9adad; -fx-border-radius: 5; -fx-background-color: f6f5f5; -fx-padding: 1;">
+            <TextField fx:id="textFieldPeso" alignment="CENTER" layoutX="736.0" layoutY="182.0" onKeyPressed="#enterTextoPesoDelArticulo" prefHeight="9.0" prefWidth="49.0" style="-fx-border-color: #b9adad; -fx-border-radius: 5; -fx-background-color: f6f5f5; -fx-padding: 1;">
                <effect>
                   <Glow level="0.11" />
                </effect>

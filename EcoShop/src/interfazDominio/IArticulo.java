@@ -24,6 +24,12 @@ public interface IArticulo {
      * 
      * @return 
      */
+    String obtenerCalificador();
+    
+    /**
+     * 
+     * @return 
+     */
     String obtenerRutaDeImagen();
     
     /**

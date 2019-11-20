@@ -203,14 +203,21 @@ public class EcoShop implements IEcoShop{
     }
 
     @Override
-    public ArrayList<IArticulo> buscarProducto(String productoABuscar) {
+    public ArrayList<IArticulo> buscarProducto(String productoABuscar, 
+            String calificador) {
         ArrayList<IArticulo> productosQueCoinciden = new ArrayList<>();
-        IArticulo articuloABuscar = new Articulo(productoABuscar);
         
         for (int i = 0; i < this.listaArticulos.size(); i++) {
             IArticulo articuloTmp = this.listaArticulos.get(i);
             
-            if(articuloTmp.sonIguales(articuloABuscar))
+            if(calificador.equals("Todos") && articuloTmp.obtenerNombre().
+                    contains(productoABuscar))
+                productosQueCoinciden.add(articuloTmp);
+            else if(productoABuscar.equals("") && articuloTmp.obtenerCalificador().
+                    equals(calificador))
+                productosQueCoinciden.add(articuloTmp);
+            else if(articuloTmp.obtenerNombre().contains(calificador) &&
+                    articuloTmp.obtenerCalificador().equals(calificador))
                 productosQueCoinciden.add(articuloTmp);
         }
         
@@ -332,7 +339,7 @@ public class EcoShop implements IEcoShop{
      */
    private IProveedor proveedorRandom(){
        int largoListaDeProveedores = this.listaProveedores.size();
-       int posicionDeProveedorARetornar = numeroRandom(largoListaDeProveedores - 1);
+       int posicionDeProveedorARetornar = numeroRandom(largoListaDeProveedores);
        
        return this.listaProveedores.get(posicionDeProveedorARetornar);
    }
@@ -343,7 +350,7 @@ public class EcoShop implements IEcoShop{
     */
    private IDireccion direccionRandom(){
        int largoListaDeDirecciones = this.listaDirecciones.size();
-       int posicionDeDireccionARetornar = numeroRandom(largoListaDeDirecciones - 1);
+       int posicionDeDireccionARetornar = numeroRandom(largoListaDeDirecciones);
        
        return this.listaDirecciones.get(posicionDeDireccionARetornar);
    }

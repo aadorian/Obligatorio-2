@@ -19,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
@@ -35,30 +37,46 @@ public class VentanaPrincipalController implements Initializable {
     private JFXButton btnTodosLosArticulos;
     @FXML
     private JFXButton btnMisCompras;
+    @FXML
+    private ChoiceBox<String> choiceBoxCategoriasABuscar;
+    @FXML
+    private TextField txtFieldArticuloABuscar;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        cargarItemsTodosLosArticulos();
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ArrayList<IArticulo> listaArticulosEnSistema = sistemaEcoShop.obtenerListaArticulos();
+        
+        cargarItemsArticulos(listaArticulosEnSistema);
+        cargarCategoriasABuscar();
     }
 
     /**
      * 
      */
-    private void cargarItemsTodosLosArticulos() {
-        IEcoShop sistemaEcoshop = VentanaFXML.obtenerSistema();
-        ArrayList<IArticulo> listaArticulosSistema = sistemaEcoshop.obtenerListaArticulos();
+    private void cargarCategoriasABuscar(){
+        choiceBoxCategoriasABuscar.getItems().add("Fruta               ");
+        choiceBoxCategoriasABuscar.getItems().add("Verdura          ");
+        choiceBoxCategoriasABuscar.getItems().add("Fruto Seco      ");
+        choiceBoxCategoriasABuscar.getItems().add("Todos             ");
+        
+        choiceBoxCategoriasABuscar.setValue("Todos             ");
+    }
+    
+    /**
+     * 
+     */
+    private void cargarItemsArticulos(ArrayList<IArticulo> listaACargar) {
+        Node[] nodos = new Node[listaACargar.size()];
         
         pnl_scroll.getChildren().clear();
 
-        Node[] nodos = new Node[listaArticulosSistema.size()];
-
         for (int i = 0; i < nodos.length; i++) {
             try {
-                IArticulo articuloTmp = listaArticulosSistema.get(i);
+                IArticulo articuloTmp = listaACargar.get(i);
                 IProveedor proveedorTmp = articuloTmp.obtenerOrigen();
                 IDireccion direccionTmp = proveedorTmp.obtenerDireccion();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ItemArticulo.fxml"));
@@ -104,10 +122,12 @@ public class VentanaPrincipalController implements Initializable {
                 Parent root = loader.load();
                 ItemCarritoController iController = loader.<ItemCarritoController>getController();
                 
+                iController.cargarPanel(pnl_scroll);
                 iController.cargarNombreArticulo(articuloTmp.obtenerNombre());
                 iController.cargarImagenArticulo(articuloTmp.obtenerRutaDeImagen());
                 iController.cargarCantidadYPrecio(pesoIngresado, precioDeSeleccion);
-                
+                iController.cargarEnvasesAplicables(articuloTmp.obtenerEnvasesAplicables());
+
                 nodos[i] = (Node) root;
                 
                 pnl_scroll.getChildren().add(nodos[i]);
@@ -139,7 +159,10 @@ public class VentanaPrincipalController implements Initializable {
 
     @FXML
     private void clickBtnTodosLosArticulos(MouseEvent event) {
-        cargarItemsTodosLosArticulos();
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ArrayList<IArticulo> listaArticulosEnSistema = sistemaEcoShop.obtenerListaArticulos();
+        
+        cargarItemsArticulos(listaArticulosEnSistema);
     }
 
     @FXML
@@ -151,6 +174,22 @@ public class VentanaPrincipalController implements Initializable {
     private void clickBtnCarrito(ActionEvent event) {
         cargarItemsCarrito();
     }
+
+    @FXML
+    private void clickBtnBuscar(ActionEvent event) {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        
+        String calificadorArticulo = choiceBoxCategoriasABuscar.getValue().trim();
+        String articuloABuscar = txtFieldArticuloABuscar.getText().trim();
+        ArrayList<IArticulo> articulosQueCoinciden;
+        
+        articulosQueCoinciden = sistemaEcoShop.buscarProducto(articuloABuscar, 
+                calificadorArticulo);
+        
+        cargarItemsArticulos(articulosQueCoinciden);
+    }
+
+   
     
 
 }

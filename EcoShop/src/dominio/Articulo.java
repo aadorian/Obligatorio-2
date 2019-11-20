@@ -13,6 +13,7 @@ public class Articulo implements IArticulo{
     //Atributos
     private String nombreArticulo;
     private String rutaImagen; //Path en donde se encuentra la imagen del articulo
+    private String calificador; //Refiere a (Fruta,Verdura,Fruto seco, etc) 
     private int codigoIdentificador; //Codigo identificador unico del articulo
     private double precioPorKG; 
     private double densidad; //Para calcular cuantos envases son necesarios
@@ -29,6 +30,7 @@ public class Articulo implements IArticulo{
         this.densidad = -1;
         this.origenDelArticulo = new Proveedor();
         this.envasesAplicables = new ArrayList<>();
+        this.calificador = "";
     }
 
     public Articulo(String nombreArticulo) {
@@ -39,10 +41,11 @@ public class Articulo implements IArticulo{
         this.densidad = -1;
         this.origenDelArticulo = new Proveedor();
         this.envasesAplicables = new ArrayList<>();
+        this.calificador = "";
     }
 
     public Articulo(String nombreArticulo, String rutaImagen, double precioPorKG, 
-            double densidad) {
+            double densidad, String calificador) {
         this.nombreArticulo = nombreArticulo;
         this.rutaImagen = rutaImagen;
         this.codigoIdentificador = -1;
@@ -50,11 +53,12 @@ public class Articulo implements IArticulo{
         this.densidad = densidad;
         this.origenDelArticulo = new Proveedor();
         this.envasesAplicables = new ArrayList<>();
+        this.calificador = calificador;
     }
     
     public Articulo(double precio, double densidad, IProveedor origenDelArticulo, 
             ArrayList<IEnvase> envasesAplicables, String nombreArticulo,
-            String rutaImagen) {
+            String rutaImagen,String calificador) {
         this.nombreArticulo = nombreArticulo;
         this.rutaImagen = rutaImagen;
         this.codigoIdentificador = -1; //Luego se settea en la clase EcoShop
@@ -62,6 +66,7 @@ public class Articulo implements IArticulo{
         this.densidad = densidad;
         this.origenDelArticulo = origenDelArticulo;
         this.envasesAplicables = envasesAplicables;
+        this.calificador = calificador;
     }
 
     //Getter & Setter
@@ -121,6 +126,14 @@ public class Articulo implements IArticulo{
         this.envasesAplicables = envasesAplicables;
     }
 
+    public String getCalificador() {
+        return calificador;
+    }
+
+    public void setCalificador(String calificador) {
+        this.calificador = calificador;
+    }
+
     //
     //METODOS PUBLICOS
     //
@@ -178,6 +191,11 @@ public class Articulo implements IArticulo{
     @Override
     public void agregarEnvase(IEnvase unEnvase) {
         this.envasesAplicables.add(unEnvase);
+    }
+
+    @Override
+    public String obtenerCalificador() {
+        return this.getCalificador();
     }
     
     

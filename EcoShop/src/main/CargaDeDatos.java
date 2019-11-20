@@ -95,9 +95,10 @@ public class CargaDeDatos {
         double densidadDeManzanaRoja = 947; 
         double precioPorKGManzanaRoja = 66;
         String rutaDeImagenManzanaRoja = "interfazGrafica/imagenes/manzanaRoja.jpg";
+        String calificadorManzanaRoja = "Fruta";
         
         IArticulo manzanaRoja = new Articulo("Manzana Roja",rutaDeImagenManzanaRoja,
-        precioPorKGManzanaRoja,densidadDeManzanaRoja);
+        precioPorKGManzanaRoja,densidadDeManzanaRoja,calificadorManzanaRoja);
         
         manzanaRoja.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
         manzanaRoja.agregarEnvase(obtenerEnvase("Bolsa Grande"));
@@ -109,9 +110,10 @@ public class CargaDeDatos {
         double densidadDeManzanaVerde = 947; 
         double precioPorKGManzanaVerde = 59;
         String rutaDeImagenManzanaVerde = "interfazGrafica/imagenes/manzanaVerde.jpg";
+        String calificadorManzanaVerde = "Fruta";
         
         IArticulo manzanaVerde = new Articulo("Manzana Verde",rutaDeImagenManzanaVerde,
-        precioPorKGManzanaVerde,densidadDeManzanaVerde);
+        precioPorKGManzanaVerde,densidadDeManzanaVerde,calificadorManzanaVerde);
         
         manzanaVerde.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
         manzanaVerde.agregarEnvase(obtenerEnvase("Bolsa Grande"));
@@ -123,9 +125,10 @@ public class CargaDeDatos {
         double densidadDeBanana = 1382; 
         double precioPorKGBanana = 109;
         String rutaDeImagenBanana = "interfazGrafica/imagenes/banana.jpg";
+        String calificadorBanana = "Fruta";
         
         IArticulo banana = new Articulo("Banana",rutaDeImagenBanana,
-        precioPorKGBanana,densidadDeBanana);
+        precioPorKGBanana,densidadDeBanana,calificadorBanana);
         
         banana.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
         banana.agregarEnvase(obtenerEnvase("Bolsa Grande"));
