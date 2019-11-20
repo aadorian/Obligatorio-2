@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.input.KeyEvent;
@@ -44,6 +45,8 @@ public class VentanaPrincipalController implements Initializable {
     private ChoiceBox<String> choiceBoxCategoriasABuscar;
     @FXML
     private TextField txtFieldArticuloABuscar;
+    @FXML
+    private Label cantidadArticulosEnCarrito;
 
     /**
      * Initializes the controller class.
@@ -52,9 +55,12 @@ public class VentanaPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
         ArrayList<IArticulo> listaArticulosEnSistema = sistemaEcoShop.obtenerListaArticulos();
-
+        
         cargarItemsArticulos(listaArticulosEnSistema, sistemaEcoShop);
         cargarCategoriasABuscar();
+        
+        
+        cantidadArticulosEnCarrito.setText("");
     }
 
     /**
@@ -94,6 +100,7 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarPaisYDepartamentoProveedor(direccionTmp.obtenerPais(),
                         direccionTmp.obtenerDepartamento());
                 iController.cargarEsFavorito(sistemaEcoShop.estaEnFavoritos(articuloTmp));
+                iController.setCantidadDeArticulosEnCarrito(cantidadArticulosEnCarrito);
                 
                 nodos[i] = (Node) root;
 
@@ -132,6 +139,7 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarImagenArticulo(articuloTmp.obtenerRutaDeImagen());
                 iController.cargarCantidadYPrecio(pesoIngresado, precioDeSeleccion);
                 iController.cargarEnvasesAplicables(articuloTmp.obtenerEnvasesAplicables());
+                iController.setCantidadDeArticulosEnCarrito(cantidadArticulosEnCarrito);
 
                 nodos[i] = (Node) root;
 

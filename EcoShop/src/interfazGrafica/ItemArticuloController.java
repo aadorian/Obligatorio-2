@@ -6,9 +6,12 @@
 package interfazGrafica;
 
 import com.jfoenix.controls.JFXButton;
+import interfazDominio.IArticulo;
+import interfazDominio.ICarrito;
 import javafx.scene.control.Alert;
 import interfazDominio.IEcoShop;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
+import javafx.util.Pair;
 
 /**
  * FXML Controller class
@@ -48,6 +52,8 @@ public class ItemArticuloController implements Initializable {
     private ImageView favoritoArticulo;
     
     boolean articuloEnFavoritos;
+    
+    Label cantidadArticulosEnCarrito;
 
     
     /**
@@ -119,6 +125,7 @@ public class ItemArticuloController implements Initializable {
             sistemaEcoShop.agregarAlCarrito(sistemaEcoShop.
                     obtenerArticuloPorNombre(nombreArticulo.getText()), pesoSeleccionado);
             textFieldPeso.setText("");
+            agregarLabelArticulosEnCarrito();
         }
     }
 
@@ -155,6 +162,19 @@ public class ItemArticuloController implements Initializable {
         }
     }
     
+    public void setCantidadDeArticulosEnCarrito(Label esteLabel){
+        this.cantidadArticulosEnCarrito = esteLabel;
+    }
     
+    private void agregarLabelArticulosEnCarrito(){
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ICarrito carritoSistema = sistemaEcoShop.obtenerCarrito();
+        ArrayList<Pair<IArticulo,Double>> listaArticulosCarrito = carritoSistema.obtenerListaArticulos();
+       
+        int numeroLabel = listaArticulosCarrito.size();
+        String strNumeroLabel = numeroLabel + "";
+        
+        cantidadArticulosEnCarrito.setText(strNumeroLabel);
+    }
     
 }
