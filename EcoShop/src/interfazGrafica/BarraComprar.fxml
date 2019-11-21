@@ -2,12 +2,12 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="172.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazGrafica.BarraComprarController">
@@ -25,17 +25,9 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <MenuButton layoutX="507.0" layoutY="27.0" mnemonicParsing="false">
-              <items>
-                <MenuItem mnemonicParsing="false" text="n°1" />
-                <MenuItem mnemonicParsing="false" text="n°2" />
-                  <MenuItem mnemonicParsing="false" text="n°3" />
-                  <MenuItem mnemonicParsing="false" text="n°4" />
-                  <MenuItem mnemonicParsing="false" text="n°5" />
-                  <MenuItem mnemonicParsing="false" text="n°6" />
-              </items>
-            </MenuButton>
-            <JFXButton fx:id="btnComprar" alignment="CENTER" contentDisplay="CENTER" layoutX="693.0" layoutY="36.0" onAction="#clickBtnAgregarAlCarrito" onMouseClicked="#clickComprar" prefHeight="25.0" prefWidth="141.0" style="-fx-background-radius: 20; -fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 20; -fx-padding: 8;" text="COMPRAR" textAlignment="CENTER">
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#1f93ff00" height="104.0" layoutX="9.0" layoutY="9.0" opacity="0.22" stroke="#69784c" strokeType="INSIDE" width="878.0" />
+            <ChoiceBox fx:id="choiseBoxNumeroLocal" layoutX="507.0" layoutY="28.0" opacity="0.69" prefHeight="25.0" prefWidth="52.0" />
+            <JFXButton fx:id="btnComprar" alignment="CENTER" contentDisplay="CENTER" layoutX="705.0" layoutY="38.0" onAction="#clickBtnAgregarAlCarrito" onMouseClicked="#clickComprar" opacity="0.73" prefHeight="25.0" prefWidth="141.0" style="-fx-background-radius: 20; -fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 20; -fx-padding: 8; -fx-background-color: bcd292; -fx-border-color: #69784c;" text="COMPRAR" textAlignment="CENTER" textFill="#3b432c">
                <effect>
                   <DropShadow height="115.64" radius="63.25" spread="0.56" width="139.36" />
                </effect>
@@ -43,7 +35,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXDatePicker defaultColor="#69784c" layoutX="201.0" layoutY="67.0" />
+            <JFXDatePicker fx:id="calendario" defaultColor="#69784dc1" layoutX="201.0" layoutY="67.0" />
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />

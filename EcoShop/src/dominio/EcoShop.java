@@ -237,7 +237,7 @@ public class EcoShop implements IEcoShop{
             else if(productoABuscar.equals("") && articuloTmp.obtenerCalificador().
                     equals(calificador))
                 productosQueCoinciden.add(articuloTmp);
-            else if(nombreArticulo.contains(calificador) &&
+            else if(nombreArticulo.contains(productoABuscar) &&
                     articuloTmp.obtenerCalificador().equals(calificador))
                 productosQueCoinciden.add(articuloTmp);
         }
