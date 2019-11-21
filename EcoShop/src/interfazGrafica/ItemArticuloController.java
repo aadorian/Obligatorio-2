@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazGrafica;
 
 import com.jfoenix.controls.JFXButton;
@@ -17,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,18 +40,19 @@ public class ItemArticuloController implements Initializable {
     @FXML
     private Label paisYDepartamentoProveedor;
     @FXML
-    private TextField textFieldPeso;
-    @FXML
-    private Pane panelCompraRealizada;
-    @FXML
     private JFXButton favoritoArticuloBtn;
     @FXML
     private ImageView favoritoArticulo;
-    
     boolean articuloEnFavoritos;
-    
     Label cantidadArticulosEnCarrito;
-
+    @FXML
+    private Spinner<Integer> spinnerKilos;
+    @FXML
+    private Spinner<Integer> spinnerGramos;
+    SpinnerValueFactory<Integer> spinnerValueKilos;
+    SpinnerValueFactory<Integer> spinnerValueGramos;
+    @FXML
+    private Label labelError;
     
     /**
      * Initializes the controller class.
@@ -62,7 +60,12 @@ public class ItemArticuloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        panelCompraRealizada.setVisible(false);
+        labelError.setText("");
+        
+        spinnerValueKilos = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, 0);
+        spinnerValueGramos = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 9, 0);
+        spinnerKilos.setValueFactory(spinnerValueKilos);
+        spinnerGramos.setValueFactory(spinnerValueGramos);
     }    
     
     public void cargarImagen(String url){
@@ -93,10 +96,8 @@ public class ItemArticuloController implements Initializable {
     @FXML
     private void clickBtnAgregarAlCarrito(ActionEvent event) {
         agregarAlCarrito();
-        panelCompraRealizada.setVisible(true);
     }
 
-    @FXML
     private void enterTextoPesoDelArticulo(KeyEvent event) {
         switch (event.getCode()) {
             case ENTER:
@@ -106,25 +107,22 @@ public class ItemArticuloController implements Initializable {
             }
     }
     
-    
     private void agregarAlCarrito(){
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
-        String pesoIngresado = textFieldPeso.getText();
-        String digitos = "[0-9]+";
+        String kilosIngresados = spinnerKilos.getValue() + "";
+        String gramosIngresados = spinnerGramos.getValue() + "";
+        String pesoIngresado = kilosIngresados + "." + gramosIngresados;
         
-        if(pesoIngresado.replace(".", "").equals("") || pesoIngresado.trim().equals("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "No ingreso la cantidad a llevar");
-            alert.showAndWait();
-        }
-        else if(!pesoIngresado.matches(digitos)){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Peso inválido (solo números)");
-            alert.showAndWait();
+        if(pesoIngresado.equals("0.0")){
+            labelError.setText("Por favor ingrese un valor");
         }
         else{
             double pesoSeleccionado = Double.parseDouble(pesoIngresado);
             sistemaEcoShop.agregarAlCarrito(sistemaEcoShop.
                     obtenerArticuloPorNombre(nombreArticulo.getText()), pesoSeleccionado);
-            textFieldPeso.setText("");
+            spinnerValueKilos.setValue(0);
+            spinnerValueGramos.setValue(0);
+            labelError.setText("");
             agregarLabelArticulosEnCarrito();
         }
     }
@@ -176,5 +174,7 @@ public class ItemArticuloController implements Initializable {
         
         cantidadArticulosEnCarrito.setText(strNumeroLabel);
     }
+
+
     
 }

@@ -3,9 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -44,15 +43,6 @@
                         <Font size="11.0" />
                      </font>
                   </JFXButton>
-                  <Pane fx:id="panelCompraRealizada" layoutX="523.0" layoutY="18.0" prefHeight="35.0" prefWidth="32.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="36.0" layoutX="5.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@imagenes/carrito1.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
                </children>
             </Pane>
             <ImageView fx:id="imagenArticulo" fitHeight="348.0" fitWidth="512.0" pickOnBounds="true" preserveRatio="true">
@@ -66,16 +56,11 @@
                </font>
             </Label>
             <Label layoutX="648.0" layoutY="184.0" text="Inserte el peso:" />
-            <Label layoutX="789.0" layoutY="185.0" text="kg" textFill="#a49e9e">
+            <Label layoutX="861.0" layoutY="194.0" text="kg" textFill="#a49e9e">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldPeso" alignment="CENTER" layoutX="736.0" layoutY="182.0" onKeyPressed="#enterTextoPesoDelArticulo" prefHeight="9.0" prefWidth="49.0" style="-fx-border-color: #b9adad; -fx-border-radius: 5; -fx-background-color: f6f5f5; -fx-padding: 1;">
-               <effect>
-                  <Glow level="0.11" />
-               </effect>
-            </TextField>
             <Label layoutX="523.0" layoutY="116.0" text="Proveedor: " textFill="#2f2e2e">
                <font>
                   <Font size="14.0" />
@@ -88,6 +73,14 @@
                   <ImageView fx:id="favoritoArticulo" fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </JFXButton>
+            <Spinner fx:id="spinnerKilos" layoutX="732.0" layoutY="180.0" opacity="0.8" prefHeight="25.0" prefWidth="59.0" />
+            <Spinner fx:id="spinnerGramos" layoutX="806.0" layoutY="181.0" opacity="0.8" prefHeight="25.0" prefWidth="49.0" />
+            <Label alignment="CENTER" layoutX="789.0" layoutY="179.0" prefHeight="35.0" prefWidth="20.0" text="." textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelError" layoutX="523.0" layoutY="214.0" text="Error" textFill="#ff0101" />
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
