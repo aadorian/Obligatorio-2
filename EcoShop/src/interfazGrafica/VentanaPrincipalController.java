@@ -49,6 +49,7 @@ public class VentanaPrincipalController implements Initializable {
     private Label cantidadArticulosEnCarrito;
     @FXML
     private JFXButton btnMisFavoritos;
+    private boolean estaEnSeccionTodosLosArticulos;
 
     /**
      * Initializes the controller class.
@@ -63,6 +64,7 @@ public class VentanaPrincipalController implements Initializable {
         
         
         cantidadArticulosEnCarrito.setText("");
+        estaEnSeccionTodosLosArticulos = true;
     }
 
     /**
@@ -194,30 +196,37 @@ public class VentanaPrincipalController implements Initializable {
         ArrayList<IArticulo> listaArticulosEnSistema = sistemaEcoShop.obtenerListaArticulos();
 
         cargarItemsArticulos(listaArticulosEnSistema, sistemaEcoShop);
+        estaEnSeccionTodosLosArticulos = true;
     }
 
     @FXML
     private void clickBtnMisCompras(MouseEvent event) {
         refreshItemTicket();
+        estaEnSeccionTodosLosArticulos = false;
     }
 
     @FXML
     private void clickBtnCarrito(ActionEvent event) {
         cargarItemsCarrito();
+        estaEnSeccionTodosLosArticulos = false;
     }
 
     @FXML
     private void clickBtnBuscar(ActionEvent event) {
-        buscarAtriculo();
+        if(estaEnSeccionTodosLosArticulos){
+            buscarAtriculo();
+        }
     }
 
     @FXML
     private void enterBuscar(KeyEvent event) {
-        switch (event.getCode()) {
-            case ENTER:
-                buscarAtriculo();
-            default:
-                break;
+        if(estaEnSeccionTodosLosArticulos){
+            switch (event.getCode()) {
+                case ENTER:
+                    buscarAtriculo();
+                default:
+                    break;
+            }
         }
     }
 
@@ -242,8 +251,7 @@ public class VentanaPrincipalController implements Initializable {
                 sistemaEcoShop.obtenerListaArticulosFavoritosPersonal();
 
         cargarItemsArticulos(listaMisFavoritos, sistemaEcoShop);
-        
-        
+        estaEnSeccionTodosLosArticulos = false;
     }
 
 }
