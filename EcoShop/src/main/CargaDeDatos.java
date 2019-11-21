@@ -33,6 +33,8 @@ public class CargaDeDatos {
         this.cargarDirecciones();
         this.cargarProveedores();
         this.cargarEnvases();
+        this.cargarPuntosDeVenta();
+        
         this.cargarManzanaVerde();
         this.cargarManzanaRoja();
         this.cargarBanana();
@@ -90,15 +92,23 @@ public class CargaDeDatos {
                 "interfazGrafica/imagenes/TupperMediano.jpg");
         IEnvase e4 = new Envase("Bolsa Grande", 21, 22, 54, 
                 "interfazGrafica/imagenes/BolsaGrande.jpg");
-        //IEnvase e5 = new Envase("Tapper Grande", 0, 0, 0);
-        //IEnvase e6 = new Envase("Bolsa de Supermercado", 21, 22, 54);
         
         sistemaEcoShop.registrarEnvase(e1);
         sistemaEcoShop.registrarEnvase(e2);
         sistemaEcoShop.registrarEnvase(e3);
         sistemaEcoShop.registrarEnvase(e4);
-        //sistemaEcoShop.registrarEnvase(e5);
-        //sistemaEcoShop.registrarEnvase(e6);
+    }
+    
+    private void cargarPuntosDeVenta(){
+        IPuntoDeVenta p1 = new PuntoDeVenta(1);
+        IPuntoDeVenta p2 = new PuntoDeVenta(2);
+        IPuntoDeVenta p3 = new PuntoDeVenta(3);
+        IPuntoDeVenta p4 = new PuntoDeVenta(4);
+        
+        sistemaEcoShop.registrarPuntoDeVenta(p1);
+        sistemaEcoShop.registrarPuntoDeVenta(p2);
+        sistemaEcoShop.registrarPuntoDeVenta(p3);
+        sistemaEcoShop.registrarPuntoDeVenta(p4);
     }
     
     /**

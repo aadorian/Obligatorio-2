@@ -29,6 +29,11 @@ public interface IEcoShop {
      */
     IArticulo obtenerArticuloPorNombre(String nombre);
     
+    /**
+     * 
+     * @param nombre
+     * @return 
+     */
     IEnvase obtenerEnvasePorNombre(String nombre);
     
     /**
@@ -36,6 +41,14 @@ public interface IEcoShop {
      * @return 
      */
     ICarrito obtenerCarrito();
+    
+    /**
+     * 
+     * @return 
+     */
+    ArrayList<IPuntoDeVenta> obtenerListaPuntosDeVenta();
+    
+    ArrayList<IArticulo> obtenerListaArticulosFavoritosPersonal();
     
     /**
      * PRE: -

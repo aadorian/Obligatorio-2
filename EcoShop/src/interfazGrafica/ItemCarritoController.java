@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazGrafica;
 
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.validation.base.ValidatorBase;
 import interfazDominio.IArticulo;
 import interfazDominio.ICarrito;
 import interfazDominio.IEcoShop;

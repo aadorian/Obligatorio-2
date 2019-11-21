@@ -11,4 +11,21 @@ package interfazDominio;
  */
 public interface IPuntoDeVenta {
     
+    /**
+     * 
+     * @param unaDireccion 
+     */
+    void modificarDireccion(IDireccion unaDireccion);
+    
+    /**
+     * 
+     * @return 
+     */
+    IDireccion obtenerDireccionDelLocal();
+    
+    /**
+     * 
+     * @return 
+     */
+    int obtenerNumeroDeLocal();
 }

@@ -47,6 +47,8 @@ public class VentanaPrincipalController implements Initializable {
     private TextField txtFieldArticuloABuscar;
     @FXML
     private Label cantidadArticulosEnCarrito;
+    @FXML
+    private JFXButton btnMisFavoritos;
 
     /**
      * Initializes the controller class.
@@ -117,8 +119,10 @@ public class VentanaPrincipalController implements Initializable {
         IEcoShop sistemaEcoshop = VentanaFXML.obtenerSistema();
         ICarrito carritoDelSistema = sistemaEcoshop.obtenerCarrito();
         ArrayList<Pair<IArticulo, Double>> listaArticulosEnCarrito;
+        ArrayList<IPuntoDeVenta> listaPuntosDeVenta;
 
         listaArticulosEnCarrito = carritoDelSistema.obtenerListaArticulos();
+        listaPuntosDeVenta = sistemaEcoshop.obtenerListaPuntosDeVenta();
 
         pnl_scroll.getChildren().clear();
 
@@ -129,6 +133,8 @@ public class VentanaPrincipalController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("BarraComprar.fxml"));
             Parent root = loader.load();
             BarraComprarController iController = loader.<BarraComprarController>getController();
+            
+            iController.cargarPuntosDeVenta(listaPuntosDeVenta);
             
             Node nodoBarraCargar = (Node) root;
             pnl_scroll.getChildren().add(nodoBarraCargar);
@@ -227,6 +233,17 @@ public class VentanaPrincipalController implements Initializable {
 
         cargarItemsArticulos(articulosQueCoinciden,sistemaEcoShop);
 
+    }
+
+    @FXML
+    private void clickBtnMisFavoritos(MouseEvent event) {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ArrayList<IArticulo> listaMisFavoritos = 
+                sistemaEcoShop.obtenerListaArticulosFavoritosPersonal();
+
+        cargarItemsArticulos(listaMisFavoritos, sistemaEcoShop);
+        
+        
     }
 
 }

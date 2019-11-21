@@ -107,6 +107,11 @@ public class Direccion implements IDireccion{
     public String obtenerDepartamento() {
         return this.getDepartamento();
     }
+
+    @Override
+    public String obtenerCalle() {
+        return this.getCalle();
+    }
     
     
 }

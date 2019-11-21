@@ -311,6 +311,7 @@ public class EcoShop implements IEcoShop{
 
     @Override
     public void registrarPuntoDeVenta(IPuntoDeVenta unPuntoDeVenta) {
+        unPuntoDeVenta.modificarDireccion(direccionRandom());
         this.listaPuntosDeVenta.add(unPuntoDeVenta);
     }
 
@@ -359,6 +360,16 @@ public class EcoShop implements IEcoShop{
         
         assert(false);
         return null;
+    }
+    
+    @Override
+    public ArrayList<IPuntoDeVenta> obtenerListaPuntosDeVenta() {
+        return this.getListaPuntosDeVenta();
+    }
+    
+    @Override
+    public ArrayList<IArticulo> obtenerListaArticulosFavoritosPersonal() {
+        return this.getListaFavoritosUsuario();
     }
     
    //
@@ -418,14 +429,6 @@ public class EcoShop implements IEcoShop{
        return this.listaDirecciones.get(posicionDeDireccionARetornar);
    }
 
-
-
-
-    
-
-
-
-   
 
     
    

@@ -26,7 +26,7 @@
                </font>
             </Label>
             <Rectangle arcHeight="1.0" arcWidth="1.0" fill="#1f93ff00" height="104.0" layoutX="9.0" layoutY="9.0" opacity="0.22" stroke="#69784c" strokeType="INSIDE" width="878.0" />
-            <ChoiceBox fx:id="choiseBoxNumeroLocal" layoutX="507.0" layoutY="28.0" opacity="0.69" prefHeight="25.0" prefWidth="52.0" />
+            <ChoiceBox fx:id="choiceBoxPuntoDeVenta" layoutX="507.0" layoutY="28.0" opacity="0.69" prefHeight="25.0" prefWidth="171.0" />
             <JFXButton fx:id="btnComprar" alignment="CENTER" contentDisplay="CENTER" layoutX="705.0" layoutY="38.0" onAction="#clickBtnAgregarAlCarrito" onMouseClicked="#clickComprar" opacity="0.73" prefHeight="25.0" prefWidth="141.0" style="-fx-background-radius: 20; -fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 20; -fx-padding: 8; -fx-background-color: bcd292; -fx-border-color: #69784c;" text="COMPRAR" textAlignment="CENTER" textFill="#3b432c">
                <effect>
                   <DropShadow height="115.64" radius="63.25" spread="0.56" width="139.36" />
@@ -36,6 +36,7 @@
                </font>
             </JFXButton>
             <JFXDatePicker fx:id="calendario" defaultColor="#69784dc1" layoutX="201.0" layoutY="67.0" />
+            <Label layoutX="507.0" layoutY="59.0" opacity="0.6" text="n° del Local - Direccion" />
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />

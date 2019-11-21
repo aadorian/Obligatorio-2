@@ -22,4 +22,10 @@ public interface IDireccion {
      * @return 
      */
     String obtenerDepartamento();
+    
+    /**
+     * 
+     * @return 
+     */
+    String obtenerCalle();
 }
