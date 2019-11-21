@@ -123,6 +123,19 @@ public class VentanaPrincipalController implements Initializable {
         pnl_scroll.getChildren().clear();
 
         Node[] nodos = new Node[listaArticulosEnCarrito.size()];
+        
+        //Cargo la barra de comprar
+        try {            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("BarraComprar.fxml"));
+            Parent root = loader.load();
+            BarraComprarController iController = loader.<BarraComprarController>getController();
+            
+            Node nodoBarraCargar = (Node) root;
+            pnl_scroll.getChildren().add(nodoBarraCargar);
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         for (int i = 0; i < nodos.length; i++) {
             try {
@@ -142,9 +155,9 @@ public class VentanaPrincipalController implements Initializable {
                 iController.setCantidadDeArticulosEnCarrito(cantidadArticulosEnCarrito);
 
                 nodos[i] = (Node) root;
-
                 pnl_scroll.getChildren().add(nodos[i]);
-            } catch (IOException ex) {
+            } 
+            catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

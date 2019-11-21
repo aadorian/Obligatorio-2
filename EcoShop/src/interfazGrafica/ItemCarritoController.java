@@ -98,7 +98,7 @@ public class ItemCarritoController implements Initializable {
 
         carritoDelSistema.eliminarArticuloDelCarrito(articuloAEliminar);
 
-        pnl_scroll.getChildren().remove(posicionDelArticuloEnElCarrito);
+        pnl_scroll.getChildren().remove(posicionDelArticuloEnElCarrito + 1);
 
         sacarLabelArticulosEnCarrito();
     }

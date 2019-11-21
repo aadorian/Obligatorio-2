@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="172.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazGrafica.BarraComprarController">
+   <children>
+      <Pane layoutX="29.0" layoutY="25.0" prefHeight="121.0" prefWidth="896.0" style="-fx-background-color: #fff;">
+         <children>
+            <Label layoutX="45.0" layoutY="29.0" text="Por favor, seleccione número de local donde desea retirar su pedido:" textAlignment="CENTER" textFill="#2f2e2e">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="favoritoArticuloBtn" alignment="CENTER" layoutX="830.0" layoutY="33.0" onMouseClicked="#clickBtnFavoritoArticulo" prefHeight="15.0" prefWidth="28.0" text=" " />
+            <Label layoutX="45.0" layoutY="69.0" text="Registre día de retiro:" textAlignment="CENTER" textFill="#2f2e2e">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <MenuButton layoutX="507.0" layoutY="27.0" mnemonicParsing="false">
+              <items>
+                <MenuItem mnemonicParsing="false" text="n°1" />
+                <MenuItem mnemonicParsing="false" text="n°2" />
+                  <MenuItem mnemonicParsing="false" text="n°3" />
+                  <MenuItem mnemonicParsing="false" text="n°4" />
+                  <MenuItem mnemonicParsing="false" text="n°5" />
+                  <MenuItem mnemonicParsing="false" text="n°6" />
+              </items>
+            </MenuButton>
+            <JFXButton fx:id="btnComprar" alignment="CENTER" contentDisplay="CENTER" layoutX="693.0" layoutY="36.0" onAction="#clickBtnAgregarAlCarrito" onMouseClicked="#clickComprar" prefHeight="25.0" prefWidth="141.0" style="-fx-background-radius: 20; -fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 20; -fx-padding: 8;" text="COMPRAR" textAlignment="CENTER">
+               <effect>
+                  <DropShadow height="115.64" radius="63.25" spread="0.56" width="139.36" />
+               </effect>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXDatePicker defaultColor="#69784c" layoutX="201.0" layoutY="67.0" />
+         </children>
+         <effect>
+            <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
