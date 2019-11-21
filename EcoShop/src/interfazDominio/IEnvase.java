@@ -23,4 +23,10 @@ public interface IEnvase {
      * @return 
      */
     boolean sonIguales(IEnvase unEnvase);
+    
+    /**
+     * 
+     * @return 
+     */
+    String obtenerRutaImagen();
 }

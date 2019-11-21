@@ -348,6 +348,19 @@ public class EcoShop implements IEcoShop{
         }
     }
     
+    @Override
+    public IEnvase obtenerEnvasePorNombre(String nombre) {
+        for (int i = 0; i < this.listaEnvases.size(); i++) {
+            IEnvase envaseTmp = this.listaEnvases.get(i);
+            
+            if(envaseTmp.obtenerNombre().equals(nombre))
+                return envaseTmp;
+        }
+        
+        assert(false);
+        return null;
+    }
+    
    //
    //METODOS PRIVADOS
    //
@@ -404,6 +417,8 @@ public class EcoShop implements IEcoShop{
        
        return this.listaDirecciones.get(posicionDeDireccionARetornar);
    }
+
+
 
 
     

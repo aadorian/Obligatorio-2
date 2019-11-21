@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 
@@ -46,6 +47,8 @@ public class ItemCarritoController implements Initializable {
     private JFXComboBox<String> comboBoxEnvases;
 
     Label cantidadArticulosEnCarrito;
+    @FXML
+    private ImageView imagenEnvase;
 
     /**
      * Initializes the controller class.
@@ -103,11 +106,6 @@ public class ItemCarritoController implements Initializable {
         sacarLabelArticulosEnCarrito();
     }
 
-    @FXML
-    private void mouseSobreEnvase(DragEvent event) {
-
-    }
-
     public void setCantidadDeArticulosEnCarrito(Label esteLabel) {
         this.cantidadArticulosEnCarrito = esteLabel;
     }
@@ -126,6 +124,30 @@ public class ItemCarritoController implements Initializable {
             cantidadArticulosEnCarrito.setText(strNumeroLabel);
         }
 
+    }
+
+    @FXML
+    private void mouseOcultarEnvase(MouseEvent event) {
+        imagenEnvase.setImage(null);
+    }
+
+    @FXML
+    private void mouseMostrarEnvase(MouseEvent event) {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        IEnvase envaseSeleccionado;
+        Image envase;
+        
+        if(comboBoxEnvases.getSelectionModel().isEmpty())
+            return;
+        else
+        {
+            String strEnvaseSeleccionado = comboBoxEnvases.getValue();
+            envaseSeleccionado = sistemaEcoShop.obtenerEnvasePorNombre(strEnvaseSeleccionado);
+            
+            envase = new Image(envaseSeleccionado.obtenerRutaImagen());
+        }
+        
+        imagenEnvase.setImage(envase);
     }
 
 }

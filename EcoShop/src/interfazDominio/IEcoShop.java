@@ -29,6 +29,8 @@ public interface IEcoShop {
      */
     IArticulo obtenerArticuloPorNombre(String nombre);
     
+    IEnvase obtenerEnvasePorNombre(String nombre);
+    
     /**
      * 
      * @return 

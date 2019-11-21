@@ -12,6 +12,7 @@ public class Envase implements IEnvase{
     private double alto; //Para calcular el volumen
     private double ancho;//Para calcular el volumen
     private double volumen;//Para calcular cuantos envases son necesarios
+    private String rutaImagen;
     
     //Constructores
     public Envase(){
@@ -20,14 +21,17 @@ public class Envase implements IEnvase{
         this.alto = -1;
         this.ancho = -1;
         this.volumen = -1;
+        this.rutaImagen = "";
     }
     
-    public Envase(String nombreEnvase, double largo, double alto, double ancho) {
+    public Envase(String nombreEnvase, double largo, double alto, double ancho,
+            String rutaImagen) {
         this.nombreEnvase = nombreEnvase;
         this.largo = largo;
         this.alto = alto;
         this.ancho = ancho;
         this.volumen = calcularVolumen(largo, alto, ancho);
+        this.rutaImagen = rutaImagen;
     }
     
     //Getter & Setter
@@ -70,6 +74,14 @@ public class Envase implements IEnvase{
     public void setVolumen(double volumen) {
         this.volumen = volumen;
     }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
     
     //
     //METODOS PUBLICOS
@@ -82,6 +94,11 @@ public class Envase implements IEnvase{
     @Override
     public boolean sonIguales(IEnvase unEnvase) {
         return this.obtenerNombre().equals(unEnvase.obtenerNombre());
+    }
+    
+    @Override
+    public String obtenerRutaImagen(){
+        return this.getRutaImagen();
     }
     
     //

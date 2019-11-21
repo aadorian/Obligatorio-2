@@ -73,10 +73,14 @@ public class CargaDeDatos {
     }
     
     private void cargarEnvases(){
-        IEnvase e1 = new Envase("Bolsa Mediana", 20, 13, 30);
-        IEnvase e2 = new Envase("Tapper Chico", 13, 12, 6);
-        IEnvase e3 = new Envase("Tapper Mediano", 18, 11, 11);
-        IEnvase e4 = new Envase("Bolsa Grande", 21, 22, 54);
+        IEnvase e1 = new Envase("Bolsa Mediana", 20, 13, 30,
+                "interfazGrafica/imagenes/BolsaMediana.jpg");
+        IEnvase e2 = new Envase("Tupper Chico", 13, 12, 6, 
+                "interfazGrafica/imagenes/TupperChico.jpg");
+        IEnvase e3 = new Envase("Tupper Mediano", 18, 11, 11, 
+                "interfazGrafica/imagenes/TupperMediano.jpg");
+        IEnvase e4 = new Envase("Bolsa Grande", 21, 22, 54, 
+                "interfazGrafica/imagenes/BolsaGrande.jpg");
         //IEnvase e5 = new Envase("Tapper Grande", 0, 0, 0);
         //IEnvase e6 = new Envase("Bolsa de Supermercado", 21, 22, 54);
         
@@ -143,7 +147,7 @@ public class CargaDeDatos {
      */
     private IEnvase obtenerEnvase(String envaseABuscar){
         ArrayList<IEnvase> envasesSistema = sistemaEcoShop.obtenerListaEnvases();
-        IEnvase envaseSoloNombre = new Envase(envaseABuscar,-1,-1,-1);
+        IEnvase envaseSoloNombre = new Envase(envaseABuscar,-1,-1,-1, "");
         
         for (int i = 0; i < envasesSistema.size(); i++) {
             IEnvase envaseTmp = envasesSistema.get(i);

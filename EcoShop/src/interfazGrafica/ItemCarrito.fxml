@@ -38,8 +38,9 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="comboBoxEnvases" layoutX="697.0" layoutY="76.0" onDragEntered="#mouseSobreEnvase" />
+            <JFXComboBox fx:id="comboBoxEnvases" layoutX="697.0" layoutY="76.0" onMouseEntered="#mouseMostrarEnvase" onMouseExited="#mouseOcultarEnvase" />
             <Label layoutX="536.0" layoutY="80.0" text="Seleccione el envase a llevar" />
+            <ImageView fx:id="imagenEnvase" fitHeight="176.0" fitWidth="224.0" layoutX="336.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
