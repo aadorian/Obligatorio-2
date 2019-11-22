@@ -5,10 +5,29 @@
  */
 package interfazDominio;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author matia
  */
 public interface ITicketPreVenta {
     
+    /**
+     * 
+     * @return 
+     */
+    int obtenerNumeroDeTicket();
+    
+    /**
+     * 
+     * @return 
+     */
+    ArrayList<String> obtenerContenidoTicketPDF();
+    
+    /**
+     * 
+     * @return 
+     */
+    IPreVenta obtenerPreVentaAsociada();
 }

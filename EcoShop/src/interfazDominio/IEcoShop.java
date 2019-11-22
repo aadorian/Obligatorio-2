@@ -75,6 +75,12 @@ public interface IEcoShop {
     ArrayList<IPreVenta> obtenerListaPreVentas();
     
     /**
+     * 
+     * @return 
+     */
+    ArrayList<ITicketPreVenta> obtenerTicketsPreVenta();
+    
+    /**
      * PRE: -
      * @param unEnvase Envase a utilizar para guardar "unArticulo"
      * @param unArticulo Articulo al cual guardar en "unEnvase"

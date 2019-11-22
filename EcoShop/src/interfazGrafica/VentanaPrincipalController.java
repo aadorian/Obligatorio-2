@@ -5,6 +5,7 @@
  */
 package interfazGrafica;
 
+import com.itextpdf.text.Document;
 import com.jfoenix.controls.JFXButton;
 import interfazDominio.*;
 import java.io.IOException;
@@ -186,21 +187,25 @@ public class VentanaPrincipalController implements Initializable {
     }
 
     //ItemTicket
-    private void cargarItemsPreVentas() {
+    private void cargarItemsTickets() {
         IEcoShop sistemaEcoshop = VentanaFXML.obtenerSistema();
-        ArrayList<IPreVenta> listaPreVentas = sistemaEcoshop.obtenerListaPreVentas();
+        ArrayList<ITicketPreVenta> listaTicketsPreVentas = 
+                sistemaEcoshop.obtenerTicketsPreVenta();
         
         pnl_scroll.getChildren().clear();
 
-        Node[] nodos = new Node[listaPreVentas.size()];
+        Node[] nodos = new Node[listaTicketsPreVentas.size()];
 
         for (int i = 0; i < nodos.length; i++) {
             try {
-                IPreVenta preVentaTmp = listaPreVentas.get(i);
+                ITicketPreVenta ticketPreVentaTmp = listaTicketsPreVentas.get(i);
+                IPreVenta preVentaTmp = ticketPreVentaTmp.obtenerPreVentaAsociada();
                 LocalDate fechaDeRetiro = preVentaTmp.obtenerFechaDeRetiro();
                 IPuntoDeVenta localDeVenta = preVentaTmp.obtenerLocalDeRetiro();
                 LocalDateTime fechaDeVenta = preVentaTmp.obtenerFechaDeCompraRealizada();
                 double precioTotal = preVentaTmp.obtenerPrecioTotalDeCompra();
+                int numeroTicket = ticketPreVentaTmp.obtenerNumeroDeTicket();
+                ArrayList<String> ticketPDF = ticketPreVentaTmp.obtenerContenidoTicketPDF();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ItemTicket.fxml"));
                 Parent root = loader.load();
                 ItemTicketController iController = loader.<ItemTicketController>getController();
@@ -209,6 +214,8 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarFechaDeCompra(fechaDeVenta);
                 iController.cargarMontoDeCompra(precioTotal);
                 iController.cargarFechaDeRetiro(fechaDeRetiro);
+                iController.cargarNumeroDeticket(numeroTicket);
+                iController.cargarTicketPDF(ticketPDF);
                 iController.cargarLugarDeRetiro(localDeVenta.
                         obtenerDireccionDelLocal().obtenerCalle());
                 
@@ -233,7 +240,7 @@ public class VentanaPrincipalController implements Initializable {
 
     @FXML
     private void clickBtnMisCompras(MouseEvent event) {
-        cargarItemsPreVentas();
+        cargarItemsTickets();
         estaEnSeccionTodosLosArticulos = false;
     }
 

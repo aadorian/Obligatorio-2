@@ -338,6 +338,11 @@ public class EcoShop implements IEcoShop{
         return this.getListaPreVentas();
     }
     
+    @Override
+    public ArrayList<ITicketPreVenta> obtenerTicketsPreVenta() {
+        return this.getListaTicketsPreVenta();
+    }
+    
    //
    //METODOS PRIVADOS
    //
@@ -394,6 +399,8 @@ public class EcoShop implements IEcoShop{
        
        return this.listaDirecciones.get(posicionDeDireccionARetornar);
    }
+
+    
 
    
 }

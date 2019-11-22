@@ -205,7 +205,7 @@ public class Articulo implements IArticulo{
     
     @Override
     public String toString() {
-        return this.getNombreArticulo() + " (" + this.getCalificador() +
+        return this.getNombreArticulo() + " (" + this.getCodigoIdentificador() +
                 ") ";
     }
     

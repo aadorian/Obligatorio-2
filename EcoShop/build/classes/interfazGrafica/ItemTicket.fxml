@@ -71,6 +71,16 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label layoutX="51.0" layoutY="111.0" text="N° de ticket:" textFill="#2f2e2e">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="numeroDeTicket" alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="107.0" prefHeight="41.0" prefWidth="126.0" text="n° de ticket">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />

@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/EcoShop.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/VentanaPrincipalController.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/Articulo.java</file>
             <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemCarritoController.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazDominio/IEcoShop.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/PreVenta.java</file>
-            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/Carrito.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemTicketController.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/dominio/TicketPreVenta.java</file>
+            <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazDominio/ITicketPreVenta.java</file>
             <file>file:/C:/Users/matia/Desktop/Obligatorio-2/EcoShop/src/interfazGrafica/ItemArticuloController.java</file>
         </group>
     </open-files>

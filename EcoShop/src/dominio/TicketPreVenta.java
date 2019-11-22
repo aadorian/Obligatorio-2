@@ -1,7 +1,5 @@
 package dominio;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import interfazDominio.IArticulo;
 import interfazDominio.ICarrito;
@@ -23,7 +21,7 @@ public class TicketPreVenta implements ITicketPreVenta{
     //Atributos
     private IPreVenta unaPreVenta;
     protected int numeroIdentificador;//Numero identificador unico
-    protected Document ticketElectronico;
+    protected ArrayList<String> contenidoTicketElectronico;
     
     //Constructores
     public TicketPreVenta(){
@@ -33,7 +31,7 @@ public class TicketPreVenta implements ITicketPreVenta{
     public TicketPreVenta(IPreVenta unaPreVenta, int numeroIdentificador){
         this.unaPreVenta = unaPreVenta;
         this.numeroIdentificador = numeroIdentificador;
-        this.ticketElectronico = generarTicketElectronico(unaPreVenta);
+        this.contenidoTicketElectronico = generarContenidoTicketElectronico(unaPreVenta);
     }
     
     //Getter & Setter
@@ -53,12 +51,12 @@ public class TicketPreVenta implements ITicketPreVenta{
         this.numeroIdentificador = numeroIdentificador;
     }
 
-    public Document getTicketElectronico() {
-        return ticketElectronico;
+    public ArrayList<String> getContenidoTicketElectronico() {
+        return contenidoTicketElectronico;
     }
 
-    public void setTicketElectronico(Document ticketElectronico) {
-        this.ticketElectronico = ticketElectronico;
+    public void setTicketElectronico(ArrayList<String> contenidoTicketElectronico) {
+        this.contenidoTicketElectronico = contenidoTicketElectronico;
     }
     
     //
@@ -70,14 +68,14 @@ public class TicketPreVenta implements ITicketPreVenta{
      * @param unaPreVenta
      * @return 
      */
-    private Document generarTicketElectronico(IPreVenta unaPreVenta) {
+    private ArrayList<String> generarContenidoTicketElectronico(IPreVenta unaPreVenta) {
         double precioTotalDeCompra;
         ICarrito carritoAsociadoALaVenta;
         LocalDateTime fechaDeCompraRealizada;
         LocalDate fechaDeRetiro;
         IPuntoDeVenta localDeRetiro;
         DateTimeFormatter formatoTiempo;
-        Document ticketPdf;
+        ArrayList<String> contenidoTicketPdf = new ArrayList<>();
         
         precioTotalDeCompra = unaPreVenta.obtenerPrecioTotalDeCompra();
         carritoAsociadoALaVenta = unaPreVenta.obtenerCarritoAsociadoALaCompra();
@@ -86,74 +84,68 @@ public class TicketPreVenta implements ITicketPreVenta{
         localDeRetiro = unaPreVenta.obtenerLocalDeRetiro();
         formatoTiempo = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         
-        try{
-            ticketPdf = new Document();
-            ticketPdf.open();
-            
-            Paragraph pSaltoDeLinea = new Paragraph("");
-            Paragraph pListadoDeCompra = 
-                    new Paragraph("-------LISTADO DE COMPRA-------");
-            Paragraph pFechaDeCompra = 
-                    new Paragraph("Compra realizada el: " + formatoTiempo.
-                            format(fechaDeCompraRealizada));
-            Paragraph pLocalDeRetiro =
-                    new Paragraph("Local de retiro: " + localDeRetiro.toString());
-            Paragraph pFechaDeRetiro = 
-                    new Paragraph("Fecha de retiro: " + fechaDeRetiro);
-            
-            ticketPdf.add(pFechaDeCompra);
-            ticketPdf.add(pLocalDeRetiro);
-            ticketPdf.add(pFechaDeRetiro);
-            ticketPdf.add(pSaltoDeLinea);
-            ticketPdf.add(pSaltoDeLinea);
-            ticketPdf.add(pListadoDeCompra);
-            ticketPdf.add(pSaltoDeLinea);
-            
-            ArrayList<Pair<IArticulo, Double>> listaArticulosEnCarrito;
-            
-            listaArticulosEnCarrito = carritoAsociadoALaVenta.obtenerListaArticulos();
-            
-            for (int i = 0; i < listaArticulosEnCarrito.size(); i++) {
-                Pair<IArticulo, Double> duplaTmp = listaArticulosEnCarrito.get(i);
-                IArticulo articuloTmp = duplaTmp.getKey();
-                double pesoTmp = duplaTmp.getValue();
-                String articuloToStr = articuloTmp.toString();
-                double precioTotal = articuloTmp.obtenerPrecioPorKG() * pesoTmp;
-                IEnvase envaseAsociadoAlArticulo = carritoAsociadoALaVenta.
-                        obtenerEnvaseAsociadoAlArticulo(articuloTmp);
-                String strEnvase;
-                String stringAImprimir;
-                Paragraph pArticulo;
-                
-                strEnvase = "Envase reutilizado: " + 
-                        envaseAsociadoAlArticulo.obtenerNombre();
-                stringAImprimir = articuloToStr + " - x" + pesoTmp + "kg -"
-                        + "$" + precioTotal + "    // " + strEnvase;
-                
-                pArticulo = new Paragraph(stringAImprimir);
-                ticketPdf.add(pArticulo);
-            }
-            
-            String strPrecioTotalDeCompra = 
-                    "Precio Total: $" + precioTotalDeCompra;
-            String agradecimiento = "Gracias por su compra";
-            Paragraph pPrecioTotalDeCompra = new Paragraph(strPrecioTotalDeCompra);
-            Paragraph pAgradecimiento = new Paragraph(agradecimiento);
-            
-            ticketPdf.add(pSaltoDeLinea);
-            ticketPdf.add(pPrecioTotalDeCompra);
-            ticketPdf.add(pSaltoDeLinea);
-            ticketPdf.add(pAgradecimiento);
-            
-            ticketPdf.close();
-            
-            return ticketPdf;
+        String saltoDeLinea = "";
+        String introListadoDeCompra = "-------LISTADO DE COMPRA-------";
+        String fechaDeCompra ="Compra realizada el: " + formatoTiempo.
+                        format(fechaDeCompraRealizada);
+        String strLocalDeRetiro = "Local de retiro: " + localDeRetiro.toString();
+        String strFechaDeRetiro = "Fecha de retiro: " + fechaDeRetiro;
+
+        contenidoTicketPdf.add(fechaDeCompra);
+        contenidoTicketPdf.add(strLocalDeRetiro);
+        contenidoTicketPdf.add(strFechaDeRetiro);
+        contenidoTicketPdf.add(saltoDeLinea);
+        contenidoTicketPdf.add(saltoDeLinea);
+        contenidoTicketPdf.add(introListadoDeCompra);
+        contenidoTicketPdf.add(saltoDeLinea);
+
+        ArrayList<Pair<IArticulo, Double>> listaArticulosEnCarrito;
+
+        listaArticulosEnCarrito = carritoAsociadoALaVenta.obtenerListaArticulos();
+
+        for (int i = 0; i < listaArticulosEnCarrito.size(); i++) {
+            Pair<IArticulo, Double> duplaTmp = listaArticulosEnCarrito.get(i);
+            IArticulo articuloTmp = duplaTmp.getKey();
+            double pesoTmp = duplaTmp.getValue();
+            String articuloToStr = articuloTmp.toString();
+            double precioTotal = articuloTmp.obtenerPrecioPorKG() * pesoTmp;
+            IEnvase envaseAsociadoAlArticulo = carritoAsociadoALaVenta.
+                    obtenerEnvaseAsociadoAlArticulo(articuloTmp);
+            String strEnvase;
+            String stringAImprimir;
+
+            strEnvase = envaseAsociadoAlArticulo.obtenerNombre();
+            stringAImprimir = articuloToStr + " x" + pesoTmp + "kg -  "
+                    + "$" + precioTotal + "    | " + strEnvase;
+
+            contenidoTicketPdf.add(stringAImprimir);
         }
-        catch(DocumentException e){
-            System.out.println("Error durante la creacion del PDF");
-            
-            return null;
-        }
+
+        String strPrecioTotalDeCompra = 
+                "Precio Total: $" + precioTotalDeCompra;
+        String agradecimiento = "Gracias por su compra";
+
+        contenidoTicketPdf.add(saltoDeLinea);
+        contenidoTicketPdf.add(strPrecioTotalDeCompra);
+        contenidoTicketPdf.add(saltoDeLinea);
+        contenidoTicketPdf.add(agradecimiento);
+
+        return contenidoTicketPdf;
+    }
+
+    @Override
+    public int obtenerNumeroDeTicket() {
+        return this.getNumeroIdentificador();
+    }
+
+    @Override
+    public ArrayList<String> obtenerContenidoTicketPDF() {
+        return this.getContenidoTicketElectronico();
+    }
+
+    @Override
+    public IPreVenta obtenerPreVentaAsociada() {
+        return this.getUnaPreVenta();
     }
 
 }
