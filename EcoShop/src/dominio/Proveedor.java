@@ -62,6 +62,7 @@ public class Proveedor implements IProveedor{
     public IDireccion obtenerDireccion() {
         return this.getDireccionProveedor();
     }
+
     
     
 }

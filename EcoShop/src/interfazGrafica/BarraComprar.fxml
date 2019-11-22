@@ -37,6 +37,10 @@
             </JFXButton>
             <JFXDatePicker fx:id="calendario" defaultColor="#69784dc1" layoutX="201.0" layoutY="67.0" />
             <Label layoutX="507.0" layoutY="59.0" opacity="0.6" text="n° del Local - Direccion" />
+            <Label fx:id="labelCompraExitosa" alignment="CENTER" layoutX="670.0" layoutY="90.0" text="La compra se ha realizado exitosamente" textAlignment="CENTER" textFill="#1eff00" />
+            <Label fx:id="labelFechaInvalida" alignment="CENTER" layoutX="738.0" layoutY="90.0" text="Fecha inválida" textAlignment="CENTER" textFill="RED" />
+            <Label fx:id="labelLocalInvalido" alignment="CENTER" layoutX="725.0" layoutY="90.0" text="Seleccione un local" textAlignment="CENTER" textFill="RED" />
+            <Label fx:id="labelEnvasesInvalidos" alignment="CENTER" layoutX="670.0" layoutY="90.0" text="Seleccione un envase para cada articulo" textAlignment="CENTER" textFill="RED" />
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />

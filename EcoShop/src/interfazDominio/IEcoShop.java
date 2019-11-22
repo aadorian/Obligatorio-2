@@ -48,7 +48,17 @@ public interface IEcoShop {
      */
     ArrayList<IPuntoDeVenta> obtenerListaPuntosDeVenta();
     
+    /**
+     * 
+     * @return 
+     */
     ArrayList<IArticulo> obtenerListaArticulosFavoritosPersonal();
+    
+    /**
+     * 
+     * @return 
+     */
+    ArrayList<IArticulo> obtenerListaArticulosFavoritosGlobal();
     
     /**
      * PRE: -
@@ -57,6 +67,12 @@ public interface IEcoShop {
      * el articulo por parametro
      */
     ArrayList<IEnvase> obtenerListaEnvasesAplicables(IArticulo unArticulo);
+    
+    /**
+     * 
+     * @return 
+     */
+    ArrayList<IPreVenta> obtenerListaPreVentas();
     
     /**
      * PRE: -
@@ -105,6 +121,7 @@ public interface IEcoShop {
     /**
      * PRE: -
      * @param productoABuscar String a buscar en los articulos del EcoShop
+     * @param calficador
      * @return Retorna una lsita de articulos que contienen el string 
      * productoABuscar y coinciden con el calificador (Si el calificador es 
      * "Todos" entonces devuelve todos los que contienen el string productoABuscar)
@@ -114,20 +131,13 @@ public interface IEcoShop {
     /**
      * PRE: -
      * POST: Registra la PreVenta al EcoShop
+     * @param unaPreVenta
      * @param unCarrito Carrito con los articulos y envases a registrar en la 
      * PreVenta
      * @param fechaDeRetiro Fecha de retiro de la PreVenta
      * 
      */
-    void registrarPreVenta(ICarrito unCarrito, Date fechaDeRetiro);
-    
-    /**
-     * PRE: -
-     * POST: Registra la VentaExpress al EcoShop
-     * @param unCarrito Carrito con los articulos y envases a registrar en la 
-     * VentaExpress
-     */
-    void registrarVentaExpress(ICarrito unCarrito);
+    void registrarPreVenta(IPreVenta unaPreVenta);
     
     /**
      * PRE: -
@@ -136,28 +146,6 @@ public interface IEcoShop {
      * @param unaPreVenta PreVenta a la cual se le genera el ticket
      */
     void generarTicket(IPreVenta unaPreVenta);
-    
-    /**
-     * PRE: -
-     * @return Retorna los envases en el Stock 
-     */
-    ArrayList<IEnvase> envasesEnStock();
-    
-    /**
-     * PRE: El envase ya esta en el stock
-     * @param unEnvase Envase a eliminar del stock
-     * @param cantidadEnvases Cantidad de envases de "unEnvase" a eliminar
-     */
-    void eliminarEnvaseDelStock(IEnvase unEnvase, int cantidadEnvases);
-    
-    /**
-     * PRE: -
-     * POST: Agrega la cantidad de envases de "unEnvase" al Stock
-     * @param unEnvase Envase a ingresar al stock
-     * @param cantidadEnvases Cantidad de envases de "unEnvase" a agregar al 
-     * stock
-     */
-    void ingresarEnvaseEnStock(IEnvase unEnvase, int cantidadEnvases);
     
     /**
      * PRE: -
@@ -197,13 +185,13 @@ public interface IEcoShop {
      * @param unArticulo
      * @return 
      */
-    boolean estaEnFavoritos(IArticulo unArticulo);
+    boolean estaEnFavoritosPersonal(IArticulo unArticulo);
     
     /**
      * 
      * @param unArticulo 
      */
-    void agregarAFavoritos(IArticulo unArticulo);
+    void agregarAFavoritosPersonal(IArticulo unArticulo);
     
     /**
      * 
@@ -211,6 +199,17 @@ public interface IEcoShop {
      */
     void sacarDeFavoritos(IArticulo unArticulo);
     
+    /**
+     * 
+     * @param unArticulo 
+     */
+    void agregarArticuloAFavoritosGlobal(IArticulo unArticulo);
     
+    /**
+     * 
+     * @param numeroDelLocal
+     * @return 
+     */
+    IPuntoDeVenta obtenerPuntoDeVentaPorNumeroDeLocal(int numeroDelLocal);
     
 }

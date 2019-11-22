@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import interfazDominio.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -53,6 +55,8 @@ public class VentanaPrincipalController implements Initializable {
     private boolean estaEnSeccionTodosLosArticulos;
     @FXML
     private ScrollPane scrollPane;
+    @FXML
+    private JFXButton btnFavoritosGlobal;
 
     /**
      * Initializes the controller class.
@@ -106,7 +110,7 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarNombreProveedor(proveedorTmp.obtenerNombre());
                 iController.cargarPaisYDepartamentoProveedor(direccionTmp.obtenerPais(),
                         direccionTmp.obtenerDepartamento());
-                iController.cargarEsFavorito(sistemaEcoShop.estaEnFavoritos(articuloTmp));
+                iController.cargarEsFavorito(sistemaEcoShop.estaEnFavoritosPersonal(articuloTmp));
                 iController.cargarCantidadDeArticulosEnCarrito(cantidadArticulosEnCarrito);
                 
                 nodos[i] = (Node) root;
@@ -140,6 +144,8 @@ public class VentanaPrincipalController implements Initializable {
             BarraComprarController iController = loader.<BarraComprarController>getController();
             
             iController.cargarPuntosDeVenta(listaPuntosDeVenta);
+            iController.cargarLabelCantidadItemsEnCarrito(cantidadArticulosEnCarrito);
+            iController.cargarPanel(pnl_scroll);
             
             Node nodoBarraCargar = (Node) root;
             pnl_scroll.getChildren().add(nodoBarraCargar);
@@ -180,15 +186,34 @@ public class VentanaPrincipalController implements Initializable {
     }
 
     //ItemTicket
-    private void refreshItemTicket() {
+    private void cargarItemsPreVentas() {
+        IEcoShop sistemaEcoshop = VentanaFXML.obtenerSistema();
+        ArrayList<IPreVenta> listaPreVentas = sistemaEcoshop.obtenerListaPreVentas();
+        
         pnl_scroll.getChildren().clear();
 
-        Node[] nodes = new Node[4];
+        Node[] nodos = new Node[listaPreVentas.size()];
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < nodos.length; i++) {
             try {
-                nodes[i] = (Node) FXMLLoader.load(getClass().getResource("ItemTicket.fxml"));
-                pnl_scroll.getChildren().add(nodes[i]);
+                IPreVenta preVentaTmp = listaPreVentas.get(i);
+                LocalDate fechaDeRetiro = preVentaTmp.obtenerFechaDeRetiro();
+                IPuntoDeVenta localDeVenta = preVentaTmp.obtenerLocalDeRetiro();
+                LocalDateTime fechaDeVenta = preVentaTmp.obtenerFechaDeCompraRealizada();
+                double precioTotal = preVentaTmp.obtenerPrecioTotalDeCompra();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ItemTicket.fxml"));
+                Parent root = loader.load();
+                ItemTicketController iController = loader.<ItemTicketController>getController();
+                
+                iController.cargarCompraEnLocal(localDeVenta.obtenerNumeroDeLocal());
+                iController.cargarFechaDeCompra(fechaDeVenta);
+                iController.cargarMontoDeCompra(precioTotal);
+                iController.cargarFechaDeRetiro(fechaDeRetiro);
+                iController.cargarLugarDeRetiro(localDeVenta.
+                        obtenerDireccionDelLocal().obtenerCalle());
+                
+                nodos[i] = (Node) root;
+                pnl_scroll.getChildren().add(nodos[i]);
 
             } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
@@ -208,7 +233,7 @@ public class VentanaPrincipalController implements Initializable {
 
     @FXML
     private void clickBtnMisCompras(MouseEvent event) {
-        refreshItemTicket();
+        cargarItemsPreVentas();
         estaEnSeccionTodosLosArticulos = false;
     }
 
@@ -258,6 +283,16 @@ public class VentanaPrincipalController implements Initializable {
                 sistemaEcoShop.obtenerListaArticulosFavoritosPersonal();
 
         cargarItemsArticulos(listaMisFavoritos, sistemaEcoShop);
+        estaEnSeccionTodosLosArticulos = false;
+    }
+
+    @FXML
+    private void clickBtnFavoritosGlobal(MouseEvent event) {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ArrayList<IArticulo> listaFavoritosGlobal = 
+                sistemaEcoShop.obtenerListaArticulosFavoritosGlobal();
+        
+        cargarItemsArticulos(listaFavoritosGlobal, sistemaEcoShop);
         estaEnSeccionTodosLosArticulos = false;
     }
 

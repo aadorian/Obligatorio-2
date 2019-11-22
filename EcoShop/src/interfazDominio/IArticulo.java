@@ -93,4 +93,11 @@ public interface IArticulo {
      * @return 
      */
     boolean sonIgualesPorId(IArticulo unArticulo);
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    String toString();
 }

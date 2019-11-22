@@ -73,4 +73,16 @@ public interface ICarrito {
      * @return 
      */
     boolean articuloTieneEnvaseAsociado(IArticulo unArticulo);
+    
+    /**
+     * 
+     * @return 
+     */
+    boolean todosLosArticulosEnElCarritoTienenEnvaseAsociado();
+    
+    /**
+     * 
+     * @return 
+     */
+    double obtenerPrecioTotal();
 }

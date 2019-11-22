@@ -64,5 +64,11 @@ public class PuntoDeVenta implements IPuntoDeVenta{
         return this.getNumeroDelLocal();
     }
 
+    @Override
+    public String toString() {
+        return this.obtenerNumeroDeLocal() + " - " + this.obtenerDireccionDelLocal()
+                .obtenerCalle();
+    }
+
     
 }

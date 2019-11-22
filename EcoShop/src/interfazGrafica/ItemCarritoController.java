@@ -93,8 +93,7 @@ public class ItemCarritoController implements Initializable {
         articuloAEliminar = sistemaEcoshop.obtenerArticuloPorNombre(nombreArticulo.getText());
         posicionDelArticuloEnElCarrito = carritoDelSistema.posicionDelArticuloEnElCarrito(articuloAEliminar);
 
-        carritoDelSistema.eliminarArticuloDelCarrito(articuloAEliminar);
-        carritoDelSistema.eliminarEnvaseDelCarrito(articuloAEliminar);
+        sistemaEcoshop.sacarDelCarrito(articuloAEliminar);
 
         pnl_scroll.getChildren().remove(posicionDelArticuloEnElCarrito + 1);
 

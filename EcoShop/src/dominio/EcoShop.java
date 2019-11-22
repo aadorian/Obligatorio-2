@@ -2,8 +2,8 @@ package dominio;
 
 import interfazDominio.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
+
 /**
  * Clase Ecoshop - Contiene toda la informacion necesaria para mplementar todas 
  * las funcionalidades de IEcoshop
@@ -173,7 +173,8 @@ public class EcoShop implements IEcoShop{
 
     @Override
     public void sacarDelCarrito(IArticulo unArticulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        carritoDeCompras.eliminarArticuloDelCarrito(unArticulo);
+        carritoDeCompras.eliminarEnvaseDelCarrito(unArticulo);
     }
 
     @Override
@@ -206,33 +207,20 @@ public class EcoShop implements IEcoShop{
     }
 
     @Override
-    public void registrarPreVenta(ICarrito unCarrito, Date fechaDeRetiro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void registrarVentaExpress(ICarrito unCarrito) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void registrarPreVenta(IPreVenta unaPreVenta) {
+        ICarrito nuevoCarrito = new Carrito();
+        
+        this.setCarritoDeCompras(nuevoCarrito);
+        this.listaPreVentas.add(unaPreVenta);
     }
 
     @Override
     public void generarTicket(IPreVenta unaPreVenta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<IEnvase> envasesEnStock() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void eliminarEnvaseDelStock(IEnvase unEnvase, int cantidadEnvases) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ingresarEnvaseEnStock(IEnvase unEnvase, int cantidadEnvases) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int numeroIdentificador = this.listaTicketsPreVenta.size();
+        ITicketPreVenta nuevoTicket = new TicketPreVenta(unaPreVenta, 
+                numeroIdentificador);
+        
+        this.listaTicketsPreVenta.add(nuevoTicket);
     }
 
     @Override
@@ -271,7 +259,7 @@ public class EcoShop implements IEcoShop{
     }
     
     @Override
-    public boolean estaEnFavoritos(IArticulo unArticulo) {
+    public boolean estaEnFavoritosPersonal(IArticulo unArticulo) {
         boolean esta = false;
         
         for (int i = 0; i < this.listaFavoritosUsuario.size() && !esta; i++) {
@@ -285,7 +273,7 @@ public class EcoShop implements IEcoShop{
     }
     
     @Override
-    public void agregarAFavoritos(IArticulo unArticulo) {
+    public void agregarAFavoritosPersonal(IArticulo unArticulo) {
         this.listaFavoritosUsuario.add(unArticulo);
     }
 
@@ -320,6 +308,34 @@ public class EcoShop implements IEcoShop{
     @Override
     public ArrayList<IArticulo> obtenerListaArticulosFavoritosPersonal() {
         return this.getListaFavoritosUsuario();
+    }
+    
+    @Override
+    public void agregarArticuloAFavoritosGlobal(IArticulo unArticulo) {
+        this.listaFavoritosGlobal.add(unArticulo);
+    }
+    
+    @Override
+    public ArrayList<IArticulo> obtenerListaArticulosFavoritosGlobal() {
+        return this.getListaFavoritosGlobal();
+    }
+    
+    @Override
+    public IPuntoDeVenta obtenerPuntoDeVentaPorNumeroDeLocal(int numeroDelLocal) {
+        for (int i = 0; i < this.listaPuntosDeVenta.size(); i++) {
+            IPuntoDeVenta puntoDeVentaTmp = this.listaPuntosDeVenta.get(i);
+            
+            if(puntoDeVentaTmp.obtenerNumeroDeLocal() == numeroDelLocal)
+                return puntoDeVentaTmp;
+        }
+        
+        assert(false);
+        return null;
+    }
+    
+    @Override
+    public ArrayList<IPreVenta> obtenerListaPreVentas() {
+        return this.getListaPreVentas();
     }
     
    //
@@ -379,8 +395,6 @@ public class EcoShop implements IEcoShop{
        return this.listaDirecciones.get(posicionDeDireccionARetornar);
    }
 
-
-    
    
 }
 

@@ -203,6 +203,10 @@ public class Articulo implements IArticulo{
         return this.getCalificador();
     }
     
-    
+    @Override
+    public String toString() {
+        return this.getNombreArticulo() + " (" + this.getCalificador() +
+                ") ";
+    }
     
 }

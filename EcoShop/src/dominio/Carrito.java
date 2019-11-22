@@ -93,8 +93,13 @@ public class Carrito implements ICarrito{
         
         for (int i = 0; i < listaArticulos.size(); i++) {
             Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
+            IArticulo articuloTmp = duplaTmp.getKey();
+            double cantidadArticuloTmp = duplaTmp.getValue();
+            double precioARestar = 
+                    articuloTmp.obtenerPrecioPorKG() * cantidadArticuloTmp;
             
-            if(duplaTmp.getKey().sonIgualesPorNombre(unArticulo)){
+            if(articuloTmp.sonIgualesPorNombre(unArticulo)){
+                this.setPrecioTotal(this.getPrecioTotal() - precioARestar);
                 listaArticulos.remove(i);
                 break;
             }
@@ -168,6 +173,26 @@ public class Carrito implements ICarrito{
                 estaEnLaLista = true;
         }
         return estaEnLaLista;
+    }
+
+    @Override
+    public boolean todosLosArticulosEnElCarritoTienenEnvaseAsociado() {
+        boolean todosArticulosTienenEnvase = true;
+        
+        for (int i = 0; i < listaArticulos.size() && todosArticulosTienenEnvase; i++) {
+            Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
+            IArticulo articuloTmp = duplaTmp.getKey();
+            
+            if(!this.articuloTieneEnvaseAsociado(articuloTmp))
+                todosArticulosTienenEnvase = false;
+        }
+        
+        return todosArticulosTienenEnvase;
+    }
+
+    @Override
+    public double obtenerPrecioTotal() {
+        return this.getPrecioTotal();
     }
     
 }

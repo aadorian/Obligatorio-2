@@ -78,7 +78,7 @@ public class ItemArticuloController implements Initializable {
     }
     
     public void cargarPrecioPorKG(double precio){
-        String strPrecio = "$ ";
+        String strPrecio = "$";
         String precioEnString = String.valueOf(precio);
         String resultante = strPrecio + precioEnString + " x kg";
         
@@ -140,7 +140,7 @@ public class ItemArticuloController implements Initializable {
             favoritoArticulo.setImage(img);
             articuloEnFavoritos = false;
         } else {
-            sistemaEcoShop.agregarAFavoritos(sistemaEcoShop.obtenerArticuloPorNombre(strNombre));
+            sistemaEcoShop.agregarAFavoritosPersonal(sistemaEcoShop.obtenerArticuloPorNombre(strNombre));
             Image img = new Image("interfazGrafica/imagenes/favoritoAmarilla.png");
             favoritoArticulo.setImage(img);
             articuloEnFavoritos = true;

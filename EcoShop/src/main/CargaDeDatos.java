@@ -49,6 +49,8 @@ public class CargaDeDatos {
         this.cargarZanahoria();
         this.cargarGengibre();
         this.cargarApio();
+        
+        this.cargarListaFavoritosGlobal();
     }
 
     /**
@@ -113,6 +115,18 @@ public class CargaDeDatos {
         sistemaEcoShop.registrarPuntoDeVenta(p4);
     }
 
+    private void cargarListaFavoritosGlobal(){
+        IArticulo fav1 = sistemaEcoShop.obtenerArticuloPorNombre("Zanahoria");
+        IArticulo fav2 = sistemaEcoShop.obtenerArticuloPorNombre("Kiwi");
+        IArticulo fav3 = sistemaEcoShop.obtenerArticuloPorNombre("Manzana Roja");
+        IArticulo fav4 = sistemaEcoShop.obtenerArticuloPorNombre("Gengibre");
+        
+        sistemaEcoShop.agregarArticuloAFavoritosGlobal(fav1);
+        sistemaEcoShop.agregarArticuloAFavoritosGlobal(fav2);
+        sistemaEcoShop.agregarArticuloAFavoritosGlobal(fav3);
+        sistemaEcoShop.agregarArticuloAFavoritosGlobal(fav4);
+    }
+    
     /**
      * Carga nuevo artículo: Manzana Verde
      */
@@ -170,7 +184,7 @@ public class CargaDeDatos {
 
     private void cargarKiwi() {
         double densidadDeKiwi = 1;
-        double precioPorKGKiwi = 1;
+        double precioPorKGKiwi = 192;
         String rutaDeImagenKiwi = "interfazGrafica/imagenes/kiwi.jpg";
         String calificadorKiwi = "Fruta";
 
@@ -186,7 +200,7 @@ public class CargaDeDatos {
 
     private void cargarCastanas() {
         double densidadDeCastanas = 1;
-        double precioPorKGCastanas = 1;
+        double precioPorKGCastanas = 1790;
         String rutaDeImagenCastanas = "interfazGrafica/imagenes/castanas.jpg";
         String calificadorCastanas = "Fruto Seco";
 
@@ -203,7 +217,7 @@ public class CargaDeDatos {
 
     private void cargarPistachos() {
         double densidadDePistachos = 1;
-        double precioPorKGPistachos = 1;
+        double precioPorKGPistachos = 2740;
         String rutaDeImagenPistachos = "interfazGrafica/imagenes/pistachos.jpg";
         String calificadorPistachos = "Fruto Seco";
 
@@ -220,7 +234,7 @@ public class CargaDeDatos {
 
     private void cargarAlmendras() {
         double densidadDeAlmendras = 1;
-        double precioPorKGAlmendras = 1;
+        double precioPorKGAlmendras = 1050;
         String rutaDeImagenAlmendras = "interfazGrafica/imagenes/almendras.jpg";
         String calificadorAlmendras = "Fruto Seco";
 
@@ -237,7 +251,7 @@ public class CargaDeDatos {
 
     private void cargarNueces() {
         double densidadDeNueces = 1;
-        double precioPorKGNueces = 1;
+        double precioPorKGNueces = 1170;
         String rutaDeImagenNueces = "interfazGrafica/imagenes/nueces.jpg";
         String calificadorNueces = "Fruto Seco";
 
@@ -254,14 +268,14 @@ public class CargaDeDatos {
 
     private void cargarEsparragos() {
         double densidadDeEsparragos = 1;
-        double precioPorKGEsparragos = 1;
+        double precioPorKGEsparragos = 447;
         String rutaDeImagenEsparragos = "interfazGrafica/imagenes/esparragos.jpg";
         String calificadorEsparragos = "Verdura";
 
         IArticulo esparrago = new Articulo("Esparragos", rutaDeImagenEsparragos,
                 precioPorKGEsparragos, densidadDeEsparragos, calificadorEsparragos);
 
-        esparrago.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
+        esparrago.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
         esparrago.agregarEnvase(obtenerEnvase("Bolsa Grande"));
         esparrago.agregarEnvase(obtenerEnvase("Tupper Mediano"));
 
@@ -270,7 +284,7 @@ public class CargaDeDatos {
 
     private void cargarZanahoria() {
         double densidadDeZanahoria = 1;
-        double precioPorKGZanahoria = 1;
+        double precioPorKGZanahoria = 64;
         String rutaDeImagenZanahoria = "interfazGrafica/imagenes/zanahoria.jpg";
         String calificadorZanahoria = "Verdura";
 
@@ -285,7 +299,7 @@ public class CargaDeDatos {
 
     private void cargarGengibre() {
         double densidadDeNueces = 1;
-        double precioPorKGNueces = 1;
+        double precioPorKGNueces = 227;
         String rutaDeImagenNueces = "interfazGrafica/imagenes/gengibre.jpg";
         String calificadorNueces = "Verdura";
 
@@ -301,7 +315,7 @@ public class CargaDeDatos {
 
     private void cargarApio() {
         double densidadDeNueces = 1;
-        double precioPorKGNueces = 1;
+        double precioPorKGNueces = 193;
         String rutaDeImagenNueces = "interfazGrafica/imagenes/apio.jpg";
         String calificadorNueces = "Verdura";
 

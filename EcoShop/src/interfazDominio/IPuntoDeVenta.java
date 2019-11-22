@@ -28,4 +28,11 @@ public interface IPuntoDeVenta {
      * @return 
      */
     int obtenerNumeroDeLocal();
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    String toString();
 }

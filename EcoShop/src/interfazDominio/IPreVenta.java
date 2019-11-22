@@ -5,10 +5,42 @@
  */
 package interfazDominio;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Marcos Novelli - Matias Salles
  */
 public interface IPreVenta {
     
+    /**
+     * 
+     * @return 
+     */
+    LocalDateTime obtenerFechaDeCompraRealizada();
+    
+    /**
+     * 
+     * @return 
+     */
+    LocalDate obtenerFechaDeRetiro();
+    
+    /**
+     * 
+     * @return 
+     */
+    double obtenerPrecioTotalDeCompra();
+    
+    /**
+     * 
+     * @return 
+     */
+    ICarrito obtenerCarritoAsociadoALaCompra();
+    
+    /**
+     * 
+     * @return 
+     */
+    IPuntoDeVenta obtenerLocalDeRetiro();
 }

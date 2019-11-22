@@ -10,31 +10,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="399.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="399.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazGrafica.ItemTicketController">
    <children>
       <Pane layoutX="333.0" layoutY="22.0" prefHeight="338.0" prefWidth="591.0" style="-fx-background-color: #fff;">
          <children>
             <Separator layoutX="16.0" layoutY="89.0" prefHeight="0.0" prefWidth="550.0" />
-            <Label layoutX="174.0" layoutY="32.0" text="Compra en local n°7" textFill="#294031">
+            <Label fx:id="compraEnLocal" layoutX="174.0" layoutY="32.0" text="Compra en local n°.." textFill="#294031">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="51.0" layoutY="158.0" text="Fecha:" textFill="#2f2e2e">
+            <Label layoutX="51.0" layoutY="158.0" text="Fecha de compra:" textFill="#2f2e2e">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="montoDeCompra" layoutX="442.0" layoutY="109.0" text="monto" textFill="#3d724a">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="442.0" layoutY="109.0" text="\$ 1634.00" textFill="#3d724a">
+            <Label layoutX="51.0" layoutY="210.0" text="Fecha de retiro:">
                <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="51.0" layoutY="210.0" text="Hora:">
-               <font>
-                  <Font size="24.0" />
+                  <Font size="22.0" />
                </font></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="161.0" layoutY="162.0" text="23 / 11 / 1996">
+            <Label fx:id="fechaDeCompra" alignment="CENTER" contentDisplay="CENTER" layoutX="224.0" layoutY="154.0" prefHeight="41.0" prefWidth="126.0" text="compra">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -43,7 +43,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="184.0" layoutY="214.0" text="15:34 hs">
+            <Label fx:id="fechaDeRetiro" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="213.0" text="retiro">
                <font>
                   <Font size="18.0" />
                </font>
@@ -53,7 +53,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="393.0" layoutY="265.0" style="-fx-border-color: #999999; -fx-border-radius: 10;" text="Imprimir Ticket" textAlignment="CENTER">
+            <JFXButton fx:id="btnDescargarTicket" alignment="CENTER" contentDisplay="CENTER" layoutX="393.0" layoutY="265.0" onMouseClicked="#clickBtnDescargarTicket" style="-fx-border-color: #999999; -fx-border-radius: 10;" text="Descargar Ticket" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -61,6 +61,16 @@
                   <DropShadow height="157.4" radius="58.925" spread="0.59" width="80.3" />
                </effect>
             </JFXButton>
+            <Label layoutX="51.0" layoutY="265.0" text="Lugar de retiro:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lugarDeRetiro" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="268.0" text="lugar">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
