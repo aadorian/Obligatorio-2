@@ -192,7 +192,7 @@
             <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
          </effect>
       </Pane>
-      <ScrollPane layoutX="264.0" layoutY="227.0" prefHeight="399.0" prefWidth="993.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="226.0">
+      <ScrollPane fx:id="scrollPane" layoutX="264.0" layoutY="227.0" prefHeight="399.0" prefWidth="993.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="226.0">
          <content>
             <VBox fx:id="pnl_scroll" prefHeight="393.0" prefWidth="1043.0" spacing="20.0" style="-fx-background-color: #fff;" />
          </content>

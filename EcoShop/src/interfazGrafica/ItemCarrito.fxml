@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -38,9 +39,14 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="comboBoxEnvases" layoutX="697.0" layoutY="76.0" onMouseEntered="#mouseMostrarEnvase" onMouseExited="#mouseOcultarEnvase" />
+            <JFXComboBox fx:id="comboBoxEnvases" layoutX="697.0" layoutY="76.0" onAction="#clickComboBoxEnvases"  onMouseEntered="#mouseMostrarEnvase" onMouseExited="#mouseOcultarEnvase" />
             <Label layoutX="536.0" layoutY="80.0" text="Seleccione el envase a llevar" />
             <ImageView fx:id="imagenEnvase" fitHeight="176.0" fitWidth="224.0" layoutX="491.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="17.0" fitWidth="23.0" layoutX="859.0" layoutY="80.0" onMouseEntered="#mouseMostrarEnvase" onMouseExited="#mouseOcultarEnvase" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagenes/logoinformacion.png" />
+               </image>
+            </ImageView>
          </children>
          <effect>
             <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />

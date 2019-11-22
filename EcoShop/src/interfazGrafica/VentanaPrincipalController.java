@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.input.KeyEvent;
@@ -50,6 +51,8 @@ public class VentanaPrincipalController implements Initializable {
     @FXML
     private JFXButton btnMisFavoritos;
     private boolean estaEnSeccionTodosLosArticulos;
+    @FXML
+    private ScrollPane scrollPane;
 
     /**
      * Initializes the controller class.
@@ -104,7 +107,7 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarPaisYDepartamentoProveedor(direccionTmp.obtenerPais(),
                         direccionTmp.obtenerDepartamento());
                 iController.cargarEsFavorito(sistemaEcoShop.estaEnFavoritos(articuloTmp));
-                iController.setCantidadDeArticulosEnCarrito(cantidadArticulosEnCarrito);
+                iController.cargarCantidadDeArticulosEnCarrito(cantidadArticulosEnCarrito);
                 
                 nodos[i] = (Node) root;
 
@@ -113,8 +116,8 @@ public class VentanaPrincipalController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
+        scrollPane.setVvalue(0); //Pone el scroll panel al principio
     }
 
     private void cargarItemsCarrito() {
@@ -160,7 +163,11 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarImagenArticulo(articuloTmp.obtenerRutaDeImagen());
                 iController.cargarCantidadYPrecio(pesoIngresado, precioDeSeleccion);
                 iController.cargarEnvasesAplicables(articuloTmp.obtenerEnvasesAplicables());
-                iController.setCantidadDeArticulosEnCarrito(cantidadArticulosEnCarrito);
+                iController.cargarCantidadDeArticulosEnCarrito(cantidadArticulosEnCarrito);
+                
+                if(carritoDelSistema.articuloTieneEnvaseAsociado(articuloTmp))
+                    iController.cargarEnvaseSeleccionado(carritoDelSistema.
+                        obtenerEnvaseAsociadoAlArticulo(articuloTmp));
 
                 nodos[i] = (Node) root;
                 pnl_scroll.getChildren().add(nodos[i]);
@@ -169,7 +176,7 @@ public class VentanaPrincipalController implements Initializable {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        scrollPane.setVvalue(0); //Pone el scroll panel al principio
     }
 
     //ItemTicket

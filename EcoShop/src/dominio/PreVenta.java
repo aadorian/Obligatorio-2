@@ -7,9 +7,13 @@ import java.util.Date;
  * compra
  * @author Marcos Novelli - Matias Salles
  */
-public class PreVenta extends Venta{
+public class PreVenta {
     //Atributos
     private Date fechaDeRetiro;
+    private Carrito carroCompras;
+    private PuntoDeVenta localDeVenta;
+    private LocalDateTime fechaDeVenta;
+    private double precioTotal;
 
     //Constructores
     private PreVenta(){
@@ -35,42 +39,34 @@ public class PreVenta extends Venta{
         this.fechaDeRetiro = fechaDeRetiro;
     }
     
-    @Override
-     public Carrito getCarroCompras() {
+    public Carrito getCarroCompras() {
         return carroCompras;
     }
-     
-    @Override
+
     public void setCarroCompras(Carrito carroCompras) {
         this.carroCompras = carroCompras;
     }
-    
-    @Override
+
     public PuntoDeVenta getLocalDeVenta() {
         return localDeVenta;
     }
-    
-    @Override
+
     public void setLocalDeVenta(PuntoDeVenta localDeVenta) {
         this.localDeVenta = localDeVenta;
     }
 
-    @Override
     public LocalDateTime getFechaDeVenta() {
         return fechaDeVenta;
     }
 
-    @Override
     public void setFechaDeVenta(LocalDateTime fechaDeVenta) {
         this.fechaDeVenta = fechaDeVenta;
     }
 
-    @Override
     public double getPrecioTotal() {
         return precioTotal;
     }
 
-    @Override
     public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }

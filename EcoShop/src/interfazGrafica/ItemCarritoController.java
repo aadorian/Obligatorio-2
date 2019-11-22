@@ -94,13 +94,14 @@ public class ItemCarritoController implements Initializable {
         posicionDelArticuloEnElCarrito = carritoDelSistema.posicionDelArticuloEnElCarrito(articuloAEliminar);
 
         carritoDelSistema.eliminarArticuloDelCarrito(articuloAEliminar);
+        carritoDelSistema.eliminarEnvaseDelCarrito(articuloAEliminar);
 
         pnl_scroll.getChildren().remove(posicionDelArticuloEnElCarrito + 1);
 
         sacarLabelArticulosEnCarrito();
     }
 
-    public void setCantidadDeArticulosEnCarrito(Label esteLabel) {
+    public void cargarCantidadDeArticulosEnCarrito(Label esteLabel) {
         this.cantidadArticulosEnCarrito = esteLabel;
     }
 
@@ -127,21 +128,35 @@ public class ItemCarritoController implements Initializable {
 
     @FXML
     private void mouseMostrarEnvase(MouseEvent event) {
-        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
-        IEnvase envaseSeleccionado;
-        Image envase;
-        
-        if(comboBoxEnvases.getSelectionModel().isEmpty())
-            return;
-        else
-        {
+        if(!comboBoxEnvases.getSelectionModel().isEmpty()){
+            IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+            IEnvase envaseSeleccionado;
+            Image envase;
             String strEnvaseSeleccionado = comboBoxEnvases.getValue();
             envaseSeleccionado = sistemaEcoShop.obtenerEnvasePorNombre(strEnvaseSeleccionado);
             
             envase = new Image(envaseSeleccionado.obtenerRutaImagen());
+            
+            imagenEnvase.setImage(envase);
         }
-        
-        imagenEnvase.setImage(envase);
     }
 
+    public void cargarEnvaseSeleccionado(IEnvase unEnvase){
+        comboBoxEnvases.setValue(unEnvase.obtenerNombre());
+    }
+
+    @FXML
+    private void clickComboBoxEnvases(ActionEvent event) {
+        if(!comboBoxEnvases.getSelectionModel().isEmpty()){
+            IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+            ICarrito carritoSistema = sistemaEcoShop.obtenerCarrito();
+            String strEnvaseSeleccionado = comboBoxEnvases.getValue();
+            IEnvase envaseSeleccionado;
+            String strArticuloActual = nombreArticulo.getText();
+            IArticulo articuloActual = sistemaEcoShop.obtenerArticuloPorNombre(strArticuloActual);
+            envaseSeleccionado = sistemaEcoShop.obtenerEnvasePorNombre(strEnvaseSeleccionado);
+            
+            carritoSistema.agregarEnvase(articuloActual, envaseSeleccionado);
+        }
+    }
 }

@@ -160,7 +160,7 @@ public class ItemArticuloController implements Initializable {
         }
     }
     
-    public void setCantidadDeArticulosEnCarrito(Label esteLabel){
+    public void cargarCantidadDeArticulosEnCarrito(Label esteLabel){
         this.cantidadArticulosEnCarrito = esteLabel;
     }
     

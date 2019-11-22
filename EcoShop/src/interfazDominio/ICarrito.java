@@ -23,10 +23,10 @@ public interface ICarrito {
     
     /**
      * 
-     * @param unEnvase
-     * @param cantidadEnvases 
+     * @param unArticulo
+     * @param unEnvase 
      */
-    void agregarEnvase(IEnvase unEnvase, double cantidadEnvases);
+    void agregarEnvase(IArticulo unArticulo, IEnvase unEnvase);
     
     /**
      * 
@@ -40,6 +40,37 @@ public interface ICarrito {
      */
     void eliminarArticuloDelCarrito(IArticulo unArticulo);
     
+    /**
+     * 
+     * @param unArticulo
+     * @return 
+     */
     int posicionDelArticuloEnElCarrito(IArticulo unArticulo);
     
+    /**
+     * 
+     * @param unArticulo
+     * @return 
+     */
+    boolean articuloEstaEnElCarrito(IArticulo unArticulo);
+    
+    /**
+     * 
+     * @param unArticulo 
+     */
+    void eliminarEnvaseDelCarrito(IArticulo unArticulo);
+    
+    /**
+     * 
+     * @param unArticulo
+     * @return 
+     */
+    IEnvase obtenerEnvaseAsociadoAlArticulo(IArticulo unArticulo);
+    
+    /**
+     * 
+     * @param unArticulo
+     * @return 
+     */
+    boolean articuloTieneEnvaseAsociado(IArticulo unArticulo);
 }

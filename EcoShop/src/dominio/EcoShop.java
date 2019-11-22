@@ -15,32 +15,24 @@ public class EcoShop implements IEcoShop{
     private ArrayList<IEnvase> listaEnvases;
     private ArrayList<IPuntoDeVenta> listaPuntosDeVenta;
     private ArrayList<IPreVenta> listaPreVentas;
-    private ArrayList<IVentaExpress> listaVentasExpress;
     private ArrayList<ITicketPreVenta> listaTicketsPreVenta;
-    private ArrayList<ITicketVentaExpress> listaTicketsVentaExpress;
-    private ArrayList<ICajero> listaCajeros;
     private ArrayList<IProveedor> listaProveedores;
     private ArrayList<IDireccion> listaDirecciones;
     private ArrayList<IArticulo> listaFavoritosUsuario;
     private ArrayList<IArticulo> listaFavoritosGlobal;
     private ICarrito carritoDeCompras;
-    private IStock stockEnvases;
 
     public EcoShop() {
         listaArticulos = new ArrayList<>();
         listaEnvases = new ArrayList<>();
         listaPuntosDeVenta = new ArrayList<>();
         listaPreVentas = new ArrayList<>();
-        listaVentasExpress = new ArrayList<>();
         listaTicketsPreVenta = new ArrayList<>();
-        listaTicketsVentaExpress = new ArrayList<>();
-        listaCajeros = new ArrayList<>();
         listaProveedores = new ArrayList<>();
         listaDirecciones = new ArrayList<>();
         listaFavoritosUsuario = new ArrayList<>();
         listaFavoritosGlobal = new ArrayList<>();
         carritoDeCompras = new Carrito();
-        stockEnvases = new Stock();
     }
     
     //Getter & Setter
@@ -85,14 +77,6 @@ public class EcoShop implements IEcoShop{
         this.listaPreVentas = listaPreVentas;
     }
 
-    public ArrayList<IVentaExpress> getListaVentasExpress() {
-        return listaVentasExpress;
-    }
-
-    public void setListaVentasExpress(ArrayList<IVentaExpress> listaVentasExpress) {
-        this.listaVentasExpress = listaVentasExpress;
-    }
-
     public ArrayList<ITicketPreVenta> getListaTicketsPreVenta() {
         return listaTicketsPreVenta;
     }
@@ -101,36 +85,12 @@ public class EcoShop implements IEcoShop{
         this.listaTicketsPreVenta = listaTicketsPreVenta;
     }
 
-    public ArrayList<ITicketVentaExpress> getListaTicketsVentaExpress() {
-        return listaTicketsVentaExpress;
-    }
-
-    public void setListaTicketsVentaExpress(ArrayList<ITicketVentaExpress> listaTicketsVentaExpress) {
-        this.listaTicketsVentaExpress = listaTicketsVentaExpress;
-    }
-
-    public ArrayList<ICajero> getListaCajeros() {
-        return listaCajeros;
-    }
-
-    public void setListaCajeros(ArrayList<ICajero> listaCajeros) {
-        this.listaCajeros = listaCajeros;
-    }
-
     public ICarrito getCarritoDeCompras() {
         return carritoDeCompras;
     }
 
     public void setCarritoDeCompras(ICarrito carritoDeCompras) {
         this.carritoDeCompras = carritoDeCompras;
-    }
-
-    public IStock getStockEnvases() {
-        return stockEnvases;
-    }
-
-    public void setStockEnvases(IStock stockEnvases) {
-        this.stockEnvases = stockEnvases;
     }
 
     public ArrayList<IDireccion> getListaDirecciones() {
@@ -261,11 +221,6 @@ public class EcoShop implements IEcoShop{
     }
 
     @Override
-    public void generarTicket(IVentaExpress unaVentaExpress) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public ArrayList<IEnvase> envasesEnStock() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -302,11 +257,6 @@ public class EcoShop implements IEcoShop{
     public void registrarProveedor(IProveedor unProveedor) {
         unProveedor.modificarDireccion(direccionRandom());
         this.listaProveedores.add(unProveedor);
-    }
-
-    @Override
-    public void registrarCajero(ICajero unCajero) {
-        this.listaCajeros.add(unCajero);
     }
 
     @Override

@@ -139,14 +139,6 @@ public interface IEcoShop {
     
     /**
      * PRE: -
-     * POST: Crea un documento pdf (Ticket) de la VentaExpress y lo registra 
-     * a EcoShop
-     * @param unaVentaExpress VentaExpress a la cual se le genera el ticket
-     */
-    void generarTicket(IVentaExpress unaVentaExpress);
-    
-    /**
-     * PRE: -
      * @return Retorna los envases en el Stock 
      */
     ArrayList<IEnvase> envasesEnStock();
@@ -186,13 +178,6 @@ public interface IEcoShop {
      * @param unProveedor Provedoor a registrar
      */
     void registrarProveedor(IProveedor unProveedor);
-    
-    /**
-     * PRE -
-     * POST: Registra el cajero a EcoShop
-     * @param unCajero Cajero a registrar
-     */
-    void registrarCajero(ICajero unCajero);
     
     /**
      * PRE -
