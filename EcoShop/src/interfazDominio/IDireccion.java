@@ -28,4 +28,16 @@ public interface IDireccion {
      * @return 
      */
     String obtenerCalle();
+    
+    /**
+     * 
+     * @return 
+     */
+    String obtenerBarrio();
+    
+    /**
+     * 
+     * @return 
+     */
+    int obtenerCodigoPostal();
 }

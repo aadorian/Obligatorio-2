@@ -112,6 +112,16 @@ public class Direccion implements IDireccion{
     public String obtenerCalle() {
         return this.getCalle();
     }
+
+    @Override
+    public String obtenerBarrio() {
+        return this.getBarrio();
+    }
+
+    @Override
+    public int obtenerCodigoPostal() {
+        return this.getCodigoPostal();
+    }
     
     
 }

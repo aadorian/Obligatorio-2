@@ -303,4 +303,43 @@ public class VentanaPrincipalController implements Initializable {
         estaEnSeccionTodosLosArticulos = false;
     }
 
+    @FXML
+    private void clickBtnPuntosDeVenta(MouseEvent event) {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ArrayList<IPuntoDeVenta> listaPuntosDeVenta = sistemaEcoShop.obtenerListaPuntosDeVenta();
+        
+        pnl_scroll.getChildren().clear();
+
+        Node[] nodos = new Node[listaPuntosDeVenta.size()];
+        
+        for (int i = 0; i < nodos.length; i++) {
+            try{
+                IPuntoDeVenta puntoDeVentaTmp = listaPuntosDeVenta.get(i);
+                IDireccion direccionTmp = puntoDeVentaTmp.obtenerDireccionDelLocal();
+                int numeroDeLocalTmp = puntoDeVentaTmp.obtenerNumeroDeLocal();
+                String departamento = direccionTmp.obtenerDepartamento();
+                String barrio = direccionTmp.obtenerBarrio();
+                String calle = direccionTmp.obtenerCalle();
+                int codigoPostal = direccionTmp.obtenerCodigoPostal();
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ItemPuntoDeVenta.fxml"));
+                Parent root = loader.load();
+                ItemPuntoDeVentaController iController = loader.<ItemPuntoDeVentaController>getController();
+                
+                iController.cargarBarrio(barrio);
+                iController.cargarCalle(calle);
+                iController.cargarCodigoPostal(codigoPostal);
+                iController.cargarDepartamento(departamento);
+                iController.cargarNumeroDeLocal(numeroDeLocalTmp);
+                
+                nodos[i] = (Node) root;
+                pnl_scroll.getChildren().add(nodos[i]);
+            }
+            catch(IOException e){
+                Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        estaEnSeccionTodosLosArticulos = false;
+    }
+
 }
