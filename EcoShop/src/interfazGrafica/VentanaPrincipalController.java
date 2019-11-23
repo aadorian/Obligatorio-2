@@ -321,6 +321,7 @@ public class VentanaPrincipalController implements Initializable {
                 String barrio = direccionTmp.obtenerBarrio();
                 String calle = direccionTmp.obtenerCalle();
                 int codigoPostal = direccionTmp.obtenerCodigoPostal();
+                String rutaDeImagenLocal = puntoDeVentaTmp.obtenerRutaDeImagen();
                 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ItemPuntoDeVenta.fxml"));
                 Parent root = loader.load();
@@ -331,6 +332,7 @@ public class VentanaPrincipalController implements Initializable {
                 iController.cargarCodigoPostal(codigoPostal);
                 iController.cargarDepartamento(departamento);
                 iController.cargarNumeroDeLocal(numeroDeLocalTmp);
+                iController.cargarImagenLocal(rutaDeImagenLocal);
                 
                 nodos[i] = (Node) root;
                 pnl_scroll.getChildren().add(nodos[i]);

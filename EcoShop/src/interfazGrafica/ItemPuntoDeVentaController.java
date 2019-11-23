@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -28,6 +30,8 @@ public class ItemPuntoDeVentaController implements Initializable {
     private Label labelBarrio;
     @FXML
     private Label labelDepartamento;
+    @FXML
+    private ImageView imagenLocal;
 
     /**
      * Initializes the controller class.
@@ -59,4 +63,9 @@ public class ItemPuntoDeVentaController implements Initializable {
         labelDepartamento.setText(departamento);
     }
     
+    public void cargarImagenLocal(String rutaDeImagen){
+        Image imagenAColocar = new Image(rutaDeImagen);
+        
+        imagenLocal.setImage(imagenAColocar);
+    }
 }

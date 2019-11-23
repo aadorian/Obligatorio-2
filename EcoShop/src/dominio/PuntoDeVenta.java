@@ -11,16 +11,19 @@ public class PuntoDeVenta implements IPuntoDeVenta{
     //Atributos
     private IDireccion direccionLocal;
     private int numeroDelLocal;//Numero del local unico 
+    String rutaDeImagen;
     
     //Constructores
     public PuntoDeVenta(){
         this.direccionLocal = new Direccion();
         this.numeroDelLocal = -1;
+        this.rutaDeImagen = "";
     }
 
-    public PuntoDeVenta(int numeroDelLocal) {
+    public PuntoDeVenta(int numeroDelLocal, String rutaDeImagen) {
         this.direccionLocal = new Direccion();
         this.numeroDelLocal = numeroDelLocal;
+        this.rutaDeImagen = rutaDeImagen;
     }
     
     public PuntoDeVenta(Direccion direccionLocal, int numeroDelLocal) {
@@ -45,6 +48,14 @@ public class PuntoDeVenta implements IPuntoDeVenta{
         this.numeroDelLocal = numeroDelLocal;
     }
 
+    public String getRutaDeImagen() {
+        return rutaDeImagen;
+    }
+
+    public void setRutaDeImagen(String rutaDeImagen) {
+        this.rutaDeImagen = rutaDeImagen;
+    }
+    
     //
     //METODOS PUBLICOS
     //
@@ -65,10 +76,14 @@ public class PuntoDeVenta implements IPuntoDeVenta{
     }
 
     @Override
+    public String obtenerRutaDeImagen() {
+        return this.getRutaDeImagen();
+    }
+    
+    @Override
     public String toString() {
         return this.obtenerNumeroDeLocal() + " - " + this.obtenerDireccionDelLocal()
                 .obtenerCalle();
     }
-
     
 }

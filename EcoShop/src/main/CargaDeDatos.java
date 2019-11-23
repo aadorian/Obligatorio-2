@@ -104,10 +104,10 @@ public class CargaDeDatos {
     }
 
     private void cargarPuntosDeVenta() {
-        IPuntoDeVenta p1 = new PuntoDeVenta(1);
-        IPuntoDeVenta p2 = new PuntoDeVenta(2);
-        IPuntoDeVenta p3 = new PuntoDeVenta(3);
-        IPuntoDeVenta p4 = new PuntoDeVenta(4);
+        IPuntoDeVenta p1 = new PuntoDeVenta(1, "interfazGrafica/imagenes/localEcoShop1.jpg");
+        IPuntoDeVenta p2 = new PuntoDeVenta(2, "interfazGrafica/imagenes/localEcoShop2.jpg");
+        IPuntoDeVenta p3 = new PuntoDeVenta(3, "interfazGrafica/imagenes/localEcoShop3.jpg");
+        IPuntoDeVenta p4 = new PuntoDeVenta(4, "interfazGrafica/imagenes/localEcoShop4.jpg");
 
         sistemaEcoShop.registrarPuntoDeVenta(p1);
         sistemaEcoShop.registrarPuntoDeVenta(p2);

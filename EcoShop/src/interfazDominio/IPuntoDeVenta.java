@@ -30,6 +30,12 @@ public interface IPuntoDeVenta {
     int obtenerNumeroDeLocal();
     
     /**
+     * 
+     * @return 
+     */
+    String obtenerRutaDeImagen();
+    
+    /**
      *
      * @return
      */
