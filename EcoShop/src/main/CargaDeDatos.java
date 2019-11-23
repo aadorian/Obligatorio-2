@@ -7,6 +7,8 @@ package main;
 
 import dominio.*;
 import interfazDominio.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -51,6 +53,7 @@ public class CargaDeDatos {
         this.cargarApio();
         
         this.cargarListaFavoritosGlobal();
+        cargoPreVentasYTickets();
     }
 
     /**
@@ -127,11 +130,81 @@ public class CargaDeDatos {
         sistemaEcoShop.agregarArticuloAFavoritosGlobal(fav4);
     }
     
+    private void cargoPreVentasYTickets(){
+        //Primera preventa a cargar
+        ICarrito c1 = new Carrito();
+        IPuntoDeVenta local1 = sistemaEcoShop.obtenerPuntoDeVentaPorNumeroDeLocal(1);
+        LocalDateTime diaCompra1 = LocalDateTime.now();
+        LocalDate diaRetiro1 = LocalDate.of(2019, 12, 2);
+        IPreVenta p1;
+        
+        c1.agregarArticulo(sistemaEcoShop.obtenerArticuloPorNombre("Kiwi"), 1.0);
+        c1.agregarArticulo(sistemaEcoShop.
+                obtenerArticuloPorNombre("Zanahoria"), 2.5);
+        c1.agregarArticulo(sistemaEcoShop.
+                obtenerArticuloPorNombre("Manzana Verde"), 3.0);
+        c1.agregarArticulo(sistemaEcoShop.
+                obtenerArticuloPorNombre("Manzana Roja"), 0.7);
+        
+        c1.agregarEnvase(sistemaEcoShop.
+                obtenerArticuloPorNombre("Kiwi"), 
+                sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
+        c1.agregarEnvase(sistemaEcoShop.
+                obtenerArticuloPorNombre("Zanahoria"), 
+                sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        c1.agregarEnvase(sistemaEcoShop.
+                obtenerArticuloPorNombre("Manzana Verde"), 
+                sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
+        c1.agregarEnvase(sistemaEcoShop.
+                obtenerArticuloPorNombre("Manzana Roja"), 
+                sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        
+        p1 = new PreVenta(c1, local1, diaCompra1, c1.obtenerPrecioTotal(), diaRetiro1);
+        
+        sistemaEcoShop.registrarPreVenta(p1);
+        //Genera el TicketPreVenta
+        sistemaEcoShop.generarTicket(p1);
+        
+        //Segunda preventa a cargar
+        ICarrito c2 = new Carrito();
+        IPuntoDeVenta local2 = sistemaEcoShop.obtenerPuntoDeVentaPorNumeroDeLocal(3);
+        LocalDateTime diaCompra2 = LocalDateTime.now();
+        LocalDate diaRetiro2 = LocalDate.of(2019, 11, 25);
+        IPreVenta p2;
+        
+        c2.agregarArticulo(sistemaEcoShop.obtenerArticuloPorNombre("Banana"), 2.0);
+        c2.agregarArticulo(sistemaEcoShop.
+                obtenerArticuloPorNombre("Gengibre"), 0.3);
+        c2.agregarArticulo(sistemaEcoShop.
+                obtenerArticuloPorNombre("Nueces"), 0.1);
+        c2.agregarArticulo(sistemaEcoShop.
+                obtenerArticuloPorNombre("Manzana Roja"), 0.7);
+        
+        c2.agregarEnvase(sistemaEcoShop.
+                obtenerArticuloPorNombre("Banana"), 
+                sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        c2.agregarEnvase(sistemaEcoShop.
+                obtenerArticuloPorNombre("Gengibre"), 
+                sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
+        c2.agregarEnvase(sistemaEcoShop.
+                obtenerArticuloPorNombre("Nueces"), 
+                sistemaEcoShop.obtenerEnvasePorNombre("Tupper Chico"));
+        c2.agregarEnvase(sistemaEcoShop.
+                obtenerArticuloPorNombre("Manzana Roja"), 
+                sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        
+        p2 = new PreVenta(c2, local2, diaCompra2, c2.obtenerPrecioTotal(), diaRetiro2);
+        
+        sistemaEcoShop.registrarPreVenta(p2);
+        //Genera el TicketPreVenta
+        sistemaEcoShop.generarTicket(p2);
+    }
+    
     /**
      * Carga nuevo artículo: Manzana Verde
      */
     private void cargarManzanaVerde() {
-        //Vaiables
+        //Variables
         double densidadDeManzanaVerde = 947;
         double precioPorKGManzanaVerde = 59;
         String rutaDeImagenManzanaVerde
