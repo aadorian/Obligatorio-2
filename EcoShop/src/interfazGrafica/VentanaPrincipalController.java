@@ -27,12 +27,12 @@ import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 
 /**
- * FXML Controller class
+ * VentanaPrincipalController
  *
- * @author novhm
+ * @author Marcos Novelli - Matias Salles
  */
 public class VentanaPrincipalController implements Initializable {
-
+    //Atributos
     @FXML
     private VBox pnl_scroll;
     @FXML
@@ -60,9 +60,11 @@ public class VentanaPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Var
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
         ArrayList<IArticulo> listaArticulosEnSistema = sistemaEcoShop.obtenerListaArticulos();
         
+        //Como seccion principal cargamos todos los articulos
         cargarItemsArticulos(listaArticulosEnSistema, sistemaEcoShop);
         cargarCategoriasABuscar();
         
@@ -71,9 +73,10 @@ public class VentanaPrincipalController implements Initializable {
         estaEnSeccionTodosLosArticulos = true;
     }
 
-    /**
-     *
-     */
+    //
+    //METODOS PRIVADOS
+    //
+    
     private void cargarCategoriasABuscar() {
         choiceBoxCategoriasABuscar.getItems().add("Fruta               ");
         choiceBoxCategoriasABuscar.getItems().add("Verdura          ");
@@ -83,9 +86,7 @@ public class VentanaPrincipalController implements Initializable {
         choiceBoxCategoriasABuscar.setValue("Todos             ");
     }
 
-    /**
-     *
-     */
+
     private void cargarItemsArticulos(ArrayList<IArticulo> listaACargar, 
             IEcoShop sistemaEcoShop) {
         Node[] nodos = new Node[listaACargar.size()];
@@ -182,7 +183,6 @@ public class VentanaPrincipalController implements Initializable {
         scrollPane.setVvalue(0); //Pone el scroll panel al principio
     }
 
-    //ItemTicket
     private void cargarItemsTickets() {
         IEcoShop sistemaEcoshop = VentanaFXML.obtenerSistema();
         ArrayList<ITicketPreVenta> listaTicketsPreVentas = 
@@ -226,6 +226,24 @@ public class VentanaPrincipalController implements Initializable {
         estaEnSeccionTodosLosArticulos = false;
     }
 
+    private void buscarAtriculo() {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+
+        String calificadorArticulo = choiceBoxCategoriasABuscar.getValue().trim();
+        String articuloABuscar = txtFieldArticuloABuscar.getText().trim();
+        ArrayList<IArticulo> articulosQueCoinciden;
+
+        articulosQueCoinciden = sistemaEcoShop.buscarProducto(articuloABuscar,
+                calificadorArticulo);
+
+        cargarItemsArticulos(articulosQueCoinciden,sistemaEcoShop);
+
+    }
+    
+    //
+    //EVENTOS
+    //
+    
     @FXML
     private void clickBtnTodosLosArticulos(MouseEvent event) {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
@@ -267,20 +285,6 @@ public class VentanaPrincipalController implements Initializable {
                     break;
             }
         }
-    }
-
-    private void buscarAtriculo() {
-        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
-
-        String calificadorArticulo = choiceBoxCategoriasABuscar.getValue().trim();
-        String articuloABuscar = txtFieldArticuloABuscar.getText().trim();
-        ArrayList<IArticulo> articulosQueCoinciden;
-
-        articulosQueCoinciden = sistemaEcoShop.buscarProducto(articuloABuscar,
-                calificadorArticulo);
-
-        cargarItemsArticulos(articulosQueCoinciden,sistemaEcoShop);
-
     }
 
     @FXML

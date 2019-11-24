@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazGrafica;
 
 import interfazDominio.IEcoShop;
@@ -11,19 +6,17 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javax.swing.ImageIcon;
 
 /**
- *
- * @author 
+ * VentanaFXML
+ * @author Marcos Novelli - Matias Salles 
  */
 public class VentanaFXML extends Application {
     //Atributos
     private static IEcoShop sistemaEcoShop;
     
+    //Constructores
     public VentanaFXML() {
     }
 
@@ -31,8 +24,16 @@ public class VentanaFXML extends Application {
         VentanaFXML.sistemaEcoShop = sistemaEcoShop;
     }
     
+    //
+    //METODOS PUBLICOS
+    //
+    
     public static IEcoShop obtenerSistema(){
         return sistemaEcoShop;
+    }
+    
+    public void comenzarVentanaPrincipal(String[] args) {
+        launch(args);
     }
     
     @Override
@@ -49,12 +50,6 @@ public class VentanaFXML extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public void comenzarVentanaPrincipal(String[] args) {
-        launch(args);
-    }
+    
     
 }

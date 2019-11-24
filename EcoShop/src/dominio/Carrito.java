@@ -6,14 +6,13 @@ import interfazDominio.IEnvase;
 import java.util.ArrayList;
 import javafx.util.Pair;
 /**
- * Clase carrito - contiene los articulos y envases elegidos por el usuario
- * al igual que la cantidad (gramos) del articulo elegido
+ * Clase carrito - Implementacion de ICarrito
  * @author Marcos Novelli - Matias Salles
  */
 public class Carrito implements ICarrito{
     //Atributos
     private ArrayList<Pair<IArticulo,Double>> listaArticulos; //Articlo y cantidad
-    private ArrayList<Pair<IArticulo,IEnvase>> listaEnvases; //Envase y Articulo asociado
+    private ArrayList<Pair<IArticulo,IEnvase>> listaEnvases; //Articulo y Envase asociado
     private double precioTotal;
 
     //Constructores
@@ -51,33 +50,52 @@ public class Carrito implements ICarrito{
     @Override
     public void agregarArticulo(IArticulo unArticulo, double pesoEnKg)
     {
+        //Precio del articulo a agregar
         double precioASumar = unArticulo.obtenerPrecioPorKG() * pesoEnKg;
         
+        /*Si esta en el carrito no lo agregamos, sino que sumamos la cantidad que 
+        lleva*/
         if(articuloEstaEnElCarrito(unArticulo)){
-            int posicionArticuloEnLista = posicionDelArticuloEnElCarrito(unArticulo);
-            Pair<IArticulo, Double> duplaArticulo = 
-                    listaArticulos.get(posicionArticuloEnLista);
-            Double kilosYaAgregados = duplaArticulo.getValue();
-            double nuevoPeso = kilosYaAgregados + pesoEnKg;
-            Pair nuevaTuplaArticuloCantidad = new Pair(unArticulo,nuevoPeso);
+            //Var
+            int posicionArticuloEnLista;
+            Pair nuevaTuplaArticuloCantidad;
+            Pair<IArticulo, Double> duplaArticulo;
+            double kilosYaAgregados;
+            double nuevoPeso;
             
+            //Obtenemos cuantos kg ya habia seleccionado del articulo
+            posicionArticuloEnLista = posicionDelArticuloEnElCarrito(unArticulo);
+            duplaArticulo = listaArticulos.get(posicionArticuloEnLista);
+            kilosYaAgregados = duplaArticulo.getValue();
+            nuevoPeso = kilosYaAgregados + pesoEnKg;
+            
+            //Creamos la nueva tupla a agregar al carrito
+            nuevaTuplaArticuloCantidad = new Pair(unArticulo, nuevoPeso);
+            
+            //Borramos la dupla anterior
             this.eliminarArticuloDelCarrito(unArticulo);
+            //Agregamos la nueva dupla al carrito
             listaArticulos.add(nuevaTuplaArticuloCantidad);
         }
         else{
+            // No esta en el carrito, creamos y agregamos una nueva dupla
             Pair nuevaTuplaArticuloCantidad = new Pair(unArticulo,pesoEnKg);
+            
             listaArticulos.add(nuevaTuplaArticuloCantidad);
         }
-        
+        //Modificamos el precio total del carrito
         this.setPrecioTotal(this.getPrecioTotal() + precioASumar);
     }
     
     @Override
     public void agregarEnvase(IArticulo unArticulo, IEnvase unEnvase)
     {
+        /*Si ya se habia seleccionado otro envase para el articulo, entonces
+        eliminamos el envase anterior*/
         if(articuloTieneEnvaseAsociado(unArticulo))
             eliminarEnvaseDelCarrito(unArticulo);
-            
+        
+        //Creamos la nueva dupla y la agregamos
         Pair nuevaTuplaEnvaseCantidad = new Pair(unArticulo, unEnvase);
         
         listaEnvases.add(nuevaTuplaEnvaseCantidad);
@@ -92,16 +110,24 @@ public class Carrito implements ICarrito{
     public void eliminarArticuloDelCarrito(IArticulo unArticulo) {
         
         for (int i = 0; i < listaArticulos.size(); i++) {
-            Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
-            IArticulo articuloTmp = duplaTmp.getKey();
-            double cantidadArticuloTmp = duplaTmp.getValue();
-            double precioARestar = 
-                    articuloTmp.obtenerPrecioPorKG() * cantidadArticuloTmp;
+            //Var
+            Pair<IArticulo, Double> duplaTmp;
+            IArticulo articuloTmp;
+            double cantidadArticuloTmp;
+            double precioARestar;
             
-            if(articuloTmp.sonIgualesPorNombre(unArticulo)){
+            duplaTmp = listaArticulos.get(i);
+            articuloTmp = duplaTmp.getKey();
+            cantidadArticuloTmp = duplaTmp.getValue();
+            precioARestar = articuloTmp.obtenerPrecioPorKG() * cantidadArticuloTmp;
+            
+            //Si encuentro el articulo en la lista lo borro
+            if(articuloTmp.sonIgualesPorId(unArticulo)){
+                //Modificamos el precio total del carrito
                 this.setPrecioTotal(this.getPrecioTotal() - precioARestar);
+                
                 listaArticulos.remove(i);
-                break;
+                break; //Salgo del for
             }
         }
     }
@@ -110,23 +136,84 @@ public class Carrito implements ICarrito{
     public int posicionDelArticuloEnElCarrito(IArticulo unArticulo) {
         
         for (int i = 0; i < listaArticulos.size(); i++) {
-            Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
+            //Var
+            Pair<IArticulo, Double> duplaTmp;
+            IArticulo articuloTmp;
             
-            if(duplaTmp.getKey().sonIgualesPorNombre(unArticulo)){
+            duplaTmp = listaArticulos.get(i);
+            articuloTmp = duplaTmp.getKey();
+            
+            //Si encontramos el articulo retornamos su posicion
+            if(articuloTmp.sonIgualesPorId(unArticulo)){
                 return i;
             }
         }
         
+        //Si no cumple la pre condicion paramos la ejecucion del programa
         assert(false);
         return -1;
     }
 
     @Override
     public boolean articuloEstaEnElCarrito(IArticulo unArticulo) {
+        //Var
         boolean estaEnLaLista = false;
         
         for (int i = 0; i < listaArticulos.size() && !estaEnLaLista; i++) {
+            //Var
             Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
+            IArticulo articuloTmp = duplaTmp.getKey();
+            
+            if(articuloTmp.sonIgualesPorId(unArticulo))
+                estaEnLaLista = true;
+        }
+        
+        return estaEnLaLista;
+    }
+
+    @Override
+    public void eliminarEnvaseDelCarrito(IArticulo unArticulo) {
+        
+        for (int i = 0; i < listaEnvases.size(); i++) {
+            //Var
+            Pair<IArticulo, IEnvase> duplaTmp = listaEnvases.get(i);
+            IArticulo articuloTmp = duplaTmp.getKey();
+            
+            //Si encontramos el articulo lo sacamos de la lista
+            if(articuloTmp.sonIgualesPorId(unArticulo)){
+                listaEnvases.remove(i);
+                break; //Salgo del for
+            }
+        }
+    }
+
+    @Override
+    public IEnvase obtenerEnvaseAsociadoAlArticulo(IArticulo unArticulo) {
+        
+        for (int i = 0; i < listaEnvases.size(); i++) {
+            //Var
+            Pair<IArticulo, IEnvase> duplaTmp = listaEnvases.get(i);
+            IArticulo articuloTmp = duplaTmp.getKey();
+            IEnvase envaseTmp = duplaTmp.getValue();
+            
+            //Si encontramos el articulo retornamos el envase (Value del pair)
+            if(articuloTmp.sonIgualesPorNombre(unArticulo))
+                return envaseTmp;
+        }
+        
+        //Si no cumple la pre condicion paramos la ejecucion del programa
+        assert(false);
+        return null;
+    }
+
+    @Override
+    public boolean articuloTieneEnvaseAsociado(IArticulo unArticulo) {
+        //Var
+        boolean estaEnLaLista = false;
+        
+        for (int i = 0; i < listaEnvases.size() && !estaEnLaLista; i++) {
+            //Var
+            Pair<IArticulo, IEnvase> duplaTmp = listaEnvases.get(i);
             IArticulo articuloTmp = duplaTmp.getKey();
             
             if(articuloTmp.sonIgualesPorNombre(unArticulo))
@@ -137,49 +224,12 @@ public class Carrito implements ICarrito{
     }
 
     @Override
-    public void eliminarEnvaseDelCarrito(IArticulo unArticulo) {
-        for (int i = 0; i < listaEnvases.size(); i++) {
-            Pair<IArticulo, IEnvase> duplaTmp = listaEnvases.get(i);
-            
-            if(duplaTmp.getKey().sonIgualesPorNombre(unArticulo)){
-                listaEnvases.remove(i);
-                break;
-            }
-        }
-    }
-
-    @Override
-    public IEnvase obtenerEnvaseAsociadoAlArticulo(IArticulo unArticulo) {
-        for (int i = 0; i < listaEnvases.size(); i++) {
-            Pair<IArticulo, IEnvase> duplaTmp = listaEnvases.get(i);
-            
-            if(duplaTmp.getKey().sonIgualesPorNombre(unArticulo)){
-                return duplaTmp.getValue();
-            }
-        }
-        
-        assert(false);
-        return null;
-    }
-
-    @Override
-    public boolean articuloTieneEnvaseAsociado(IArticulo unArticulo) {
-        boolean estaEnLaLista = false;
-        
-        for (int i = 0; i < listaEnvases.size() && !estaEnLaLista; i++) {
-            Pair<IArticulo, IEnvase> duplaTmp = listaEnvases.get(i);
-            
-            if(duplaTmp.getKey().sonIgualesPorNombre(unArticulo))
-                estaEnLaLista = true;
-        }
-        return estaEnLaLista;
-    }
-
-    @Override
     public boolean todosLosArticulosEnElCarritoTienenEnvaseAsociado() {
+        //Var
         boolean todosArticulosTienenEnvase = true;
         
         for (int i = 0; i < listaArticulos.size() && todosArticulosTienenEnvase; i++) {
+            //Var
             Pair<IArticulo, Double> duplaTmp = listaArticulos.get(i);
             IArticulo articuloTmp = duplaTmp.getKey();
             

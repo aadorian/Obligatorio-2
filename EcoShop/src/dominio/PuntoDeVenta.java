@@ -3,8 +3,7 @@ package dominio;
 import interfazDominio.IDireccion;
 import interfazDominio.IPuntoDeVenta;
 /**
- * Clase Punto de Venta - Contiene la informacion de los puntos de venta EcoShop
- * , hace referencia a los locales
+ * Clase Punto de Venta - Implementacion de IPuntoDeVenta
  * @author Marcos Novelli - Matias Salles
  */
 public class PuntoDeVenta implements IPuntoDeVenta{

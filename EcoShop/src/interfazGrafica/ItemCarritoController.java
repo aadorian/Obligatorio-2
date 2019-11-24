@@ -16,18 +16,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 
 /**
- * FXML Controller class
+ * ItemCarritoController
  *
- * @author matia
+ * @author Marcos Novelli - Matias Salles
  */
 public class ItemCarritoController implements Initializable {
-
+    //Atributos
     private VBox pnl_scroll;
     @FXML
     private Label nombreArticulo;
@@ -39,7 +38,6 @@ public class ItemCarritoController implements Initializable {
     private Label precioArticulo;
     @FXML
     private JFXComboBox<String> comboBoxEnvases;
-
     Label cantidadArticulosEnCarrito;
     @FXML
     private ImageView imagenEnvase;
@@ -49,9 +47,13 @@ public class ItemCarritoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO HERE
+
     }
 
+    //
+    //METODOS PUBLICOS
+    //
+    
     public void cargarPanel(VBox unPanel) {
         this.pnl_scroll = unPanel;
     }
@@ -83,6 +85,37 @@ public class ItemCarritoController implements Initializable {
         comboBoxEnvases.setItems(listaEnvasesAplicables);
     }
 
+    public void cargarCantidadDeArticulosEnCarrito(Label esteLabel) {
+        this.cantidadArticulosEnCarrito = esteLabel;
+    }
+        
+    public void cargarEnvaseSeleccionado(IEnvase unEnvase){
+        comboBoxEnvases.setValue(unEnvase.obtenerNombre());
+    }
+    
+    //
+    //METODOS PRIVADOS
+    //
+    
+    private void sacarLabelArticulosEnCarrito() {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ICarrito carritoSistema = sistemaEcoShop.obtenerCarrito();
+        ArrayList<Pair<IArticulo, Double>> listaArticulosCarrito = carritoSistema.obtenerListaArticulos();
+
+        if (listaArticulosCarrito.isEmpty()) {
+            this.cantidadArticulosEnCarrito.setText("");
+        } else {
+            int numeroLabel = listaArticulosCarrito.size();
+            String strNumeroLabel = numeroLabel + "";
+
+            cantidadArticulosEnCarrito.setText(strNumeroLabel);
+        }
+    }
+    
+    //
+    //EVENTOS
+    //
+    
     @FXML
     private void sacarArticuloDelCarrito(ActionEvent event) {
         IEcoShop sistemaEcoshop = VentanaFXML.obtenerSistema();
@@ -98,26 +131,6 @@ public class ItemCarritoController implements Initializable {
         pnl_scroll.getChildren().remove(posicionDelArticuloEnElCarrito + 1);
 
         sacarLabelArticulosEnCarrito();
-    }
-
-    public void cargarCantidadDeArticulosEnCarrito(Label esteLabel) {
-        this.cantidadArticulosEnCarrito = esteLabel;
-    }
-
-    private void sacarLabelArticulosEnCarrito() {
-        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
-        ICarrito carritoSistema = sistemaEcoShop.obtenerCarrito();
-        ArrayList<Pair<IArticulo, Double>> listaArticulosCarrito = carritoSistema.obtenerListaArticulos();
-
-        if (listaArticulosCarrito.isEmpty()) {
-            this.cantidadArticulosEnCarrito.setText("");
-        } else {
-            int numeroLabel = listaArticulosCarrito.size();
-            String strNumeroLabel = numeroLabel + "";
-
-            cantidadArticulosEnCarrito.setText(strNumeroLabel);
-        }
-
     }
 
     @FXML
@@ -140,10 +153,6 @@ public class ItemCarritoController implements Initializable {
         }
     }
 
-    public void cargarEnvaseSeleccionado(IEnvase unEnvase){
-        comboBoxEnvases.setValue(unEnvase.obtenerNombre());
-    }
-
     @FXML
     private void clickComboBoxEnvases(ActionEvent event) {
         if(!comboBoxEnvases.getSelectionModel().isEmpty()){
@@ -158,4 +167,6 @@ public class ItemCarritoController implements Initializable {
             carritoSistema.agregarEnvase(articuloActual, envaseSeleccionado);
         }
     }
+    
+    
 }

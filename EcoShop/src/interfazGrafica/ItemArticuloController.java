@@ -3,7 +3,6 @@ package interfazGrafica;
 import com.jfoenix.controls.JFXButton;
 import interfazDominio.IArticulo;
 import interfazDominio.ICarrito;
-import javafx.scene.control.Alert;
 import interfazDominio.IEcoShop;
 import java.net.URL;
 import java.util.ArrayList;
@@ -14,21 +13,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.Pane;
 import javafx.util.Pair;
 
 /**
- * FXML Controller class
+ * ItemArticuloController
  *
- * @author matia
+ * @author Marcos Novelli - Matias Salles
  */
 public class ItemArticuloController implements Initializable {
+    //Atributos
     @FXML
     Label nombreArticulo;
     @FXML
@@ -59,14 +56,19 @@ public class ItemArticuloController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        labelError.setText("");
+        //Set label de error no se ingreso el peso a llevar en ""
+        labelError.setText(""); 
         
+        //Le damos funcionamiento a los spinners
         spinnerValueKilos = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 20, 0);
         spinnerValueGramos = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 9, 0);
         spinnerKilos.setValueFactory(spinnerValueKilos);
         spinnerGramos.setValueFactory(spinnerValueGramos);
     }    
+    
+    //
+    //METODOS PUBLICOS
+    //
     
     public void cargarImagen(String url){
         Image imagenACargar = new Image(url);
@@ -93,11 +95,27 @@ public class ItemArticuloController implements Initializable {
         paisYDepartamentoProveedor.setText(pais + ", " + departamento);
     }
 
-    @FXML
-    private void clickBtnAgregarAlCarrito(ActionEvent event) {
-        agregarAlCarrito();
+    public void cargarEsFavorito(boolean esFavorito){
+        favoritoArticulo.setImage(null);
+        this.articuloEnFavoritos = esFavorito;
+        
+        if (esFavorito) {
+            Image img = new Image("interfazGrafica/imagenes/favoritoAmarilla.png");
+            favoritoArticulo.setImage(img);
+        } else {
+            Image img = new Image("interfazGrafica/imagenes/favoritoVacia.png");
+            favoritoArticulo.setImage(img);
+        }
     }
-
+    
+    public void cargarCantidadDeArticulosEnCarrito(Label esteLabel){
+        this.cantidadArticulosEnCarrito = esteLabel;
+    }
+    
+    //
+    //METODOS PRIVADOS
+    //
+    
     private void enterTextoPesoDelArticulo(KeyEvent event) {
         switch (event.getCode()) {
             case ENTER:
@@ -127,6 +145,21 @@ public class ItemArticuloController implements Initializable {
         }
     }
 
+    private void agregarLabelArticulosEnCarrito(){
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ICarrito carritoSistema = sistemaEcoShop.obtenerCarrito();
+        ArrayList<Pair<IArticulo,Double>> listaArticulosCarrito = carritoSistema.obtenerListaArticulos();
+       
+        int numeroLabel = listaArticulosCarrito.size();
+        String strNumeroLabel = numeroLabel + "";
+        
+        cantidadArticulosEnCarrito.setText(strNumeroLabel);
+    }
+
+    //
+    //EVENTOS
+    //
+    
     @FXML
     private void clickBtnFavoritoArticulo(MouseEvent event) {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
@@ -147,34 +180,9 @@ public class ItemArticuloController implements Initializable {
         }
     }
     
-    public void cargarEsFavorito(boolean esFavorito){
-        favoritoArticulo.setImage(null);
-        this.articuloEnFavoritos = esFavorito;
-        
-        if (esFavorito) {
-            Image img = new Image("interfazGrafica/imagenes/favoritoAmarilla.png");
-            favoritoArticulo.setImage(img);
-        } else {
-            Image img = new Image("interfazGrafica/imagenes/favoritoVacia.png");
-            favoritoArticulo.setImage(img);
-        }
+    @FXML
+    private void clickBtnAgregarAlCarrito(ActionEvent event) {
+        agregarAlCarrito();
     }
-    
-    public void cargarCantidadDeArticulosEnCarrito(Label esteLabel){
-        this.cantidadArticulosEnCarrito = esteLabel;
-    }
-    
-    private void agregarLabelArticulosEnCarrito(){
-        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
-        ICarrito carritoSistema = sistemaEcoShop.obtenerCarrito();
-        ArrayList<Pair<IArticulo,Double>> listaArticulosCarrito = carritoSistema.obtenerListaArticulos();
-       
-        int numeroLabel = listaArticulosCarrito.size();
-        String strNumeroLabel = numeroLabel + "";
-        
-        cantidadArticulosEnCarrito.setText(strNumeroLabel);
-    }
-
-
     
 }

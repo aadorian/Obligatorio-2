@@ -3,7 +3,7 @@ package dominio;
 import interfazDominio.IProveedor;
 import interfazDominio.IDireccion;
 /**
- * Clase Proveedor - Tiene la informacion de un proveedor de ciertos articulos
+ * Clase Proveedor - Implementacion de IProveedor
  * @author Marcos Novelli - Matias Salles
  */
 public class Proveedor implements IProveedor{

@@ -1,46 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazDominio;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- *
+ * Interfaz IPreVenta 
  * @author Marcos Novelli - Matias Salles
  */
 public interface IPreVenta {
     
     /**
      * 
-     * @return 
+     * @return Retorna la fecha en la cual la compra fue realizada
      */
     LocalDateTime obtenerFechaDeCompraRealizada();
     
     /**
      * 
-     * @return 
+     * @return Retorna la fecha elegida para el retiro de la compra
      */
     LocalDate obtenerFechaDeRetiro();
     
     /**
      * 
-     * @return 
+     * @return Retorna el monto total de la compra
      */
     double obtenerPrecioTotalDeCompra();
     
     /**
      * 
-     * @return 
+     * @return Retorna el carrito asociado a la compra
      */
     ICarrito obtenerCarritoAsociadoALaCompra();
     
     /**
      * 
-     * @return 
+     * @return Retorna el local elegido para el retiro de la compra
      */
     IPuntoDeVenta obtenerLocalDeRetiro();
 }

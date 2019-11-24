@@ -6,8 +6,7 @@ import java.util.Random;
 import javafx.util.Pair;
 
 /**
- * Clase Ecoshop - Contiene toda la informacion necesaria para mplementar todas 
- * las funcionalidades de IEcoshop
+ * Clase Ecoshop - Implementacion de IEcoShop
  * @author Marcos Novelli - Matias Salles
  */
 public class EcoShop implements IEcoShop{
@@ -119,8 +118,9 @@ public class EcoShop implements IEcoShop{
     }
     
     //
-    //METODOS
+    //METODOS PUBLICOS
     //
+    
     @Override
     public ArrayList<IArticulo> obtenerListaArticulos() {
         return this.getListaArticulos();
@@ -133,21 +133,25 @@ public class EcoShop implements IEcoShop{
     
     @Override
     public ArrayList<IEnvase> obtenerListaEnvasesAplicables(IArticulo unArticulo) {
+        //Var
         int posicionArticulo = listaArticulos.indexOf(unArticulo);
+        IArticulo articuloTmp = listaArticulos.get(posicionArticulo);
         
-        return listaArticulos.get(posicionArticulo).obtenerEnvasesAplicables();
+        return articuloTmp.obtenerEnvasesAplicables();
     }
 
     @Override
     public IArticulo obtenerArticuloPorNombre(String nombre) {
+        
         for (int i = 0; i < this.listaArticulos.size(); i++) {
+            //Var
             IArticulo articuloTmp = this.listaArticulos.get(i);
             
             if(articuloTmp.obtenerNombre().equals(nombre))
                 return articuloTmp;
         }
         
-        //Si no lo encuentra se cae el programa
+        //Si no se cumple la pre condicion paramos la ejecucion del programa
         assert(false);
         return null;
     }
@@ -156,20 +160,10 @@ public class EcoShop implements IEcoShop{
     public ICarrito obtenerCarrito() {
         return this.getCarritoDeCompras();
     }
-    
-    @Override
-    public int cantidadEnvasesNecesarios(IEnvase unEnvase, IArticulo unArticulo, int pesoArticulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void agregarAlCarrito(IArticulo unArticulo, double peso) {
         carritoDeCompras.agregarArticulo(unArticulo, peso);
-    }
-
-    @Override
-    public void agregarAlCarrito(IEnvase unEnvase, int cantidadEnvases) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -179,29 +173,34 @@ public class EcoShop implements IEcoShop{
     }
 
     @Override
-    public void sacarDelCarrito(IEnvase unEnvase, int cantidadEnvases) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public ArrayList<IArticulo> buscarProducto(String productoABuscar, 
             String calificador) {
+        //Var
         ArrayList<IArticulo> productosQueCoinciden = new ArrayList<>();
+        
+        //Pasamos todo a lower case para hacer una busqueda case insensitive
         productoABuscar = productoABuscar.toLowerCase();
         
         for (int i = 0; i < this.listaArticulos.size(); i++) {
+            //Var
             IArticulo articuloTmp = this.listaArticulos.get(i);
             String nombreArticulo = articuloTmp.obtenerNombre().toLowerCase();
             
+            //Si buscamos por todos solo checkeamos el texto a buscar
             if(calificador.equals("Todos") && nombreArticulo.
-                    contains(productoABuscar))
+                    contains(productoABuscar)){
                 productosQueCoinciden.add(articuloTmp);
+            }
+            //Si no hay texto sumamos todos los que tengan el mismo calificador
             else if(productoABuscar.equals("") && articuloTmp.obtenerCalificador().
-                    equals(calificador))
+                    equals(calificador)){
                 productosQueCoinciden.add(articuloTmp);
+            }
+            //En el ultimo caso checkeamos calificador y texto a buscar
             else if(nombreArticulo.contains(productoABuscar) &&
-                    articuloTmp.obtenerCalificador().equals(calificador))
+                    articuloTmp.obtenerCalificador().equals(calificador)){
                 productosQueCoinciden.add(articuloTmp);
+            }
         }
         
         return productosQueCoinciden;
@@ -209,6 +208,8 @@ public class EcoShop implements IEcoShop{
 
     @Override
     public void registrarPreVenta(IPreVenta unaPreVenta) {
+        /*Creamos un nuevo carrito ya que el anterior queda registrado para la
+        pre venta*/
         ICarrito nuevoCarrito = new Carrito();
         
         this.setCarritoDeCompras(nuevoCarrito);
@@ -217,7 +218,8 @@ public class EcoShop implements IEcoShop{
 
     @Override
     public void generarTicket(IPreVenta unaPreVenta) {
-        int numeroIdentificador = this.listaTicketsPreVenta.size();
+        //Var
+        int numeroIdentificador = this.listaTicketsPreVenta.size(); //Arbitrario
         ITicketPreVenta nuevoTicket = new TicketPreVenta(unaPreVenta, 
                 numeroIdentificador);
         
@@ -226,15 +228,9 @@ public class EcoShop implements IEcoShop{
 
     @Override
     public void registrarArticulo(IArticulo unArticulo) {
-        int nuevoCodigoIdentificador = numeroRandom(1000);
-        
-        while(codigoIdentificadorEnArticulosRepetido(nuevoCodigoIdentificador))
-            nuevoCodigoIdentificador = numeroRandom(1000);
-        
-        unArticulo.modificarCodigoIdentificador(nuevoCodigoIdentificador);
+        //Le asignamos un proveedor al azar y registramos el articulo
         unArticulo.modificarOrigen(proveedorRandom());
         this.listaArticulos.add(unArticulo);
-        
     }
 
     @Override
@@ -244,12 +240,14 @@ public class EcoShop implements IEcoShop{
     
     @Override
     public void registrarProveedor(IProveedor unProveedor) {
+        //Le asignamos una direccion al azar y registramos el proveedor
         unProveedor.modificarDireccion(direccionRandom());
         this.listaProveedores.add(unProveedor);
     }
 
     @Override
     public void registrarPuntoDeVenta(IPuntoDeVenta unPuntoDeVenta) {
+        //Le asignamos una direccion al azar y registramos el punto de venta
         unPuntoDeVenta.modificarDireccion(direccionRandom());
         this.listaPuntosDeVenta.add(unPuntoDeVenta);
     }
@@ -261,16 +259,17 @@ public class EcoShop implements IEcoShop{
     
     @Override
     public boolean estaEnFavoritosPersonal(IArticulo unArticulo) {
-        boolean esta = false;
+        //Var
+        boolean estaEnLaLista = false;
         
-        for (int i = 0; i < this.listaFavoritosUsuario.size() && !esta; i++) {
+        for (int i = 0; i < this.listaFavoritosUsuario.size() && !estaEnLaLista; i++) {
             IArticulo articuloTmp = this.listaFavoritosUsuario.get(i);
             
-            if(articuloTmp.sonIgualesPorNombre(unArticulo))
-                esta = true;
+            if(articuloTmp.sonIgualesPorId(unArticulo))
+                estaEnLaLista = true;
         }
         
-        return esta;
+        return estaEnLaLista;
     }
     
     @Override
@@ -280,8 +279,11 @@ public class EcoShop implements IEcoShop{
 
     @Override
     public void sacarDeFavoritos(IArticulo unArticulo) {
+        
         for (int i = 0; i < this.listaFavoritosUsuario.size(); i++) {
+            //Var
             IArticulo articuloTmp = this.listaFavoritosUsuario.get(i);
+            
             if (unArticulo.sonIgualesPorId(articuloTmp)) {
                 this.listaFavoritosUsuario.remove(i);
             }
@@ -290,13 +292,16 @@ public class EcoShop implements IEcoShop{
     
     @Override
     public IEnvase obtenerEnvasePorNombre(String nombre) {
+        
         for (int i = 0; i < this.listaEnvases.size(); i++) {
+            //Var
             IEnvase envaseTmp = this.listaEnvases.get(i);
             
             if(envaseTmp.obtenerNombre().equals(nombre))
                 return envaseTmp;
         }
         
+        //Si no se cumple la pre condicion paramos la ejecucion del programa
         assert(false);
         return null;
     }
@@ -323,13 +328,16 @@ public class EcoShop implements IEcoShop{
     
     @Override
     public IPuntoDeVenta obtenerPuntoDeVentaPorNumeroDeLocal(int numeroDelLocal) {
+        
         for (int i = 0; i < this.listaPuntosDeVenta.size(); i++) {
+            //Var
             IPuntoDeVenta puntoDeVentaTmp = this.listaPuntosDeVenta.get(i);
             
             if(puntoDeVentaTmp.obtenerNumeroDeLocal() == numeroDelLocal)
                 return puntoDeVentaTmp;
         }
         
+        //Si no se cumple la pre condicion paramos la ejecucion del programa
         assert(false);
         return null;
     }
@@ -350,15 +358,18 @@ public class EcoShop implements IEcoShop{
         ArrayList<Pair<IArticulo, Integer>> listaArticulosMasVendidos;
         
         listaArticulosMasVendidos = new ArrayList<>();
-        //Copiamos la lista de articulos y setteamos las cantidad de veces 
-        //vendidas a cero.
+        //Copiamos la lista de articulos y seteamos las cantidad de veces 
+        //vendido cada articulo.
         
         for (int i = 0; i < this.listaArticulos.size(); i++) {
+            //Var
             IArticulo articuloTmp = this.listaArticulos.get(i);
             int cantidadDeVecesArticuloTmpFueVendido = 0;
             Pair nuevaDupla;
             
+            //Sumamos todas las veces que fue vendido el articulo actual
             for (int j = 0; j < this.listaPreVentas.size(); j++) {
+                //Var
                 IPreVenta preVentaTmp = this.listaPreVentas.get(j);
                 ICarrito carritoTmp = preVentaTmp.obtenerCarritoAsociadoALaCompra();
                 
@@ -366,6 +377,7 @@ public class EcoShop implements IEcoShop{
                    cantidadDeVecesArticuloTmpFueVendido++;
             }
             
+            //Lo registramos en la lista
             nuevaDupla = new Pair(articuloTmp,cantidadDeVecesArticuloTmpFueVendido);
             listaArticulosMasVendidos.add(nuevaDupla);
         }
@@ -377,6 +389,7 @@ public class EcoShop implements IEcoShop{
         ArrayList<IArticulo> listaRetorno = new ArrayList<>();
         
         for (int i = 0; i < listaArticulosMasVendidos.size(); i++) {
+            //Var
             Pair<IArticulo, Integer> duplaTmp = listaArticulosMasVendidos.get(i);
             IArticulo articuloTmp = duplaTmp.getKey();
             
@@ -388,9 +401,11 @@ public class EcoShop implements IEcoShop{
     
     @Override
     public int cantidadDeEnvasesReutilizados() {
+        //Var
         int cantidadDeEnvases = 0;
         
         for (int i = 0; i < this.listaPreVentas.size(); i++) {
+            //Var
             IPreVenta preVentaTmp = this.listaPreVentas.get(i);
             ICarrito carritoTmp = preVentaTmp.obtenerCarritoAsociadoALaCompra();
             
@@ -405,10 +420,11 @@ public class EcoShop implements IEcoShop{
    //
    
    /**
-    * 
-    * @return 
+    * @param hasta Numero max generado randomicamente
+    * @return Retorna un numero random entre 0 (inclusivo) y hasta (exclusivo)
     */
    private int numeroRandom(int hasta){
+       //Var
        Random generador = new Random();
        int retorno;
        
@@ -416,30 +432,13 @@ public class EcoShop implements IEcoShop{
        
        return retorno;
    }
-   
-   /**
-    * 
-    * @param codigoABuscar
-    * @return 
-    */
-    private boolean codigoIdentificadorEnArticulosRepetido(int codigoABuscar){
-       boolean estaRepetido = false;
-       
-       for (int i = 0; i < this.listaArticulos.size() && !estaRepetido; i++) {
-           int codigoTmp = this.listaArticulos.get(i).obtenerCodigoIdentificador();
-           
-           if(codigoTmp == codigoABuscar)
-               estaRepetido = true;
-       }
-       
-       return estaRepetido;
-   }
 
     /**
      * 
-     * @return 
+     * @return Retorna un proveedor al azar de la lista de proveedores
      */
    private IProveedor proveedorRandom(){
+       //Var
        int largoListaDeProveedores = this.listaProveedores.size();
        int posicionDeProveedorARetornar = numeroRandom(largoListaDeProveedores);
        
@@ -448,9 +447,10 @@ public class EcoShop implements IEcoShop{
    
    /**
     * 
-    * @return 
+    * @return Retorna una direccion al azar de la lista de direcciones
     */
    private IDireccion direccionRandom(){
+       //Var
        int largoListaDeDirecciones = this.listaDirecciones.size();
        int posicionDeDireccionARetornar = numeroRandom(largoListaDeDirecciones);
        
@@ -458,8 +458,9 @@ public class EcoShop implements IEcoShop{
    }
 
    /**
-    * 
-    * @param listaAOrdenar 
+    * POS: Ordena la lista crecientemente de los mas vendidos a los menos vendidos
+    * @param listaAOrdenar Lista de pares Articulo y cantidad de veces vendido
+    * a ordenar
     */
     private void ordenarListaPorArticulosMasVendidos
         (ArrayList<Pair<IArticulo, Integer>> listaAOrdenar){
@@ -490,9 +491,6 @@ public class EcoShop implements IEcoShop{
         }
     }
 
-
-    
-
-   
+        
 }
 

@@ -1,102 +1,89 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazDominio;
 
 import java.util.ArrayList;
 
-
 /**
- *
+ * Interfaz IArticulo - Lista las funcionalidades que debe tener cualquier
+ * implementacion.
  * @author Marcos Novelli - Matias Salles
  */
 public interface IArticulo {
     
     /**
      * 
-     * @return 
+     * @return Retorna el nombre del articulo
      */
     String obtenerNombre();
     
     /**
      * 
-     * @return 
+     * @return Retorna el calificador del articulo 
+     * (ej: Fruta, Verdura, Fruto Seco)
      */
     String obtenerCalificador();
     
     /**
      * 
-     * @return 
+     * @return Retorna la ruta a la imagen asociada al articulo
      */
     String obtenerRutaDeImagen();
     
     /**
      * 
-     * @return 
+     * @return Retorna el precio por kilogramo del articulo
      */
     double obtenerPrecioPorKG();
     
     /**
      * 
-     * @return 
-     */
-    double obtenerDensidad();
-    
-    /**
-     * 
-     * @return 
+     * @return Retorna el origen del articulo (un IProveedor)
      */
     IProveedor obtenerOrigen();
     
     /**
-     * 
-     * @param unProveedor 
+     * POS: Modifica el origen actual del articulo por unProveedor
+     * @param unProveedor Proveedor a colocar como origen del articulo
      */
     void modificarOrigen(IProveedor unProveedor);
     
     /**
-     * PRE: -
-     * @return devuelve el codigo identificador del articulo
+     * 
+     * @return Retorna el codigo identificador del articulo (debe ser unico)
      */
     int obtenerCodigoIdentificador();
     
     /**
      * 
-     * @param nuevoCodigo
-     */
-    void modificarCodigoIdentificador(int nuevoCodigo);
-    
-    /**
-     * 
-     * @return 
+     * @return Retorna una lista con los envases aplicables al articulo
      */
     ArrayList<IEnvase> obtenerEnvasesAplicables();
     
     /**
-     * 
-     * @param unEnvase
+     * POS: Agrega unEnvase como envase aplicable al articulo
+     * @param unEnvase Envase a agregar como envase aplicable al articulo
      */
     void agregarEnvase(IEnvase unEnvase);
     
     /**
      * 
-     * @param unArticulo
-     * @return 
+     * @param unArticulo Articulo a comparar con this
+     * @return Retorna true si ambos articulos tienen el mismo nombre, false en
+     * caso contrario
      */
     boolean sonIgualesPorNombre(IArticulo unArticulo); 
     
     /**
      * 
-     * @param unArticulo
-     * @return 
+     * @param unArticulo Articulo a comparar con this
+     * @return Retorna true si ambos articulos tienen el mismo codigo identificador,
+     * false en caso contrario
      */
     boolean sonIgualesPorId(IArticulo unArticulo);
     
     /**
      *
-     * @return
+     * @return Retorna un string que contiene el nombre del articulo y su
+     * codigo identificador de la siguiente forma: [nombre] ([codigo identificador])
      */
     @Override
     String toString();

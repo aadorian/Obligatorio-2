@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazGrafica;
 
 import com.itextpdf.text.Chunk;
@@ -26,15 +21,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import javax.swing.JFileChooser;
 
 /**
- * FXML Controller class
+ * ItemTicketController
  *
- * @author matia
+ * @author Marcos Novelli - Matias Salles
  */
 public class ItemTicketController implements Initializable {
-
+    //Atributos
     @FXML
     private Label compraEnLocal;
     @FXML
@@ -56,48 +50,12 @@ public class ItemTicketController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }    
 
-    @FXML
-    private void clickBtnDescargarTicket(MouseEvent event) throws DocumentException {
-        try{
-            FileChooser fc = new FileChooser();
-            
-            fc.setInitialDirectory(new File("C:\\"));
-            fc.getExtensionFilters().
-                    add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
-                    
-            File archivoElegido = fc.showSaveDialog(null);
-            
-            if (archivoElegido != null) {
-                FileOutputStream archivo = new FileOutputStream(archivoElegido.getPath()+ ".pdf");
-                Rectangle tamañoPDF = new Rectangle(360f, 1440f);
-                Document ticketPDF = new Document(tamañoPDF);
-                
-                PdfWriter.getInstance(ticketPDF, archivo);
-                ticketPDF.open();
-                
-                for (int i = 0; i < contenidoTicketPDF.size(); i++) {
-                    String strTmp = contenidoTicketPDF.get(i);
-                            
-                    if(strTmp.equals("")){
-                        Paragraph nuevoParrafo = new Paragraph(Chunk.NEWLINE);
-                        ticketPDF.add(nuevoParrafo);
-                    }
-                    else{
-                        Paragraph nuevoParrafo = new Paragraph(strTmp);
-                        ticketPDF.add(nuevoParrafo);
-                    }
-                }
-                
-                ticketPDF.close();
-            }
-        }
-        catch(FileNotFoundException e){
-            System.out.println("Error al crear el PDF");
-        }
-    }
+    //
+    //METODOS PUBLICOS
+    //
     
     public void cargarCompraEnLocal(int numeroDeLocal){
         String strAMostrar = "Compra en local n°" + numeroDeLocal;
@@ -135,6 +93,49 @@ public class ItemTicketController implements Initializable {
     
     public void cargarTicketPDF(ArrayList<String> contenidoTicket){
         contenidoTicketPDF = contenidoTicket;
+    }
+    
+    //
+    //EVENTOS
+    //
+    
+    @FXML
+    private void clickBtnDescargarTicket(MouseEvent event) throws DocumentException {
+        try{
+            FileChooser fc = new FileChooser();
+            
+            fc.setInitialDirectory(new File("C:\\"));
+            fc.getExtensionFilters().
+                    add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
+                    
+            File archivoElegido = fc.showSaveDialog(null);
+            
+            if (archivoElegido != null) {
+                FileOutputStream archivo = new FileOutputStream(archivoElegido.getPath()+ ".pdf");
+                Document ticketPDF = new Document();
+                
+                PdfWriter.getInstance(ticketPDF, archivo);
+                ticketPDF.open();
+                
+                for (int i = 0; i < contenidoTicketPDF.size(); i++) {
+                    String strTmp = contenidoTicketPDF.get(i);
+                            
+                    if(strTmp.equals("")){
+                        Paragraph nuevoParrafo = new Paragraph(Chunk.NEWLINE);
+                        ticketPDF.add(nuevoParrafo);
+                    }
+                    else{
+                        Paragraph nuevoParrafo = new Paragraph(strTmp);
+                        ticketPDF.add(nuevoParrafo);
+                    }
+                }
+                
+                ticketPDF.close();
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Error al crear el PDF");
+        }
     }
     
 }

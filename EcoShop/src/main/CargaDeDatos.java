@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import dominio.*;
@@ -12,14 +7,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
- *
+ * CargaDeDatos - Carga datos al sistema que se le atribuya
  * @author matia
  */
 public class CargaDeDatos {
-
     //Atributos
     IEcoShop sistemaEcoShop;
 
+    //Costructor
     public CargaDeDatos(IEcoShop sistemaEcoShop) {
         this.sistemaEcoShop = sistemaEcoShop;
     }
@@ -33,6 +28,10 @@ public class CargaDeDatos {
         this.sistemaEcoShop = sistemaEcoShop;
     }
 
+    //
+    //METODOS PUBLICOS
+    //
+    
     public void cargarSistema() {
         this.cargarDirecciones();
         this.cargarProveedores();
@@ -53,12 +52,13 @@ public class CargaDeDatos {
         this.cargarApio();
         
         this.cargarListaFavoritosGlobal();
-        cargoPreVentasYTickets();
+        this.cargoPreVentasYTickets();
     }
 
-    /**
-     *
-     */
+    //
+    //METODOS PRIVADOS
+    //
+    
     private void cargarDirecciones() {
         IDireccion d1 = new Direccion("Uruguay", "Montevideo", "Carrasco", "Costa Rica",
                 "Cooper", 2264, 11400);
@@ -75,9 +75,6 @@ public class CargaDeDatos {
         sistemaEcoShop.registrarDireccion(d4);
     }
 
-    /**
-     *
-     */
     private void cargarProveedores() {
         IProveedor p1 = new Proveedor("Las Acacias");
         IProveedor p2 = new Proveedor("La Serenísima");
@@ -91,13 +88,13 @@ public class CargaDeDatos {
     }
 
     private void cargarEnvases() {
-        IEnvase e1 = new Envase("Bolsa Mediana", 20, 13, 30,
+        IEnvase e1 = new Envase("Bolsa Mediana",
                 "interfazGrafica/imagenes/BolsaMediana.png");
-        IEnvase e2 = new Envase("Tupper Chico", 13, 12, 6,
+        IEnvase e2 = new Envase("Tupper Chico",
                 "interfazGrafica/imagenes/TupperChico.png");
-        IEnvase e3 = new Envase("Tupper Mediano", 18, 11, 11,
+        IEnvase e3 = new Envase("Tupper Mediano",
                 "interfazGrafica/imagenes/TupperMediano.png");
-        IEnvase e4 = new Envase("Bolsa Grande", 21, 22, 54,
+        IEnvase e4 = new Envase("Bolsa Grande",
                 "interfazGrafica/imagenes/BolsaGrande.png");
 
         sistemaEcoShop.registrarEnvase(e1);
@@ -205,222 +202,205 @@ public class CargaDeDatos {
      */
     private void cargarManzanaVerde() {
         //Variables
-        double densidadDeManzanaVerde = 947;
         double precioPorKGManzanaVerde = 59;
         String rutaDeImagenManzanaVerde
                 = "interfazGrafica/imagenes/manzanaVerde2.jpg";
         String calificadorManzanaVerde = "Fruta";
+        int codigoIdentificadorManzanaVerde = 1023;
 
         //Creo Artículo
         IArticulo manzanaVerde
                 = new Articulo("Manzana Verde", rutaDeImagenManzanaVerde,
-                        precioPorKGManzanaVerde, densidadDeManzanaVerde,
-                        calificadorManzanaVerde);
+                        precioPorKGManzanaVerde, calificadorManzanaVerde, 
+                        codigoIdentificadorManzanaVerde);
 
         //Seteo los posibles envases para este artículo
-        manzanaVerde.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        manzanaVerde.agregarEnvase(obtenerEnvase("Bolsa Grande"));
+        manzanaVerde.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre
+                                  ("Bolsa Mediana"));
+        manzanaVerde.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre
+                                  ("Bolsa Grande"));
 
         //Ingreso este nuevo artículo al sistema
         sistemaEcoShop.registrarArticulo(manzanaVerde);
     }
 
     private void cargarManzanaRoja() {
-        double densidadDeManzanaRoja = 947;
+        //Var
         double precioPorKGManzanaRoja = 66;
         String rutaDeImagenManzanaRoja = "interfazGrafica/imagenes/manzanaRoja.jpg";
         String calificadorManzanaRoja = "Fruta";
 
         IArticulo manzanaRoja = new Articulo("Manzana Roja", rutaDeImagenManzanaRoja,
-                precioPorKGManzanaRoja, densidadDeManzanaRoja, calificadorManzanaRoja);
+                precioPorKGManzanaRoja, calificadorManzanaRoja, 3982);
 
-        manzanaRoja.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        manzanaRoja.agregarEnvase(obtenerEnvase("Bolsa Grande"));
+        manzanaRoja.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        manzanaRoja.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
 
         sistemaEcoShop.registrarArticulo(manzanaRoja);
     }
 
     private void cargarBanana() {
-        double densidadDeBanana = 1382;
+        //Var
         double precioPorKGBanana = 109;
         String rutaDeImagenBanana = "interfazGrafica/imagenes/banana.jpg";
         String calificadorBanana = "Fruta";
 
         IArticulo banana = new Articulo("Banana", rutaDeImagenBanana,
-                precioPorKGBanana, densidadDeBanana, calificadorBanana);
+                precioPorKGBanana, calificadorBanana, 2138);
 
-        banana.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        banana.agregarEnvase(obtenerEnvase("Bolsa Grande"));
+        banana.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        banana.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
 
         sistemaEcoShop.registrarArticulo(banana);
     }
 
     private void cargarKiwi() {
-        double densidadDeKiwi = 1;
+        //Var
         double precioPorKGKiwi = 192;
         String rutaDeImagenKiwi = "interfazGrafica/imagenes/kiwi.jpg";
         String calificadorKiwi = "Fruta";
 
         IArticulo kiwi = new Articulo("Kiwi", rutaDeImagenKiwi,
-                precioPorKGKiwi, densidadDeKiwi, calificadorKiwi);
+                precioPorKGKiwi, calificadorKiwi, 8573);
 
-        kiwi.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        kiwi.agregarEnvase(obtenerEnvase("Bolsa Grande"));
-        kiwi.agregarEnvase(obtenerEnvase("Tupper Mediano"));
+        kiwi.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        kiwi.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
+        kiwi.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
 
         sistemaEcoShop.registrarArticulo(kiwi);
     }
 
     private void cargarCastanas() {
-        double densidadDeCastanas = 1;
+        //Var
         double precioPorKGCastanas = 1790;
         String rutaDeImagenCastanas = "interfazGrafica/imagenes/castanas.jpg";
         String calificadorCastanas = "Fruto Seco";
 
         IArticulo castana = new Articulo("Castañas de Cajú", rutaDeImagenCastanas,
-                precioPorKGCastanas, densidadDeCastanas, calificadorCastanas);
+                precioPorKGCastanas, calificadorCastanas, 8765);
 
-        castana.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        castana.agregarEnvase(obtenerEnvase("Bolsa Grande"));
-        castana.agregarEnvase(obtenerEnvase("Tupper Chico"));
-        castana.agregarEnvase(obtenerEnvase("Tupper Mediano"));
+        castana.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        castana.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
+        castana.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Chico"));
+        castana.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
 
         sistemaEcoShop.registrarArticulo(castana);
     }
 
     private void cargarPistachos() {
-        double densidadDePistachos = 1;
+        //Var
         double precioPorKGPistachos = 2740;
         String rutaDeImagenPistachos = "interfazGrafica/imagenes/pistachos.jpg";
         String calificadorPistachos = "Fruto Seco";
 
         IArticulo pistacho = new Articulo("Pistachos", rutaDeImagenPistachos,
-                precioPorKGPistachos, densidadDePistachos, calificadorPistachos);
+                precioPorKGPistachos, calificadorPistachos,
+                5599);
 
-        pistacho.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        pistacho.agregarEnvase(obtenerEnvase("Bolsa Grande"));
-        pistacho.agregarEnvase(obtenerEnvase("Tupper Chico"));
-        pistacho.agregarEnvase(obtenerEnvase("Tupper Mediano"));
+        pistacho.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        pistacho.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
+        pistacho.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Chico"));
+        pistacho.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
 
         sistemaEcoShop.registrarArticulo(pistacho);
     }
 
     private void cargarAlmendras() {
-        double densidadDeAlmendras = 1;
+        //Var
         double precioPorKGAlmendras = 1050;
         String rutaDeImagenAlmendras = "interfazGrafica/imagenes/almendras.jpg";
         String calificadorAlmendras = "Fruto Seco";
 
         IArticulo almendra = new Articulo("Almendras", rutaDeImagenAlmendras,
-                precioPorKGAlmendras, densidadDeAlmendras, calificadorAlmendras);
+                precioPorKGAlmendras, calificadorAlmendras,
+                3345);
 
-        almendra.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        almendra.agregarEnvase(obtenerEnvase("Bolsa Grande"));
-        almendra.agregarEnvase(obtenerEnvase("Tupper Chico"));
-        almendra.agregarEnvase(obtenerEnvase("Tupper Mediano"));
+        almendra.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        almendra.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
+        almendra.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Chico"));
+        almendra.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
 
         sistemaEcoShop.registrarArticulo(almendra);
     }
 
     private void cargarNueces() {
-        double densidadDeNueces = 1;
+        //Var
         double precioPorKGNueces = 1170;
         String rutaDeImagenNueces = "interfazGrafica/imagenes/nueces.jpg";
         String calificadorNueces = "Fruto Seco";
 
         IArticulo nuez = new Articulo("Nueces", rutaDeImagenNueces,
-                precioPorKGNueces, densidadDeNueces, calificadorNueces);
+                precioPorKGNueces, calificadorNueces, 1890);
 
-        nuez.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        nuez.agregarEnvase(obtenerEnvase("Bolsa Grande"));
-        nuez.agregarEnvase(obtenerEnvase("Tupper Chico"));
-        nuez.agregarEnvase(obtenerEnvase("Tupper Mediano"));
+        nuez.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        nuez.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
+        nuez.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Chico"));
+        nuez.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
 
         sistemaEcoShop.registrarArticulo(nuez);
     }
 
     private void cargarEsparragos() {
-        double densidadDeEsparragos = 1;
+        //Var
         double precioPorKGEsparragos = 447;
         String rutaDeImagenEsparragos = "interfazGrafica/imagenes/esparragos.jpg";
         String calificadorEsparragos = "Verdura";
 
         IArticulo esparrago = new Articulo("Esparragos", rutaDeImagenEsparragos,
-                precioPorKGEsparragos, densidadDeEsparragos, calificadorEsparragos);
+                precioPorKGEsparragos, calificadorEsparragos, 2019);
 
         esparrago.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
-        esparrago.agregarEnvase(obtenerEnvase("Bolsa Grande"));
-        esparrago.agregarEnvase(obtenerEnvase("Tupper Mediano"));
+        esparrago.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
+        esparrago.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
 
         sistemaEcoShop.registrarArticulo(esparrago);
     }
 
     private void cargarZanahoria() {
-        double densidadDeZanahoria = 1;
+        //Var
         double precioPorKGZanahoria = 64;
         String rutaDeImagenZanahoria = "interfazGrafica/imagenes/zanahoria.jpg";
         String calificadorZanahoria = "Verdura";
 
         IArticulo zanahoria = new Articulo("Zanahoria", rutaDeImagenZanahoria,
-                precioPorKGZanahoria, densidadDeZanahoria, calificadorZanahoria);
+                precioPorKGZanahoria, calificadorZanahoria, 4000);
 
-        zanahoria.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        zanahoria.agregarEnvase(obtenerEnvase("Bolsa Grande"));
+        zanahoria.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        zanahoria.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
 
         sistemaEcoShop.registrarArticulo(zanahoria);
     }
 
     private void cargarGengibre() {
-        double densidadDeNueces = 1;
-        double precioPorKGNueces = 227;
-        String rutaDeImagenNueces = "interfazGrafica/imagenes/gengibre.jpg";
-        String calificadorNueces = "Verdura";
+        //Var
+        double precioPorKGGengibre = 227;
+        String rutaDeImagenGengibre = "interfazGrafica/imagenes/gengibre.jpg";
+        String calificadorGengibre = "Verdura";
 
-        IArticulo nuez = new Articulo("Gengibre", rutaDeImagenNueces,
-                precioPorKGNueces, densidadDeNueces, calificadorNueces);
+        IArticulo gengibre = new Articulo("Gengibre", rutaDeImagenGengibre,
+                precioPorKGGengibre, calificadorGengibre,
+                8888);
 
-        nuez.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        nuez.agregarEnvase(obtenerEnvase("Bolsa Grande"));
-        nuez.agregarEnvase(obtenerEnvase("Tupper Mediano"));
+        gengibre.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        gengibre.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
+        gengibre.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Tupper Mediano"));
 
-        sistemaEcoShop.registrarArticulo(nuez);
+        sistemaEcoShop.registrarArticulo(gengibre);
     }
 
     private void cargarApio() {
-        double densidadDeNueces = 1;
-        double precioPorKGNueces = 193;
-        String rutaDeImagenNueces = "interfazGrafica/imagenes/apio.jpg";
-        String calificadorNueces = "Verdura";
+        //Var
+        double precioPorKGApio = 193;
+        String rutaDeImagenApio = "interfazGrafica/imagenes/apio.jpg";
+        String calificadorApio = "Verdura";
 
-        IArticulo nuez = new Articulo("Apio", rutaDeImagenNueces,
-                precioPorKGNueces, densidadDeNueces, calificadorNueces);
+        IArticulo apio = new Articulo("Apio", rutaDeImagenApio,
+                precioPorKGApio, calificadorApio, 9999);
 
-        nuez.agregarEnvase(obtenerEnvase("Bolsa Mediana"));
-        nuez.agregarEnvase(obtenerEnvase("Bolsa Grande"));
+        apio.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Mediana"));
+        apio.agregarEnvase(sistemaEcoShop.obtenerEnvasePorNombre("Bolsa Grande"));
 
-        sistemaEcoShop.registrarArticulo(nuez);
-    }
-
-    /**
-     *
-     * @param envaseABuscar
-     * @return
-     */
-    private IEnvase obtenerEnvase(String envaseABuscar) {
-        ArrayList<IEnvase> envasesSistema = sistemaEcoShop.obtenerListaEnvases();
-        IEnvase envaseSoloNombre = new Envase(envaseABuscar, -1, -1, -1, "");
-
-        for (int i = 0; i < envasesSistema.size(); i++) {
-            IEnvase envaseTmp = envasesSistema.get(i);
-
-            if (envaseTmp.sonIguales(envaseSoloNombre)) {
-                return envaseTmp;
-            }
-        }
-
-        //Si no encontro se cae el programa
-        assert (false);
-        return null;
+        sistemaEcoShop.registrarArticulo(apio);
     }
 
 }

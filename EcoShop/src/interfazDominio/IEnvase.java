@@ -1,32 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazDominio;
 
 /**
- *
+ * Interfaz IEnvase
  * @author Marcos Novelli - Matias Salles
  */
 public interface IEnvase {
     
     /**
      * 
-     * @return 
+     * @return Retorna el nombre del envase
      */
     String obtenerNombre();
     
     /**
      * 
-     * @param unEnvase
-     * @return 
+     * @param unEnvase Envase a comparar
+     * @return Retorna si los envases son iguales en su nombre
      */
     boolean sonIguales(IEnvase unEnvase);
     
     /**
      * 
-     * @return 
+     * @return Retorna la ruta a la imagen asociada al envase
      */
     String obtenerRutaImagen();
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazGrafica;
 
 import java.net.URL;
@@ -14,12 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * FXML Controller class
+ * ItemPuntoDeVentaController
  *
- * @author matia
+ * @author Marcos Novelli - Matias Salles
  */
 public class ItemPuntoDeVentaController implements Initializable {
-
+    //Atributos
     @FXML
     private Label labelCalle;
     @FXML
@@ -38,8 +33,12 @@ public class ItemPuntoDeVentaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }    
+    
+    //
+    //METODOS PUBLICOS
+    //
     
     public void cargarCalle(String calle){
         labelCalle.setText(calle);
@@ -68,4 +67,5 @@ public class ItemPuntoDeVentaController implements Initializable {
         
         imagenLocal.setImage(imagenAColocar);
     }
+    
 }

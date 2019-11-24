@@ -6,8 +6,7 @@ import interfazDominio.IPuntoDeVenta;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 /**
- * Clase PreVenta - Tiene los atributos de Venta y una fecha de retiro de la 
- * compra
+ * Clase PreVenta - Implementacion de IPreVenta
  * @author Marcos Novelli - Matias Salles
  */
 public class PreVenta implements IPreVenta{
@@ -20,7 +19,7 @@ public class PreVenta implements IPreVenta{
 
     //Constructores
     private PreVenta(){
-        assert(false);
+        assert(false); //No podemos generar una pre venta sin parametros
     }
     
     public PreVenta(ICarrito carroCompras, IPuntoDeVenta localDeVenta, 

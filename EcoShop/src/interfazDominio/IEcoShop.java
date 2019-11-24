@@ -1,12 +1,9 @@
 package interfazDominio;
 
 import java.util.ArrayList;
-import java.util.Date;
-import javafx.util.Pair;
 /**
- * Interfaz del EcoShop, se listan las funcionalidades principales que 
- * necesitarán ser accedidas por la interfaz gráfica independiente de como se 
- * implemente la solución del mismo.
+ * Interfaz IEcoShop - se listan las funcionalidades principales que 
+ * necesitarán ser accedidas por la interfaz gráfica
  * @author Marcos Novelli - Matias Salles
  */
 public interface IEcoShop {
@@ -19,50 +16,51 @@ public interface IEcoShop {
     
     /**
      * 
-     * @return 
+     * @return Retorna una lista con todos los envases registrados en EcoShop
      */
     ArrayList<IEnvase> obtenerListaEnvases();
     
     /**
-     * 
-     * @param nombre
-     * @return 
+     * PRE: El articulo a buscar esta registrado
+     * @param nombre Nombre del articulo a buscar
+     * @return Retorna el primer articulo que coincida en nombre
      */
     IArticulo obtenerArticuloPorNombre(String nombre);
     
     /**
-     * 
-     * @param nombre
-     * @return 
+     * PRE: El envase a buscar esta registrado
+     * @param nombre Nombre del envase a buscar
+     * @return Retorna el primer envase que coincida en nombre
      */
     IEnvase obtenerEnvasePorNombre(String nombre);
     
     /**
      * 
-     * @return 
+     * @return Retorna el actual carrito del sistema
      */
     ICarrito obtenerCarrito();
     
     /**
      * 
-     * @return 
+     * @return Retorna una lista con todos los puntos de venta registrados
      */
     ArrayList<IPuntoDeVenta> obtenerListaPuntosDeVenta();
     
     /**
      * 
-     * @return 
+     * @return Retorna una lista con todos los articulos favoritos agregados
+     * por el usuario
      */
     ArrayList<IArticulo> obtenerListaArticulosFavoritosPersonal();
     
     /**
      * 
-     * @return 
+     * @return  Retorna una lista con los "top 4" articulos preferidos globalmente
      */
     ArrayList<IArticulo> obtenerListaArticulosFavoritosGlobal();
     
     /**
-     * PRE: -
+     * 
      * @param unArticulo Articulo al cual guardar en un envase
      * @return Retorna una lista de envases que son aplicables(compatibles) con
      * el articulo por parametro
@@ -71,163 +69,135 @@ public interface IEcoShop {
     
     /**
      * 
-     * @return 
+     * @return Retorna una lista con todas las pre ventas registradas
      */
     ArrayList<IPreVenta> obtenerListaPreVentas();
     
     /**
      * 
-     * @return 
+     * @return Retorna una lista con todos los tickets pre venta registrados
      */
     ArrayList<ITicketPreVenta> obtenerTicketsPreVenta();
     
     /**
      * 
-     * @return 
+     * @return Retorna una lista con los articulos mas vendidos en base a los 
+     * tickets del sistema
      */
     ArrayList<IArticulo> obtenerArticulosMasVendidos();
     
     /**
      * 
-     * @return 
+     * @return Retorna la cantidad de envases reutilizados, basado en los tickets
      */
     int cantidadDeEnvasesReutilizados();
     
     /**
-     * PRE: -
-     * @param unEnvase Envase a utilizar para guardar "unArticulo"
-     * @param unArticulo Articulo al cual guardar en "unEnvase"
-     * @param pesoArticulo Cantidad en kg seleccionada de unArticulo
-     * @return Retorna la cantidad de "unEnvase" necesarios para almacenar 
-     * la cantidad (pesoArticulo) de "unArticulo"
-     */
-    int cantidadEnvasesNecesarios(IEnvase unEnvase, IArticulo unArticulo, 
-            int pesoArticulo);
-    
-    //Funcion de mapa
-    
-    /**
-     * PRE: -
-     * POST: Agrega al carrito el articulo y el peso seleccionado
+     * 
+     * POS: Agrega al carrito el articulo y el peso seleccionado
      * @param unArticulo Articulo a agregar al carrito
      * @param peso Cantidad en kg seleccionada del articulo
      */
     void agregarAlCarrito(IArticulo unArticulo, double peso);
     
     /**
-     * PRE: -
-     * POST: Agrega al carrito el envase y la cantidad necesaria de él.
-     * @param unEnvase Envase a agregar al carrito
-     * @param cantidadEnvases Cantidad de "unEnvase" a agregar al carrito
-     */
-    void agregarAlCarrito(IEnvase unEnvase, int cantidadEnvases);
-    
-    /**
      * PRE: El articulo esta en el carrito
-     * POST: Elimina del carrito "unArticulo"
+     * POS: Elimina del carrito "unArticulo"
      * @param unArticulo Articulo a sacar del carrito
      */
     void sacarDelCarrito(IArticulo unArticulo);
     
     /**
-     * PRE: El envase esta en el carrito
-     * POST: Elimina la cantidad de envases de "unEnvase" del carrito
-     * @param unEnvase Envase a sacar del carrito
-     * @param cantidadEnvases Cantidad de envases a sacar de "unEnvase"
-     */
-    void sacarDelCarrito(IEnvase unEnvase, int cantidadEnvases);
-    
-    /**
-     * PRE: -
+     *
      * @param productoABuscar String a buscar en los articulos del EcoShop
      * @param calficador
      * @return Retorna una lsita de articulos que contienen el string 
      * productoABuscar y coinciden con el calificador (Si el calificador es 
-     * "Todos" entonces devuelve todos los que contienen el string productoABuscar)
+     * "Todos" entonces devuelve todos los que contienen el string productoABuscar,
+     * si productoABuscar es "" entonces devuelve todos los que coincidan en el
+     * calificador)
      */
     ArrayList<IArticulo> buscarProducto(String productoABuscar, String calficador);
     
     /**
-     * PRE: -
-     * POST: Registra la PreVenta al EcoShop
-     * @param unaPreVenta
-     * @param unCarrito Carrito con los articulos y envases a registrar en la 
-     * PreVenta
-     * @param fechaDeRetiro Fecha de retiro de la PreVenta
+     *
+     * POS: Registra la PreVenta al sistema
+     * @param unaPreVenta PreVenta a registrar
      * 
      */
     void registrarPreVenta(IPreVenta unaPreVenta);
     
     /**
-     * PRE: -
-     * POST: Crea un documento pdf (Ticket) de la PreVenta y lo registra
-     * a EcoShop
+     * 
+     * POS: Crea un TicketPreVenta en base a la pre venta y lo registra en el 
+     * sistema
      * @param unaPreVenta PreVenta a la cual se le genera el ticket
      */
     void generarTicket(IPreVenta unaPreVenta);
     
     /**
-     * PRE: -
-     * POST: Registra el articulo a EcoShop
+     * 
+     * POS: Registra el articulo al sistema
      * @param unArticulo Articulo a registrar
      */
     void registrarArticulo(IArticulo unArticulo);
     
     /**
-     * 
-     * @param unEnvase
+     * POS: Registra el envase el sistema
+     * @param unEnvase Envase a registrar
      */
     void registrarEnvase(IEnvase unEnvase);
     
     /**
-     * PRE -
-     * POST: Registra el proveedor a EcoShop
+     * 
+     * POS: Registra el proveedor al sistema
      * @param unProveedor Provedoor a registrar
      */
     void registrarProveedor(IProveedor unProveedor);
     
     /**
-     * PRE -
-     * POST: Registra el punto de venta a EcoShop
+     * 
+     * POS: Registra el punto de venta al sistema
      * @param unPuntoDeVenta Punto de Venta a registrar
      */
     void registrarPuntoDeVenta(IPuntoDeVenta unPuntoDeVenta);
     
     /**
-     * 
-     * @param unaDireccion 
+     * POS: Registra la direccion al sistema
+     * @param unaDireccion Direccion a registrar
      */
     void registrarDireccion(IDireccion unaDireccion);
     
     /**
      * 
-     * @param unArticulo
-     * @return 
+     * @param unArticulo Articulo a buscar
+     * @return Retorna true si el articulo esta en los favoritos agregados
+     * por el usuario, false en caso contrario
      */
     boolean estaEnFavoritosPersonal(IArticulo unArticulo);
     
     /**
-     * 
-     * @param unArticulo 
+     * POS: Agrega el articulo a la lista de favoritos del usuario
+     * @param unArticulo Articulo a añadir a los favoritos del usuario
      */
     void agregarAFavoritosPersonal(IArticulo unArticulo);
     
     /**
-     * 
-     * @param unArticulo 
+     * POS: Elimina el articulo de la lista de favoritos del usuario
+     * @param unArticulo Articulo a eliminar de los favoritos del usuario
      */
     void sacarDeFavoritos(IArticulo unArticulo);
     
     /**
-     * 
-     * @param unArticulo 
+     * POS: Agrega el articulo a la lista de preferidos en el mundo
+     * @param unArticulo Articulo a agregar a la lista de preferidos en el mundo
      */
     void agregarArticuloAFavoritosGlobal(IArticulo unArticulo);
     
     /**
-     * 
-     * @param numeroDelLocal
-     * @return 
+     * PRE: El local a buscar esta registrado
+     * @param numeroDelLocal Numero del local a buscar
+     * @return Retorna el primer local que coincide en el numero de local
      */
     IPuntoDeVenta obtenerPuntoDeVentaPorNumeroDeLocal(int numeroDelLocal);
     

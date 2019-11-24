@@ -1,43 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazDominio;
 
 /**
- *
+ * Interfaz IPuntoDeVenta
  * @author Marcos Novelli - Matias Salles
  */
 public interface IPuntoDeVenta {
     
     /**
-     * 
-     * @param unaDireccion 
+     * POS: Modifica la direccion vieja del punto de venta con la nueva
+     * @param unaDireccion Direccion nueva del punto de venta
      */
     void modificarDireccion(IDireccion unaDireccion);
     
     /**
      * 
-     * @return 
+     * @return Retorna la direccion del Punto de Venta
      */
     IDireccion obtenerDireccionDelLocal();
     
     /**
      * 
-     * @return 
+     * @return Retorna el numero del Punto de Venta
      */
     int obtenerNumeroDeLocal();
     
     /**
      * 
-     * @return 
+     * @return Retorna la ruta a la imagen asociada con el Punto de Venta
      */
     String obtenerRutaDeImagen();
     
     /**
      *
-     * @return
+     * @return Retorna un string de la siguiente forma:
+     * [numero de local] - [calle]
      */
     @Override
     String toString();

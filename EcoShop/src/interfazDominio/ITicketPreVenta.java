@@ -1,33 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazDominio;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author matia
+ * Interfaz ITicketPreVenta
+ * @author Marcos Novelli - Matias Salles
  */
 public interface ITicketPreVenta {
     
     /**
      * 
-     * @return 
+     * @return Retorna el numero de ticket
      */
     int obtenerNumeroDeTicket();
     
     /**
      * 
-     * @return 
+     * @return Retorna una lista de String que contienen el contenido del ticket
+     * electronico
      */
     ArrayList<String> obtenerContenidoTicketPDF();
     
     /**
      * 
-     * @return 
+     * @return Retorna la pre venta asociada al ticket
      */
     IPreVenta obtenerPreVentaAsociada();
 }

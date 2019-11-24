@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazGrafica;
 
 import com.jfoenix.controls.JFXButton;
@@ -28,11 +23,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 /**
- * FXML Controller class
+ * BarraComprarController 
  *
- * @author matia
+ * @author Marcos Novelli - Matias Salles
  */
 public class BarraComprarController implements Initializable {
+    //Atributos
     @FXML
     private VBox pnl_scroll;
     @FXML
@@ -59,11 +55,22 @@ public class BarraComprarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ponerTodosLosLabelVacios();
+        //Ponemos todos los label de errores y compra exitosa vacios
+        ponerTodosLosLabelVacios(); 
     }    
 
+    //
+    //METODOS PUBLICOS
+    //
+    
+    /**
+     * POS: Agrega al choiceBox los puntos de venta exitentes en el sistema
+     * @param listaPuntosDeVenta Lista de puntos de venta del sistema
+     */
     public void cargarPuntosDeVenta(ArrayList<IPuntoDeVenta> listaPuntosDeVenta){
+        
         for (int i = 0; i < listaPuntosDeVenta.size(); i++) {
+            //Var
             IPuntoDeVenta puntoDeVentaTmp = listaPuntosDeVenta.get(i);
             int numeroDeLocal = puntoDeVentaTmp.obtenerNumeroDeLocal();
             IDireccion direccionDelLocal = puntoDeVentaTmp.obtenerDireccionDelLocal();
@@ -73,6 +80,41 @@ public class BarraComprarController implements Initializable {
             choiceBoxPuntoDeVenta.getItems().add(strParaAgregarAChoiceBox);
         }
     }
+    
+    
+    public void cargarLabelCantidadItemsEnCarrito(Label unLabel){
+        this.cantidadArticulosEnCarrito = unLabel;
+    }
+    
+    public void cargarPanel(VBox unPanel){
+        this.pnl_scroll = unPanel;
+    }
+    
+    //
+    //METODOS PRIVADOS
+    //
+    
+    private void ponerTodosLosLabelVacios(){
+        labelCompraExitosa.setText("");
+        labelFechaInvalida.setText("");
+        labelLocalInvalido.setText("");
+        labelEnvasesInvalidos.setText("");
+    }
+    
+    private void vaciarLabelCantidadItemsEnCarrito(){
+        cantidadArticulosEnCarrito.setText("");
+    }
+    
+    private void vaciarPanel(){
+        Node barraComprar = pnl_scroll.getChildren().get(0);
+        
+        pnl_scroll.getChildren().clear();
+        pnl_scroll.getChildren().add(barraComprar);
+    }
+    
+    //
+    //EVENTOS
+    //
     
     @FXML
     private void clickBtnFavoritoArticulo(MouseEvent event) {
@@ -138,29 +180,4 @@ public class BarraComprarController implements Initializable {
     private void clickBtnAgregarAlCarrito(ActionEvent event) {
     }
     
-    private void ponerTodosLosLabelVacios(){
-        labelCompraExitosa.setText("");
-        labelFechaInvalida.setText("");
-        labelLocalInvalido.setText("");
-        labelEnvasesInvalidos.setText("");
-    }
-    
-    private void vaciarLabelCantidadItemsEnCarrito(){
-        cantidadArticulosEnCarrito.setText("");
-    }
-    
-    private void vaciarPanel(){
-        Node barraComprar = pnl_scroll.getChildren().get(0);
-        
-        pnl_scroll.getChildren().clear();
-        pnl_scroll.getChildren().add(barraComprar);
-    }
-    
-    public void cargarLabelCantidadItemsEnCarrito(Label unLabel){
-        this.cantidadArticulosEnCarrito = unLabel;
-    }
-    
-    public void cargarPanel(VBox unPanel){
-        this.pnl_scroll = unPanel;
-    }
 }

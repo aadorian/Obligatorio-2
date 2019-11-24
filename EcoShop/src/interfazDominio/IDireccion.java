@@ -1,43 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazDominio;
 
 /**
- *
- * @author matia
+ *Interfaz IDireccion - Tiene todos las funcionalidades que debe tener cualquier
+ * implementacion, incluyendo la mayoria de los datos que conforman una direccion
+ * @author Marcos Novelli - Matias Salles
  */
 public interface IDireccion {
     
     /**
      * 
-     * @return 
+     * @return Retorna el Pais de la direccion
      */
     String obtenerPais();
     
     /**
      * 
-     * @return 
+     * @return Retorna el Departamento/Provincia/Estado de la direccion
      */
     String obtenerDepartamento();
     
     /**
      * 
-     * @return 
+     * @return Retorna la Calle de la direccion
      */
     String obtenerCalle();
     
     /**
      * 
-     * @return 
+     * @return Retorna el Barrio de la direccion
      */
     String obtenerBarrio();
     
     /**
      * 
-     * @return 
+     * @return Retorna el codigo postal de la direccion
      */
     int obtenerCodigoPostal();
 }

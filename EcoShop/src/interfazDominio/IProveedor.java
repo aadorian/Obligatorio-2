@@ -1,31 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazDominio;
 
 /**
- *
+ * Interfaz IProveedor
  * @author Marcos Novelli - Matias Salles
  */
 public interface IProveedor {
     
     /**
-     * 
-     * @param unaDireccion
+     * POS: Modifica la direccion vieja del proveedor con la nueva
+     * @param unaDireccion Direccion nueva del proveedor
      */
     void modificarDireccion(IDireccion unaDireccion);
     
     /**
      * 
-     * @return 
+     * @return Retorna el nombre del proveedor
      */
     String obtenerNombre();
     
     /**
      * 
-     * @return 
+     * @return Retorna la direccion del proveedor
      */
     IDireccion obtenerDireccion();
     

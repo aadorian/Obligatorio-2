@@ -2,7 +2,7 @@ package dominio;
 
 import interfazDominio.IDireccion;
 /**
- * Clase Direccion - tiene todos los datos necesarios de una direccion
+ * Clase Direccion - Implementacion de IDireccion
  * @author Marcos Novelli - Matias Salles
  */
 public class Direccion implements IDireccion{

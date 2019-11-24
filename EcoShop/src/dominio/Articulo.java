@@ -5,8 +5,7 @@ import interfazDominio.IArticulo;
 import interfazDominio.IProveedor;
 import interfazDominio.IEnvase;
 /**
- * Clase Articulo - Contiene toda la informacion de los articulos necesaria 
- * para realizar las funcionalidades listadas del sistema
+ * Clase Articulo - Implementacion de IArticulo
  * @author Marcos Novelli - Matias Salles
  */
 public class Articulo implements IArticulo{
@@ -16,7 +15,6 @@ public class Articulo implements IArticulo{
     private String calificador; //Refiere a (Fruta,Verdura,Fruto seco, etc) 
     private int codigoIdentificador; //Codigo identificador unico del articulo
     private double precioPorKG; 
-    private double densidad; //Para calcular cuantos envases son necesarios
     private IProveedor origenDelArticulo;
     private ArrayList<IEnvase> envasesAplicables;
     
@@ -27,7 +25,6 @@ public class Articulo implements IArticulo{
         this.rutaImagen = "";
         this.codigoIdentificador = -1;
         this.precioPorKG = -1;
-        this.densidad = -1;
         this.origenDelArticulo = new Proveedor();
         this.envasesAplicables = new ArrayList<>();
         this.calificador = "";
@@ -38,32 +35,29 @@ public class Articulo implements IArticulo{
         this.rutaImagen = "";
         this.codigoIdentificador = -1;
         this.precioPorKG = -1;
-        this.densidad = -1;
         this.origenDelArticulo = new Proveedor();
         this.envasesAplicables = new ArrayList<>();
         this.calificador = "";
     }
 
     public Articulo(String nombreArticulo, String rutaImagen, double precioPorKG, 
-            double densidad, String calificador) {
+            String calificador, int codigoIdentificador) {
         this.nombreArticulo = nombreArticulo;
         this.rutaImagen = rutaImagen;
-        this.codigoIdentificador = -1;
+        this.codigoIdentificador = codigoIdentificador;
         this.precioPorKG = precioPorKG;
-        this.densidad = densidad;
         this.origenDelArticulo = new Proveedor();
         this.envasesAplicables = new ArrayList<>();
         this.calificador = calificador;
     }
     
-    public Articulo(double precio, double densidad, IProveedor origenDelArticulo, 
+    public Articulo(double precio, IProveedor origenDelArticulo, 
             ArrayList<IEnvase> envasesAplicables, String nombreArticulo,
             String rutaImagen,String calificador) {
         this.nombreArticulo = nombreArticulo;
         this.rutaImagen = rutaImagen;
         this.codigoIdentificador = -1; //Luego se settea en la clase EcoShop
         this.precioPorKG = precio;
-        this.densidad = densidad;
         this.origenDelArticulo = origenDelArticulo;
         this.envasesAplicables = envasesAplicables;
         this.calificador = calificador;
@@ -100,14 +94,6 @@ public class Articulo implements IArticulo{
 
     public void setPrecioPorKG(double precio) {
         this.precioPorKG = precio;
-    }
-
-    public double getDensidad() {
-        return densidad;
-    }
-
-    public void setDensidad(double densidad) {
-        this.densidad = densidad;
     }
 
     public IProveedor getOrigenDelArticulo() {
@@ -164,11 +150,6 @@ public class Articulo implements IArticulo{
     }
 
     @Override
-    public double obtenerDensidad() {
-        return this.getDensidad();
-    }
-
-    @Override
     public IProveedor obtenerOrigen() {
         return this.getOrigenDelArticulo();
     }
@@ -181,11 +162,6 @@ public class Articulo implements IArticulo{
     @Override
     public boolean sonIgualesPorId(IArticulo unArticulo) {
         return this.obtenerCodigoIdentificador() == (unArticulo.obtenerCodigoIdentificador());
-    }
-
-    @Override
-    public void modificarCodigoIdentificador(int nuevoCodigo) {
-        this.setCodigoIdentificador(nuevoCodigo);
     }
 
     @Override

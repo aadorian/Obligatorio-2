@@ -1,6 +1,5 @@
 package dominio;
 
-import com.itextpdf.text.Paragraph;
 import interfazDominio.IArticulo;
 import interfazDominio.ICarrito;
 import interfazDominio.IEnvase;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import javafx.util.Pair;
 
 /**
- * Clase TicketPreVenta - Tiene la informacion de Ticket y una PreVenta asociada
+ * Clase TicketPreVenta - Implementacion de ITicketPreVenta
  * @author Marcos Novelli - Matias Salles
  */
 public class TicketPreVenta implements ITicketPreVenta{
@@ -25,7 +24,7 @@ public class TicketPreVenta implements ITicketPreVenta{
     
     //Constructores
     public TicketPreVenta(){
-        assert(false);
+        assert(false); //No podemos generar un TicketPreVenta sin parametros
     }
    
     public TicketPreVenta(IPreVenta unaPreVenta, int numeroIdentificador){
@@ -65,10 +64,12 @@ public class TicketPreVenta implements ITicketPreVenta{
 
     /**
      * 
-     * @param unaPreVenta
-     * @return 
+     * @param unaPreVenta PreVenta para generar el contenido del ticket electronico
+     * @return Retorna una lista con la informacion de la compra para luego generar
+     * un ticket PDF
      */
     private ArrayList<String> generarContenidoTicketElectronico(IPreVenta unaPreVenta) {
+        //Var
         double precioTotalDeCompra;
         ICarrito carritoAsociadoALaVenta;
         LocalDateTime fechaDeCompraRealizada;
@@ -104,6 +105,7 @@ public class TicketPreVenta implements ITicketPreVenta{
         listaArticulosEnCarrito = carritoAsociadoALaVenta.obtenerListaArticulos();
 
         for (int i = 0; i < listaArticulosEnCarrito.size(); i++) {
+            //Var
             Pair<IArticulo, Double> duplaTmp = listaArticulosEnCarrito.get(i);
             IArticulo articuloTmp = duplaTmp.getKey();
             double pesoTmp = duplaTmp.getValue();
