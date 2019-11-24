@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfazGrafica;
 
-import com.itextpdf.text.Document;
 import com.jfoenix.controls.JFXButton;
 import interfazDominio.*;
 import java.io.IOException;
@@ -342,6 +336,14 @@ public class VentanaPrincipalController implements Initializable {
             }
         }
         estaEnSeccionTodosLosArticulos = false;
+    }
+
+    @FXML
+    private void clickBtnMasVendidos(MouseEvent event) {
+        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
+        ArrayList<IArticulo> listaMasVendidos = sistemaEcoShop.obtenerArticulosMasVendidos();
+        
+        cargarItemsArticulos(listaMasVendidos, sistemaEcoShop);
     }
 
 }

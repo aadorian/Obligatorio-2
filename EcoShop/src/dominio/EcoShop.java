@@ -3,6 +3,7 @@ package dominio;
 import interfazDominio.*;
 import java.util.ArrayList;
 import java.util.Random;
+import javafx.util.Pair;
 
 /**
  * Clase Ecoshop - Contiene toda la informacion necesaria para mplementar todas 
@@ -343,6 +344,49 @@ public class EcoShop implements IEcoShop{
         return this.getListaTicketsPreVenta();
     }
     
+    @Override
+    public ArrayList<IArticulo> obtenerArticulosMasVendidos() {
+        //Pares de articulo y veces que fue vendido
+        ArrayList<Pair<IArticulo, Integer>> listaArticulosMasVendidos;
+        
+        listaArticulosMasVendidos = new ArrayList<>();
+        //Copiamos la lista de articulos y setteamos las cantidad de veces 
+        //vendidas a cero.
+        
+        for (int i = 0; i < this.listaArticulos.size(); i++) {
+            IArticulo articuloTmp = this.listaArticulos.get(i);
+            int cantidadDeVecesArticuloTmpFueVendido = 0;
+            Pair nuevaDupla;
+            
+            for (int j = 0; j < this.listaPreVentas.size(); j++) {
+                IPreVenta preVentaTmp = this.listaPreVentas.get(j);
+                ICarrito carritoTmp = preVentaTmp.obtenerCarritoAsociadoALaCompra();
+                
+               if(carritoTmp.articuloEstaEnElCarrito(articuloTmp))
+                   cantidadDeVecesArticuloTmpFueVendido++;
+            }
+            
+            nuevaDupla = new Pair(articuloTmp,cantidadDeVecesArticuloTmpFueVendido);
+            listaArticulosMasVendidos.add(nuevaDupla);
+        }
+        
+        //Ordenamos la lista de mayor a menor (articulos mas vendidos van primero)
+        ordenarListaPorArticulosMasVendidos(listaArticulosMasVendidos);
+        
+        //Copiamos la lista a una nueva solo con los articulos
+        ArrayList<IArticulo> listaRetorno = new ArrayList<>();
+        
+        for (int i = 0; i < listaArticulosMasVendidos.size(); i++) {
+            Pair<IArticulo, Integer> duplaTmp = listaArticulosMasVendidos.get(i);
+            IArticulo articuloTmp = duplaTmp.getKey();
+            
+            listaRetorno.add(articuloTmp);
+        }
+        
+        return listaRetorno;
+    }
+    
+    
    //
    //METODOS PRIVADOS
    //
@@ -400,6 +444,38 @@ public class EcoShop implements IEcoShop{
        return this.listaDirecciones.get(posicionDeDireccionARetornar);
    }
 
+   /**
+    * 
+    * @param listaAOrdenar 
+    */
+    private void ordenarListaPorArticulosMasVendidos
+        (ArrayList<Pair<IArticulo, Integer>> listaAOrdenar){
+        //Var
+        int largoDeListaAOrdenar = listaAOrdenar.size();
+        
+        //Utilizamos el algoritmo de bubble sort para ordenar la lista
+        //por el Integer en el la dupla de la lista (de mayor a menor)
+        for (int i = 0; i < largoDeListaAOrdenar - 1; i++) {
+            for (int j = 0; j < largoDeListaAOrdenar - i - 1; j++) {
+                //Var
+                Pair<IArticulo, Integer> posJ;
+                Pair<IArticulo, Integer> posSiguiente;
+                int cantidadDeVecesVendidoPosJ;
+                int cantidadDeVecesVendidoPosSiguiente;
+                
+                posJ = listaAOrdenar.get(j);
+                posSiguiente = listaAOrdenar.get(j + 1);
+                cantidadDeVecesVendidoPosJ = posJ.getValue();
+                cantidadDeVecesVendidoPosSiguiente = posSiguiente.getValue();
+                
+                if(cantidadDeVecesVendidoPosJ < cantidadDeVecesVendidoPosSiguiente){
+                    //Swapeamos j con j+1
+                    listaAOrdenar.set(j, posSiguiente);
+                    listaAOrdenar.set(j + 1, posJ);
+                }
+            }
+        }
+    }
     
 
    

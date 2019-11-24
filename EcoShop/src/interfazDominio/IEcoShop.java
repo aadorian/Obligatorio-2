@@ -2,6 +2,7 @@ package interfazDominio;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.util.Pair;
 /**
  * Interfaz del EcoShop, se listan las funcionalidades principales que 
  * necesitarán ser accedidas por la interfaz gráfica independiente de como se 
@@ -79,6 +80,12 @@ public interface IEcoShop {
      * @return 
      */
     ArrayList<ITicketPreVenta> obtenerTicketsPreVenta();
+    
+    /**
+     * 
+     * @return 
+     */
+    ArrayList<IArticulo> obtenerArticulosMasVendidos();
     
     /**
      * PRE: -
