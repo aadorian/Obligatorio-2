@@ -25,7 +25,7 @@ public class PuntoDeVenta implements IPuntoDeVenta{
         this.rutaDeImagen = rutaDeImagen;
     }
     
-    public PuntoDeVenta(Direccion direccionLocal, int numeroDelLocal) {
+    public PuntoDeVenta(IDireccion direccionLocal, int numeroDelLocal) {
         this.direccionLocal = direccionLocal;
         this.numeroDelLocal = numeroDelLocal;
     }
