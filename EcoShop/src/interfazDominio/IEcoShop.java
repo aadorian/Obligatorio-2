@@ -88,6 +88,12 @@ public interface IEcoShop {
     ArrayList<IArticulo> obtenerArticulosMasVendidos();
     
     /**
+     * 
+     * @return 
+     */
+    int cantidadDeEnvasesReutilizados();
+    
+    /**
      * PRE: -
      * @param unEnvase Envase a utilizar para guardar "unArticulo"
      * @param unArticulo Articulo al cual guardar en "unEnvase"

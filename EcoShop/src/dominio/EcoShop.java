@@ -386,6 +386,19 @@ public class EcoShop implements IEcoShop{
         return listaRetorno;
     }
     
+    @Override
+    public int cantidadDeEnvasesReutilizados() {
+        int cantidadDeEnvases = 0;
+        
+        for (int i = 0; i < this.listaPreVentas.size(); i++) {
+            IPreVenta preVentaTmp = this.listaPreVentas.get(i);
+            ICarrito carritoTmp = preVentaTmp.obtenerCarritoAsociadoALaCompra();
+            
+            cantidadDeEnvases += carritoTmp.obtenerListaArticulos().size();
+        }
+        
+        return cantidadDeEnvases;
+    }
     
    //
    //METODOS PRIVADOS
@@ -476,6 +489,8 @@ public class EcoShop implements IEcoShop{
             }
         }
     }
+
+
     
 
    

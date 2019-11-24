@@ -52,6 +52,8 @@ public class VentanaPrincipalController implements Initializable {
     private ScrollPane scrollPane;
     @FXML
     private JFXButton btnFavoritosGlobal;
+    @FXML
+    private Label labelSeccionActiva;
 
     /**
      * Initializes the controller class.
@@ -64,7 +66,7 @@ public class VentanaPrincipalController implements Initializable {
         cargarItemsArticulos(listaArticulosEnSistema, sistemaEcoShop);
         cargarCategoriasABuscar();
         
-        
+        labelSeccionActiva.setText("Todos los artículos");
         cantidadArticulosEnCarrito.setText("");
         estaEnSeccionTodosLosArticulos = true;
     }
@@ -219,8 +221,9 @@ public class VentanaPrincipalController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
+        scrollPane.setVvalue(0);
+        estaEnSeccionTodosLosArticulos = false;
     }
 
     @FXML
@@ -228,18 +231,21 @@ public class VentanaPrincipalController implements Initializable {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
         ArrayList<IArticulo> listaArticulosEnSistema = sistemaEcoShop.obtenerListaArticulos();
 
+        labelSeccionActiva.setText("Todos los artículos");
         cargarItemsArticulos(listaArticulosEnSistema, sistemaEcoShop);
         estaEnSeccionTodosLosArticulos = true;
     }
 
     @FXML
     private void clickBtnMisCompras(MouseEvent event) {
+        labelSeccionActiva.setText("Mis Compras");
         cargarItemsTickets();
         estaEnSeccionTodosLosArticulos = false;
     }
 
     @FXML
     private void clickBtnCarrito(ActionEvent event) {
+        labelSeccionActiva.setText("Carrito");
         cargarItemsCarrito();
         estaEnSeccionTodosLosArticulos = false;
     }
@@ -283,6 +289,9 @@ public class VentanaPrincipalController implements Initializable {
         ArrayList<IArticulo> listaMisFavoritos = 
                 sistemaEcoShop.obtenerListaArticulosFavoritosPersonal();
 
+        labelSeccionActiva.setText("Mis favoritos (agrega o elimina artículos "
+                + "a tu lista de favoritos presionando la estrella arriba a la "
+                + "derecha de cada articulo)");
         cargarItemsArticulos(listaMisFavoritos, sistemaEcoShop);
         estaEnSeccionTodosLosArticulos = false;
     }
@@ -293,6 +302,7 @@ public class VentanaPrincipalController implements Initializable {
         ArrayList<IArticulo> listaFavoritosGlobal = 
                 sistemaEcoShop.obtenerListaArticulosFavoritosGlobal();
         
+        labelSeccionActiva.setText("Favoritos en el mundo");
         cargarItemsArticulos(listaFavoritosGlobal, sistemaEcoShop);
         estaEnSeccionTodosLosArticulos = false;
     }
@@ -335,7 +345,13 @@ public class VentanaPrincipalController implements Initializable {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, e);
             }
         }
+        scrollPane.setVvalue(0);
         estaEnSeccionTodosLosArticulos = false;
+        
+        int cantidadEnvasesReutilizados = sistemaEcoShop.cantidadDeEnvasesReutilizados();
+        labelSeccionActiva.setText("Puntos de venta - realize su compra aquí "
+                + "o ven a visitarnos, ya evitamos más de " + cantidadEnvasesReutilizados
+                + " bolsas contaminando el medio ambiente. ¡Sumate!");
     }
 
     @FXML
@@ -343,7 +359,9 @@ public class VentanaPrincipalController implements Initializable {
         IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();
         ArrayList<IArticulo> listaMasVendidos = sistemaEcoShop.obtenerArticulosMasVendidos();
         
+        labelSeccionActiva.setText("Artículos mas vendidos");
         cargarItemsArticulos(listaMasVendidos, sistemaEcoShop);
+        estaEnSeccionTodosLosArticulos = false;
     }
 
 }
