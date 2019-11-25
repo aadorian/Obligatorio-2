@@ -5,7 +5,7 @@ import javafx.util.Pair;
 
 /**
  * Interfaz ICarrito - Lista las funcionalidades que debe tener cualquier
- * implementacion, usa Pair<> para los articulos y envases elegidos por 
+ * implementacion, usa Pair para los articulos y envases elegidos por 
  * el usuario al igual que la cantidad (kg) del articulo elegido
  * @author Marcos Novelli - Matias Salles
  */

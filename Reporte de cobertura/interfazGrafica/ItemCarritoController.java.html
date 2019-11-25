@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ItemCarritoController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;EcoShop&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfazGrafica</a> &gt; <span class="el_source">ItemCarritoController.java</span></div><h1>ItemCarritoController.java</h1><pre class="source lang-java linenums">package interfazGrafica;
+
+import com.jfoenix.controls.JFXComboBox;
+import interfazDominio.IArticulo;
+import interfazDominio.ICarrito;
+import interfazDominio.IEcoShop;
+import interfazDominio.IEnvase;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.util.Pair;
+
+/**
+ * ItemCarritoController
+ *
+ * @author Marcos Novelli - Matias Salles
+ */
+<span class="nc" id="L28">public class ItemCarritoController implements Initializable {</span>
+    //Atributos
+    private VBox pnl_scroll;
+    @FXML
+    private Label nombreArticulo;
+    @FXML
+    private ImageView imagenArticulo;
+    @FXML
+    private Label cantidadArticulo;
+    @FXML
+    private Label precioArticulo;
+    @FXML
+    private JFXComboBox&lt;String&gt; comboBoxEnvases;
+    Label cantidadArticulosEnCarrito;
+    @FXML
+    private ImageView imagenEnvase;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+<span class="nc" id="L51">    }</span>
+
+    //
+    //METODOS PUBLICOS
+    //
+    
+    public void cargarPanel(VBox unPanel) {
+<span class="nc" id="L58">        this.pnl_scroll = unPanel;</span>
+<span class="nc" id="L59">    }</span>
+
+    public void cargarNombreArticulo(String nombre) {
+<span class="nc" id="L62">        nombreArticulo.setText(nombre);</span>
+<span class="nc" id="L63">    }</span>
+
+    public void cargarImagenArticulo(String url) {
+<span class="nc" id="L66">        Image imagenACargar = new Image(url);</span>
+<span class="nc" id="L67">        imagenArticulo.setImage(imagenACargar);</span>
+<span class="nc" id="L68">    }</span>
+
+    public void cargarCantidadYPrecio(double cantidad, double precio) {
+<span class="nc" id="L71">        String strCantidad = cantidad + &quot; kg&quot;;</span>
+<span class="nc" id="L72">        String strPrecio = &quot;$ &quot; + precio;</span>
+
+<span class="nc" id="L74">        cantidadArticulo.setText(strCantidad);</span>
+<span class="nc" id="L75">        precioArticulo.setText(strPrecio);</span>
+<span class="nc" id="L76">    }</span>
+
+    public void cargarEnvasesAplicables(ArrayList&lt;IEnvase&gt; envasesAplicables) {
+<span class="nc" id="L79">        ObservableList&lt;String&gt; listaEnvasesAplicables = FXCollections.observableArrayList();</span>
+
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        for (int i = 0; i &lt; envasesAplicables.size(); i++) {</span>
+<span class="nc" id="L82">            listaEnvasesAplicables.add(envasesAplicables.get(i).obtenerNombre());</span>
+        }
+
+<span class="nc" id="L85">        comboBoxEnvases.setItems(listaEnvasesAplicables);</span>
+<span class="nc" id="L86">    }</span>
+
+    public void cargarCantidadDeArticulosEnCarrito(Label esteLabel) {
+<span class="nc" id="L89">        this.cantidadArticulosEnCarrito = esteLabel;</span>
+<span class="nc" id="L90">    }</span>
+        
+    public void cargarEnvaseSeleccionado(IEnvase unEnvase){
+<span class="nc" id="L93">        comboBoxEnvases.setValue(unEnvase.obtenerNombre());</span>
+<span class="nc" id="L94">    }</span>
+    
+    //
+    //METODOS PRIVADOS
+    //
+    
+    private void sacarLabelArticulosEnCarrito() {
+<span class="nc" id="L101">        IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();</span>
+<span class="nc" id="L102">        ICarrito carritoSistema = sistemaEcoShop.obtenerCarrito();</span>
+<span class="nc" id="L103">        ArrayList&lt;Pair&lt;IArticulo, Double&gt;&gt; listaArticulosCarrito = carritoSistema.obtenerListaArticulos();</span>
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (listaArticulosCarrito.isEmpty()) {</span>
+<span class="nc" id="L106">            this.cantidadArticulosEnCarrito.setText(&quot;&quot;);</span>
+        } else {
+<span class="nc" id="L108">            int numeroLabel = listaArticulosCarrito.size();</span>
+<span class="nc" id="L109">            String strNumeroLabel = numeroLabel + &quot;&quot;;</span>
+
+<span class="nc" id="L111">            cantidadArticulosEnCarrito.setText(strNumeroLabel);</span>
+        }
+<span class="nc" id="L113">    }</span>
+    
+    //
+    //EVENTOS
+    //
+    
+    @FXML
+    private void sacarArticuloDelCarrito(ActionEvent event) {
+<span class="nc" id="L121">        IEcoShop sistemaEcoshop = VentanaFXML.obtenerSistema();</span>
+<span class="nc" id="L122">        ICarrito carritoDelSistema = sistemaEcoshop.obtenerCarrito();</span>
+        IArticulo articuloAEliminar;
+        int posicionDelArticuloEnElCarrito;
+
+<span class="nc" id="L126">        articuloAEliminar = sistemaEcoshop.obtenerArticuloPorNombre(nombreArticulo.getText());</span>
+<span class="nc" id="L127">        posicionDelArticuloEnElCarrito = carritoDelSistema.posicionDelArticuloEnElCarrito(articuloAEliminar);</span>
+
+<span class="nc" id="L129">        sistemaEcoshop.sacarDelCarrito(articuloAEliminar);</span>
+
+<span class="nc" id="L131">        pnl_scroll.getChildren().remove(posicionDelArticuloEnElCarrito + 1);</span>
+
+<span class="nc" id="L133">        sacarLabelArticulosEnCarrito();</span>
+<span class="nc" id="L134">    }</span>
+
+    @FXML
+    private void mouseOcultarEnvase(MouseEvent event) {
+<span class="nc" id="L138">        imagenEnvase.setImage(null);</span>
+<span class="nc" id="L139">    }</span>
+
+    @FXML
+    private void mouseMostrarEnvase(MouseEvent event) {
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if(!comboBoxEnvases.getSelectionModel().isEmpty()){</span>
+<span class="nc" id="L144">            IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();</span>
+            IEnvase envaseSeleccionado;
+            Image envase;
+<span class="nc" id="L147">            String strEnvaseSeleccionado = comboBoxEnvases.getValue();</span>
+<span class="nc" id="L148">            envaseSeleccionado = sistemaEcoShop.obtenerEnvasePorNombre(strEnvaseSeleccionado);</span>
+            
+<span class="nc" id="L150">            envase = new Image(envaseSeleccionado.obtenerRutaImagen());</span>
+            
+<span class="nc" id="L152">            imagenEnvase.setImage(envase);</span>
+        }
+<span class="nc" id="L154">    }</span>
+
+    @FXML
+    private void clickComboBoxEnvases(ActionEvent event) {
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        if(!comboBoxEnvases.getSelectionModel().isEmpty()){</span>
+<span class="nc" id="L159">            IEcoShop sistemaEcoShop = VentanaFXML.obtenerSistema();</span>
+<span class="nc" id="L160">            ICarrito carritoSistema = sistemaEcoShop.obtenerCarrito();</span>
+<span class="nc" id="L161">            String strEnvaseSeleccionado = comboBoxEnvases.getValue();</span>
+            IEnvase envaseSeleccionado;
+<span class="nc" id="L163">            String strArticuloActual = nombreArticulo.getText();</span>
+<span class="nc" id="L164">            IArticulo articuloActual = sistemaEcoShop.obtenerArticuloPorNombre(strArticuloActual);</span>
+<span class="nc" id="L165">            envaseSeleccionado = sistemaEcoShop.obtenerEnvasePorNombre(strEnvaseSeleccionado);</span>
+            
+<span class="nc" id="L167">            carritoSistema.agregarEnvase(articuloActual, envaseSeleccionado);</span>
+        }
+<span class="nc" id="L169">    }</span>
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

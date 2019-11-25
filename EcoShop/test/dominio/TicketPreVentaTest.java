@@ -24,6 +24,7 @@ public class TicketPreVentaTest {
 
     @Test
     public void testGetUnaPreVenta() {
+        //Var
         IPreVenta nuevaPreVenta = new PreVenta(null, null, null, 0, null);
         TicketPreVenta ticketPreVenta = new TicketPreVenta(nuevaPreVenta, 10);
         IPreVenta getPreVenta = ticketPreVenta.getUnaPreVenta();
@@ -33,6 +34,7 @@ public class TicketPreVentaTest {
 
     @Test
     public void testSetUnaPreVenta() {
+        //Var
         IPreVenta nuevaPreVenta1 = new PreVenta(null, null, null, 0, null);
         TicketPreVenta ticketPreVenta = new TicketPreVenta(nuevaPreVenta1, 10);
         IPreVenta nuevaPreVenta2 = new PreVenta(null, null, null, 0, null);
@@ -46,6 +48,7 @@ public class TicketPreVentaTest {
 
     @Test
     public void testGetNumeroIdentificador() {
+        //Var
         int nuevoNumero = 13;
         TicketPreVenta ticketPreVenta = new TicketPreVenta(null, nuevoNumero);
         int getNumeroIdentificador = ticketPreVenta.getNumeroIdentificador();
@@ -67,6 +70,7 @@ public class TicketPreVentaTest {
 
     @Test
     public void testGetContenidoTicketElectronico() {
+        //Var
         ArrayList<String> nuevaLista = new ArrayList<>();
         TicketPreVenta ticketPreVenta = new TicketPreVenta(null, 0, nuevaLista);
         ArrayList<String> getLista = ticketPreVenta.getContenidoTicketElectronico();
@@ -76,6 +80,7 @@ public class TicketPreVentaTest {
 
     @Test
     public void testSetTicketElectronico() {
+        //Var
         ArrayList<String> nuevaLista1 = new ArrayList<>();
         TicketPreVenta ticketPreVenta = new TicketPreVenta(null, 0, nuevaLista1);
         ArrayList<String> nuevaLista2 = new ArrayList<>();
@@ -89,6 +94,7 @@ public class TicketPreVentaTest {
 
     @Test
     public void testObtenerNumeroDeTicket() {
+        //Var
         int nuevoNumero = 13;
         TicketPreVenta ticketPreVenta = new TicketPreVenta(null, nuevoNumero);
         int obtenerNumeroIdentificador = ticketPreVenta.obtenerNumeroDeTicket();
@@ -98,6 +104,7 @@ public class TicketPreVentaTest {
 
     @Test
     public void testObtenerContenidoTicketPDF() {
+        //Var
         ArrayList<String> listaEsperada = new ArrayList<>();
         LocalDateTime fechaDeCompraRealizada = LocalDateTime.of(2019, 12, 3, 0, 0, 0);
         LocalDate fechaDeRetiro = LocalDate.of(2019, 12, 4);
@@ -155,6 +162,7 @@ public class TicketPreVentaTest {
 
     @Test
     public void testObtenerPreVentaAsociada() {
+        //Var
         IPreVenta nuevaPreVenta = new PreVenta(null, null, null, 0, null);
         TicketPreVenta ticketPreVenta = new TicketPreVenta(nuevaPreVenta, 10);
         IPreVenta getPreVenta = ticketPreVenta.obtenerPreVentaAsociada();

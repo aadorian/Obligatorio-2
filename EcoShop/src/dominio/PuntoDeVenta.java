@@ -22,7 +22,7 @@ public class PuntoDeVenta implements IPuntoDeVenta{
     public PuntoDeVenta(int numeroDelLocal, String rutaDeImagen) {
         this.direccionLocal = new Direccion();
         this.numeroDelLocal = numeroDelLocal;
-        this.rutaDeImagen = "";
+        this.rutaDeImagen = rutaDeImagen;
     }
     
     public PuntoDeVenta(IDireccion direccionLocal, int numeroDelLocal) {
