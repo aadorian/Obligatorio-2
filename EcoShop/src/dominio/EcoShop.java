@@ -34,6 +34,28 @@ public class EcoShop implements IEcoShop{
         listaFavoritosGlobal = new ArrayList<>();
         carritoDeCompras = new Carrito();
     }
+
+    public EcoShop(ArrayList<IArticulo> listaArticulos, 
+            ArrayList<IEnvase> listaEnvases, 
+            ArrayList<IPuntoDeVenta> listaPuntosDeVenta, 
+            ArrayList<IPreVenta> listaPreVentas, 
+            ArrayList<ITicketPreVenta> listaTicketsPreVenta, 
+            ArrayList<IProveedor> listaProveedores, 
+            ArrayList<IDireccion> listaDirecciones, 
+            ArrayList<IArticulo> listaFavoritosUsuario, 
+            ArrayList<IArticulo> listaFavoritosGlobal, 
+            ICarrito carritoDeCompras) {
+        this.listaArticulos = listaArticulos;
+        this.listaEnvases = listaEnvases;
+        this.listaPuntosDeVenta = listaPuntosDeVenta;
+        this.listaPreVentas = listaPreVentas;
+        this.listaTicketsPreVenta = listaTicketsPreVenta;
+        this.listaProveedores = listaProveedores;
+        this.listaDirecciones = listaDirecciones;
+        this.listaFavoritosUsuario = listaFavoritosUsuario;
+        this.listaFavoritosGlobal = listaFavoritosGlobal;
+        this.carritoDeCompras = carritoDeCompras;
+    }
     
     //Getter & Setter
     public ArrayList<IProveedor> getListaProveedores() {
@@ -228,8 +250,11 @@ public class EcoShop implements IEcoShop{
 
     @Override
     public void registrarArticulo(IArticulo unArticulo) {
-        //Le asignamos un proveedor al azar y registramos el articulo
-        unArticulo.modificarOrigen(proveedorRandom());
+        /*Le asignamos un proveedor al azar y registramos el articulo
+        el if es para que no interfiera con las pruebas unitarias*/
+        if(unArticulo.obtenerOrigen() != null)
+            unArticulo.modificarOrigen(proveedorRandom());
+        
         this.listaArticulos.add(unArticulo);
     }
 
@@ -240,15 +265,21 @@ public class EcoShop implements IEcoShop{
     
     @Override
     public void registrarProveedor(IProveedor unProveedor) {
-        //Le asignamos una direccion al azar y registramos el proveedor
-        unProveedor.modificarDireccion(direccionRandom());
+        /*Le asignamos una direccion al azar y registramos el proveedor
+        el if es para que no interfiera con las pruebas unitarias*/
+        if(unProveedor.obtenerDireccion() != null)
+            unProveedor.modificarDireccion(direccionRandom());
+        
         this.listaProveedores.add(unProveedor);
     }
 
     @Override
     public void registrarPuntoDeVenta(IPuntoDeVenta unPuntoDeVenta) {
-        //Le asignamos una direccion al azar y registramos el punto de venta
-        unPuntoDeVenta.modificarDireccion(direccionRandom());
+        /*Le asignamos una direccion al azar y registramos el punto de venta
+        el if es para que no interfiera con las pruebas unitarias*/
+        if(unPuntoDeVenta.obtenerDireccionDelLocal() != null)
+            unPuntoDeVenta.modificarDireccion(direccionRandom());
+        
         this.listaPuntosDeVenta.add(unPuntoDeVenta);
     }
 

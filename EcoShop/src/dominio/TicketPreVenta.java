@@ -39,7 +39,8 @@ public class TicketPreVenta implements ITicketPreVenta{
         this.numeroIdentificador = numeroIdentificador;
         //if para no generar conflicto con el test unitario
         if(unaPreVenta != null && 
-                unaPreVenta.obtenerCarritoAsociadoALaCompra() != null){
+                unaPreVenta.obtenerCarritoAsociadoALaCompra() != null
+                && unaPreVenta.obtenerFechaDeCompraRealizada() != null){
             this.contenidoTicketElectronico = 
                     generarContenidoTicketElectronico(unaPreVenta);
         }
