@@ -26,11 +26,23 @@ public class TicketPreVenta implements ITicketPreVenta{
     public TicketPreVenta(){
         assert(false); //No podemos generar un TicketPreVenta sin parametros
     }
-   
+
+    public TicketPreVenta(IPreVenta unaPreVenta, int numeroIdentificador, 
+            ArrayList<String> contenidoTicketElectronico) {
+        this.unaPreVenta = unaPreVenta;
+        this.numeroIdentificador = numeroIdentificador;
+        this.contenidoTicketElectronico = contenidoTicketElectronico;
+    }
+
     public TicketPreVenta(IPreVenta unaPreVenta, int numeroIdentificador){
         this.unaPreVenta = unaPreVenta;
         this.numeroIdentificador = numeroIdentificador;
-        this.contenidoTicketElectronico = generarContenidoTicketElectronico(unaPreVenta);
+        //if para no generar conflicto con el test unitario
+        if(unaPreVenta != null && 
+                unaPreVenta.obtenerCarritoAsociadoALaCompra() != null){
+            this.contenidoTicketElectronico = 
+                    generarContenidoTicketElectronico(unaPreVenta);
+        }
     }
     
     //Getter & Setter
@@ -54,7 +66,8 @@ public class TicketPreVenta implements ITicketPreVenta{
         return contenidoTicketElectronico;
     }
 
-    public void setTicketElectronico(ArrayList<String> contenidoTicketElectronico) {
+    public void setContenidoTicketElectronico(ArrayList<String> 
+            contenidoTicketElectronico) {
         this.contenidoTicketElectronico = contenidoTicketElectronico;
     }
     
@@ -87,7 +100,7 @@ public class TicketPreVenta implements ITicketPreVenta{
         
         String saltoDeLinea = "";
         String introListadoDeCompra = "-------LISTADO DE COMPRA-------";
-        String fechaDeCompra ="Compra realizada el: " + formatoTiempo.
+        String fechaDeCompra = "Compra realizada el: " + formatoTiempo.
                         format(fechaDeCompraRealizada);
         String strLocalDeRetiro = "Local de retiro: " + localDeRetiro.toString();
         String strFechaDeRetiro = "Fecha de retiro: " + fechaDeRetiro;

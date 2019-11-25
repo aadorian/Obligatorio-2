@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * EnvaseTest
  * @author Marcos Novelli - Matias Salles
  */
 public class EnvaseTest {

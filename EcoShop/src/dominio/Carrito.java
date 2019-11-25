@@ -21,6 +21,13 @@ public class Carrito implements ICarrito{
         listaEnvases = new ArrayList<>();
         precioTotal = 0;
     }
+
+    public Carrito(ArrayList<Pair<IArticulo, Double>> listaArticulos, 
+            ArrayList<Pair<IArticulo, IEnvase>> listaEnvases, double precioTotal) {
+        this.listaArticulos = listaArticulos;
+        this.listaEnvases = listaEnvases;
+        this.precioTotal = precioTotal;
+    }
     
     //Getter & Setter
     public ArrayList<Pair<IArticulo, Double>> getListaArticulos() {

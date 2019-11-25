@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * PuntoDeVentaTest
  * @author Marcos Novelli - Matias Salles
  */
 public class PuntoDeVentaTest {

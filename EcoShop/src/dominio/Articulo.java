@@ -53,10 +53,10 @@ public class Articulo implements IArticulo{
     
     public Articulo(double precio, IProveedor origenDelArticulo, 
             ArrayList<IEnvase> envasesAplicables, String nombreArticulo,
-            String rutaImagen,String calificador) {
+            String rutaImagen, String calificador, int codigoIdentificador) {
         this.nombreArticulo = nombreArticulo;
         this.rutaImagen = rutaImagen;
-        this.codigoIdentificador = -1; //Luego se settea en la clase EcoShop
+        this.codigoIdentificador = codigoIdentificador;
         this.precioPorKG = precio;
         this.origenDelArticulo = origenDelArticulo;
         this.envasesAplicables = envasesAplicables;
