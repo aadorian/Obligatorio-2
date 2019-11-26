@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCNhZin_4jJwvY0GIWcqrzbbSBJUjdPwY&sensor=false">
+    </script>
+    <script type="text/javascript">
+      var map;
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.903940, -56.190810,5),
+          zoom: 16
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+        var marker1 = new google.maps.Marker({
+			position: {lat: -34.901626, lng:-56.188460},
+			map: map,
+			title: 'Local n° 1'
+			});
+        var marker2 = new google.maps.Marker({
+			position: {lat: -34.903519, lng:-56.197970},
+			map: map,
+			title: 'Local n° 2'
+			});
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+  </body>
+</html>
